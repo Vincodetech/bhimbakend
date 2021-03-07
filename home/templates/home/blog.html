@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+{% block title %} Bhim Connect - Blog {% endblock %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-stellar-background-ratio="0.5" 
+data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
+  <div class="container pt-100 pb-50">
+    <!-- Section Content -->
+    <div class="section-content pt-100">
+      <div class="row"> 
+        <div class="col-md-12">
+          <h3 class="title text-white">Blogs</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+    <h1 class="text-center">Under Constructions</h1>
+</div>
+
+{% endblock %}

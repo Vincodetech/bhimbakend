@@ -1,0 +1,115 @@
+{% extends 'myadmin/layout.html' %}
+{% block title %} Admin - News {% endblock %}
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">News</h1>
+        <a href="{% url 'addnews' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>
+          Add News
+      </a>
+    </div>
+    <!-- End Page Heading -->
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show" {% endif %} role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{ message }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <div class="row">
+            <div class="col-sm-6">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    News Line
+                </h6>
+            </div>
+            <div class="col-sm-6">
+                
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>News Category</th>
+                  <th>Active</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if result %}
+                {% for data in result %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                        <img src="{{data.image.url}}" alt="" width="80px", height="80px">
+                    </td>
+                    <td>{{data.title}}</td>
+                    <td>{{data.category.category_name}}</td>
+                    <td>{{data.active}}</td>
+                    <td>
+                        <a href="{% url 'updatenews' data.id %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'deletenews' data.id %}"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                  <td colspan="6">No Recored found.</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer" style="overflow: auto;">
+          <ul class="pagination">
+              {% if result.has_previous %}
+              <li class="page-item">
+                  <a class="page-link" aria-label="Previous"
+                  href="?page={{ result.previous_page_number }}">&laquo;</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                  <a class="page-link" aria-label="Previous"
+                  href="#">&laquo;</a>
+              </li>
+              {% endif %}
+              {% for i in result.paginator.page_range %}
+              {% if result.number == i %}
+                  <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+              {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+              {% endfor %}
+              {% if result.has_next %}
+              <li class="page-item">
+                  <a class="page-link" aria-label="Next"
+                  href="?page={{ result.next_page_number }}">&raquo;</a>
+              </li>
+              {% else %}
+              <li class="page-item">
+                  <a class="page-link disabled" aria-label="Next"
+                  href="#">&raquo;</a>
+              </li>
+              {% endif %}
+          </ul>
+      </div>
+    </div>
+</div>
+{% endblock %}

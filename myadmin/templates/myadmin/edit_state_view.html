@@ -1,0 +1,104 @@
+{% extends 'myadmin/layout.html' %}
+{% block title %} Admin - Edit State {% endblock %}
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Edit State</h1>
+        <a href="{% url 'state' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-backward fa-sm text-white-50"></i>
+            Go Back
+        </a>
+    </div>
+    <!-- End Page Heading -->
+
+    {% if msg %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{msg}}</strong>
+    </div>
+    {% endif %}
+
+    <!-- Category form -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <div class="row">
+            <div class="col-sm-6">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Edit State
+                </h6>
+            </div>
+            <div class="col-sm-6">    
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+        
+            <form action="{% url 'updatestate' single_state.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="state_name">State Name</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="state_name" id="state_name" 
+                            class="form-control form-control-sm" 
+                            placeholder="State name"
+                            value="{{single_state.state_name}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="country_id">Select Country</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <select name="country_id" id="country_id" class="form-control form-control-sm">
+                                <option value="default">Select Country</option>
+                                {% for c in countries %}
+                                    {% if single_state.country.id == c.id %}
+                                        <option value="{{c.id}}" selected>{{c.country_name}}</option>
+                                    {% else %}
+                                        <option value="{{c.id}}">{{c.country_name}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="active">Is Active ?</label>
+                        </div>
+                        <div class="col-sm-6">
+                            {% if single_state.active %}
+                            <input type="checkbox" name="active" id="active" 
+                            value="True" checked>
+                            {% else %}
+                            <input type="checkbox" name="active" id="active" 
+                            value="True">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="submit" value="Update" 
+                            class="btn btn-light btn-outline-info btn-sm rounded">
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

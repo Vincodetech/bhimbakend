@@ -1,0 +1,116 @@
+{% extends 'myadmin/layout.html' %}
+{% block title %} Admin - Admin Entry {% endblock %}
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Admin Entry</h1>
+        <a href="{% url 'addadminentry' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>
+            Add Admin Entry
+        </a>
+    </div>
+    <!-- End Page Heading -->
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show" {% endif %} role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{ message }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <div class="row">
+            <div class="col-sm-6">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Admin Line
+                </h6>
+            </div>
+            <div class="col-sm-6">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>First Name</th>
+                  <th>Last Nane</th>
+                  <th>Email</th>
+                  <th>Is Super Admin</th>
+                  <th>Is Staff</th>
+                  <th>Is Active</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% if users %}
+                    {% for user in users %}
+                    <tr>
+                        <td>{{forloop.counter0|add:users.start_index}}</td>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.is_superuser}}</td>
+                        <td>{{user.is_staff}}</td>
+                        <td>{{user.is_active}}</td>
+                        <td>
+                            <a href="{% url 'updatedminentry' user.id %}"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'deleteadminentry' user.id %}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                   {% else %} 
+                  <tr>
+                      <td colspan="7" class="text-center text-danger">No rows are found.</td>
+                  </tr>
+                  {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer" style="overflow: auto;">
+            <ul class="pagination">
+                {% if users.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous"
+                    href="?page={{ users.previous_page_number }}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Previous"
+                    href="#">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for i in users.paginator.page_range %}
+                {% if users.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if users.has_next %}
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next"
+                    href="?page={{ users.next_page_number }}">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link disabled" aria-label="Next"
+                    href="#">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

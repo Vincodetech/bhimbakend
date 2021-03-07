@@ -1,0 +1,143 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">Admin</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+      <a class="nav-link" href="{% url 'dashboard_admin' %}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'index' %}" target="__blank">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Go To Website</span></a>
+    </li>
+    {% if user.is_superuser %}
+    <!-- Nav Item - Admin Entry -->
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'adminentry' %}">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Admin Entry</span></a>
+    </li>
+    
+    <!-- Nav Item - CMS Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse"
+       data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>CMS</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">CMS:</h6>
+          <a class="collapse-item" href="{% url 'aboutus' %}">About</a>
+          <a class="collapse-item" href="{% url 'header' %}">Header</a>
+          <a class="collapse-item" href="{% url 'footer' %}">Footer</a>
+          <a class="collapse-item" href="{% url 'admintc' %}">Terms & Conditions</a>
+          <a class="collapse-item" href="{% url 'adminpolicy' %}">Privecy Policy</a>
+          <a class="collapse-item" href="{% url 'degree' %}">Degree</a>
+        </div>
+      </div>
+    </li>
+   
+    <!-- Nav Item - Settings Collapse Menu -->
+    <!-- <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" 
+      aria-expanded="true" aria-controls="collapseThree">
+        <i class="fas fa-fw fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Settings:</h6>
+          <a class="collapse-item" href="#">Notification Manager</a>
+        </div>
+      </div>
+    </li> -->
+    {% endif %}
+
+    <!-- Nav Item - Generel Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefour" 
+      aria-expanded="true" aria-controls="collapsefour">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Generel</span>
+      </a>
+      <div id="collapsefour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Generel:</h6>
+          <!-- <a class="collapse-item" href="#">FAQ</a> -->
+          <a class="collapse-item" href="{% url 'newscategory' %}">News Category</a>
+          <a class="collapse-item" href="{% url 'news' %}">News</a>
+          <a class="collapse-item" href="{% url 'blogcategory' %}">Blogs Category</a>
+          <a class="collapse-item" href="{% url 'blog' %}">Blogs</a>
+          <a class="collapse-item" href="{% url 'educat' %}">Education Category</a>
+          <a class="collapse-item" href="{% url 'edusubcat' %}">Education Sub Category</a>
+          <a class="collapse-item" href="{% url 'edu' %}">Education</a>
+        </div>
+      </div>
+    </li>
+    {% if user.is_superuser %}
+    <!-- Nav Item - Area Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefive" 
+      aria-expanded="true" aria-controls="collapsefive">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Area</span>
+      </a>
+      <div id="collapsefive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Area:</h6>
+          <a class="collapse-item" href="{% url 'country' %}">Country</a>
+          <a class="collapse-item" href="{% url 'state' %}">State</a>
+          <a class="collapse-item" href="{% url 'city' %}">District</a>
+        </div>
+      </div>
+    </li>
+    
+    <!-- Nav Item - Gallery Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" 
+      aria-expanded="true" aria-controls="collapseSix">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Gallery</span>
+      </a>
+      <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Gallery:</h6>
+          <a class="collapse-item" href="{% url 'gallerycat' %}">Gallery Category</a>
+          <a class="collapse-item" href="{% url 'gallery' %}">Gallery</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Nav Item - Users -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'admiusers' %}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Users</span></a>
+    </li>
+    {% endif %}
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+  <!-- End of Sidebar -->

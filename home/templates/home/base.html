@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<!-- Mirrored from thememascot.net/demo/personal/j/ngopress/v2.0/demo/index-mp-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 Aug 2018 09:04:52 GMT -->
+<head>
+{% load static %}
+
+<!-- Meta Tags -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="ngopress - Nonprofit, Crowdfunding & Charity HTML5 Template" />
+<meta name="keywords" content="charity,crowdfunding,nonprofit,orphan,Poor,funding,fundrising,ngo,children" />
+<meta name="author" content="ThemeMascot" />
+
+<!-- Page Title -->
+<title>{% block title %} {% endblock %}</title>
+
+<!-- Favicon and Touch Icons -->
+<link href="{% static 'website_assets/images/favicon1.png' %}" rel="shortcut icon" type="image/png">
+<link href="{% static 'website_assets/images/apple-touch-icon.png' %}" rel="apple-touch-icon">
+<link href="{% static 'website_assets/images/apple-touch-icon-72x72.png' %}" rel="apple-touch-icon" sizes="72x72">
+<link href="{% static 'website_assets/images/apple-touch-icon-114x114.png' %}" rel="apple-touch-icon" sizes="114x114">
+<link href="{% static 'website_assets/images/apple-touch-icon-144x144.png' %}" rel="apple-touch-icon" sizes="144x144">
+
+<!-- Stylesheet -->
+<link href="{% static 'website_assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'website_assets/css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'website_assets/css/animate.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'website_assets/css/css-plugin-collections.css' %}" rel="stylesheet"/>
+<!-- CSS | menuzord megamenu skins -->
+<link id="menuzord-menu-skins" href="{% static 'website_assets/css/menuzord-skins/menuzord-rounded-boxed.css' %}" rel="stylesheet"/>
+<!-- CSS | Main style file -->
+<link href="{% static 'website_assets/css/style-main.css' %}" rel="stylesheet" type="text/css">
+<!-- CSS | Preloader Styles -->
+<link href="{% static 'website_assets/css/preloader.css' %}" rel="stylesheet" type="text/css">
+<!-- CSS | Custom Margin Padding Collection -->
+<link href="{% static 'website_assets/css/custom-bootstrap-margin-padding.css' %}" rel="stylesheet" type="text/css">
+<!-- CSS | Responsive media queries -->
+<link href="{% static 'website_assets/css/responsive.css' %}" rel="stylesheet" type="text/css">
+<!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+<!-- <link href="css/style.css" rel="stylesheet" type="text/css"> -->
+
+<!-- Revolution Slider 5.x CSS settings -->
+<link  href="{% static 'website_assets/js/revolution-slider/css/settings.css' %}" rel="stylesheet" type="text/css"/>
+<link  href="{% static 'website_assets/js/revolution-slider/css/layers.css' %}" rel="stylesheet" type="text/css"/>
+<link  href="{% static 'website_assets/js/revolution-slider/css/navigation.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- CSS | Theme Color -->
+<link href="{% static 'website_assets/css/colors/theme-skin-blue.css' %}" rel="stylesheet" type="text/css">
+
+<!-- external javascripts -->
+<script src="{% static 'website_assets/js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'website_assets/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'website_assets/js/bootstrap.min.js' %}"></script>
+<!-- JS | jquery plugin collection for this theme -->
+<script src="{% static 'website_assets/js/jquery-plugin-collection.js' %}"></script>
+
+<!-- Revolution Slider 5.x SCRIPTS -->
+<script src="{% static 'website_assets/js/revolution-slider/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'website_assets/js/revolution-slider/js/jquery.themepunch.revolution.min.js' %}"></script>
+
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="">
+<div id="wrapper" class="clearfix">
+  <!-- Header -->
+  <header id="header" class="header">
+    <div class="header-top p-0 bg-theme-colored xs-text-center" 
+    data-bg-img="">
+      <div class="container pt-20 pb-20">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="widget no-border m-0">
+              <a href="{% url 'index' %}">
+                  <img src="{{header_content.image.url}}" alt="" width="165pt" height="70pt">
+              </a>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="widget no-border clearfix m-0 mt-5">
+              <ul class="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
+                <li>
+                  <a class="text-white" href="#">FAQ</a>
+                </li>
+                <li class="text-white">|</li>
+                <li>
+                  <a class="text-white" href="#">Help Desk</a>
+                </li>
+                <li class="text-white">|</li>
+                <li>
+                  <a class="text-white" href="#">Support</a>
+                </li>
+              </ul>
+            </div>
+            <div class="widget no-border clearfix m-0 mt-5">
+              <ul class="styled-icons icon-gray icon-theme-colored icon-circled icon-sm pull-right flip sm-pull-none sm-text-center mt-sm-15">
+                <li><a href="{{header_content.facebook}}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{header_content.twitter}}"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="{{header_content.google}}"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="{{header_content.instagram}}"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="{{header_content.youtube}}"><i class="fa fa-youtube"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-nav">
+      <div class="header-nav-wrapper navbar-scrolltofixed bg-silver-light">
+        <div class="container">
+          <nav id="menuzord" class="menuzord default bg-silver-light">
+            <ul class="menuzord-menu">
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About Us</a>
+                <ul class="dropdown">
+                  <li><a href="{% url 'events' %}">Events</a></li>
+                  <li><a href="{% url 'galleryview' %}">Gallery</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'blogview' %}">Blog</a></li>
+              <li><a href="{% url 'newsview' %}">News</a></li>
+              <li><a href="#">Education</a></li>
+              <li><a href="#">Business</a></li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>
+              {% if request.session.uid %}
+              <li><a href="#">My Account</a>
+                <ul class="dropdown">
+                  <li><a href="{% url 'edit' %}">My Profile</a></li>
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li>
+                <a type="button" class="btn btn-colored btn-flat btn-theme-colored mt-5" 
+                href="{% url 'login' %}">
+                    Login
+                </a>
+              </li>
+              <li>
+                <a style="margin-left: 10px;" type="button" class="btn btn-colored btn-flat btn-theme-colored mt-5" 
+                href="{% url 'register' %}">
+                    Join Us
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+            <ul class="menuzord-menu list-inline pull-right flip hidden-sm hidden-xs">
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Start main-content -->
+  <div class="main-content">
+    <!-- Section: home -->
+    {% block content %}
+    {% endblock %}
+  </div>
+  <!-- end main-content -->
+  
+  <!-- Footer -->
+  <footer id="footer" class="footer" data-bg-color="#25272e">
+    <div class="container pt-70 pb-40">
+      <div class="row border-bottom-black">
+        <div class="col-sm-4 col-md-3">
+          <div class="widget dark">
+            <img class="mt-10 mb-20" alt="" src="{{header_content.image.url}}"
+            width="200px" height="90px">
+            <p>{{footer_content.description|safe}}</p>
+            <ul class="list-inline mt-5">
+              <li class="m-0 pl-10 pr-10"> 
+                <i class="fa fa-phone text-theme-colored mr-5"></i> 
+                <a class="text-gray" href="#">{{footer_content.phone}}</a> 
+              </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-colored mr-5"></i> 
+                <a class="text-gray" href="#">{{footer_content.email}}</a> </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-colored mr-5"></i> 
+                <a class="text-gray" href="#">{{footer_content.website}}</a> </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-3">
+          <div class="widget dark">
+            <h5 class="widget-title mb-10">Connect With Us</h5>
+            <ul class="styled-icons icon-dark icon-theme-colored icon-circled icon-sm">
+              <li><a href="{{header_content.facebook}}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{header_content.twitter}}"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="{{header_content.google}}"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="{{header_content.instagram}}"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="{{header_content.instagram}}"><i class="fa fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-3">
+          <div class="widget dark">
+            <h5 class="widget-title line-bottom">Quick Links</h5>
+            <ul class="list angle-double-right list-border">
+              <li><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="{% url 'blog' %}">Blog</a></li>
+              <li><a href="{% url 'events' %}">Events</a></li>
+              <li><a href="{% url 'news' %}">News</a></li>
+              <li><a href="{% url 'gallery' %}">Gallery</a></li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom bg-black-333">
+      <div class="container pt-15 pb-10">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="font-11 text-black-777 m-0">
+              Copyright &copy;<script type="text/javascript">
+              document.write(new Date().getFullYear());
+            </script> <a href="#">Bhim Connect</a>. All Rights Reserved</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <div class="widget no-border m-0">
+              <ul class="list-inline sm-text-center mt-5 font-12">
+                <li>
+                  <a href="{% url 'tc' %}">Terms & Condition</a>
+                </li>
+                <li>|</li>
+                <li>
+                  <a href="{% url 'privecy' %}">Privacy Policy</a>
+                </li>
+                <li>|</li>
+                <li>
+                  <a href="#">Support</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+</div>
+<!-- end wrapper -->
+
+<!-- Footer Scripts -->
+<!-- JS | Custom script for all pages -->
+<script src="{% static 'website_assets/js/custom.js' %}"></script>
+
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
+      (Load Extensions only on Local File Systems ! 
+       The following part can be removed on Server for On Demand Loading) -->
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.actions.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.migration.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website_assets/js/revolution-slider/js/extensions/revolution.extension.video.min.js' %}"></script>
+
+</body>
+
+<!-- Mirrored from thememascot.net/demo/personal/j/ngopress/v2.0/demo/index-mp-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 Aug 2018 09:10:43 GMT -->
+</html>

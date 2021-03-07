@@ -1,0 +1,73 @@
+{% extends 'home/base.html' %}
+{% block title %} Bhim Connect - Contact Us {% endblock %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-stellar-background-ratio="0.5" 
+data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
+  <div class="container pt-100 pb-50">
+    <!-- Section Content -->
+    <div class="section-content pt-100">
+      <div class="row"> 
+        <div class="col-md-12">
+          <h3 class="title text-white">Contact Us</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="divider">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        {% if flag == 'success' %}
+        <span class="alert alert-success">{{msg}}</span>
+        {% elif flag == 'error' %}
+        <span class="alert alert-danger">{{msg}}</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row pt-10">
+      <div class="col-md-7">
+        <h4 class="mt-0 mb-30 line-bottom">Interested in discussing?</h4>
+        <!-- Contact Form -->
+        <form id="contact_form" name="contact_form" class="" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-12">
+              {{ forms|crispy }}
+              <div class="form-group">
+                <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="" />
+                <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5" data-loading-text="Please wait...">Send your message</button>
+                <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-md-4 col-md-offset-1">
+        <div class="contact-info text-center pt-40 pb-40 mt-10 bg-light border-bottom border-theme-colored">
+          <i class="fa fa-phone font-36 mb-10 text-theme-colored"></i>
+          <h4>Call Us</h4>
+          <h6 class="text-gray">{{footer_content.phone}}</h6>
+        </div>
+        <div class="contact-info text-center pt-40 pb-40 mt-10 bg-light border-bottom border-theme-colored">
+          <i class="fa fa-envelope font-36 mb-10 text-theme-colored"></i>
+          <h4>Email</h4>
+          <h6 class="text-gray">{{footer_content.email}}</h6>
+        </div>
+        <div class="contact-info text-center pt-40 pb-40 mt-10 bg-light border-bottom border-theme-colored">
+          <i class="fa fa-map-marker font-36 mb-10 text-theme-colored"></i>
+          <h4>Address</h4>
+          <h6 class="text-gray">{{footer_content.address}}</h6>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+{% endblock %}
