@@ -86,27 +86,26 @@ def city_list(request):
         return Response(city_serializer.data)
 
 @api_view(['POST'])
-@parser_classes([JSONParser, FormParser, MultiPartParser])
+@parser_classes([FormParser, MultiPartParser])
 def updateUserProfile(request, id):
     try:
-        user_profile = Profile.objects.get(user=id)
         user = CustomUser.objects.get(id=id)
+        user_profile = Profile.objects.get(user=user)
     except:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'POST':
-        profile_serializer = UserEditProfileSerializer(user_profile, data=request.data)
-        user_serializer = UserSerializer(user, data=request.data)
+    # if request.method == 'POST':
+    profile_serializer = UserEditProfileSerializer(user_profile, data=request.data)
+    user_serializer = UserSerializer(user, data=request.data)
 
-        if profile_serializer.is_valid() and user_serializer.is_valid():
-            profile_serializer.save()
-            user_serializer.save()
-            return Response([profile_serializer.data, user_serializer.data] , status=status.HTTP_200_OK)
-        else:
-            return Response({
-                'userprofileerror': profile_serializer.errors,
-                'usererror': user_serializer.errors
-                }, status=status.HTTP_400_BAD_REQUEST)
+    if profile_serializer.is_valid(raise_exception=True) and user_serializer.is_valid(raise_exception=True):
+        profile_serializer.save()
+        user_serializer.save()
+        return Response([profile_serializer.data, user_serializer.data] , 
+            status=status.HTTP_201_CREATED)
+    else:
+        return Response([profile_serializer.errors, user_serializer.errors], 
+            status=status.HTTP_400_BAD_REQUEST)
 
 
 
