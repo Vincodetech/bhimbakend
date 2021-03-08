@@ -27,7 +27,7 @@ SECRET_KEY = 'x6cbw%923ck%k5vpu8=z-1-41!n27#!w8=+l9n-(=!)i9mx-7n'
 DEBUG = True
 
 ALLOWED_HOSTS = ['bhimconnect.com', 'www.bhimconnect.com', 'localhost', '127.0.0.1', 
-                '192.168.42.170']
+                '192.168.42.170', '194.59.165.73', 'henuherbal.com', 'www.henuherbal.com']
 
 
 # Application definition
