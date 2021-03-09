@@ -270,6 +270,32 @@ class EducationSubCategory(models.Model):
     def get_sub_category_by_cat(id):
         return EducationSubCategory.objects.filter(category=id)
 
+class EduSubjects(models.Model):
+    subject_name = models.CharField(max_length=255, default="")
+    active = models.BooleanField(default=True)
+    sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="")
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.subject_name
+
+    @staticmethod
+    def get_all_subjects():
+        return EduSubjects.objects.all()
+
+    @staticmethod
+    def get_subject_by_id(id):
+        return EduSubjects.objects.get(id=id)
+
+    @staticmethod
+    def get_subjects_by_active():
+        return EduSubjects.objects.filter(active=True)
+
+    @staticmethod
+    def get_subjects_by_sub_cat(id):
+        return EduSubjects.objects.filter(sub_category=id)
+
 class Education(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
@@ -279,6 +305,7 @@ class Education(models.Model):
     active = models.BooleanField(default=True)
     category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="")
     sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="")
+    subject = models.ForeignKey(EduSubjects, on_delete=models.CASCADE, default="", null=True, blank=True)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 

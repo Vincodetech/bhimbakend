@@ -72,6 +72,16 @@ class EduSubCatForm(forms.ModelForm):
         model=EducationSubCategory
         fields=('category_name', 'category', 'active')
 
+class EduSubjectsForm(forms.ModelForm):
+    class Meta:
+        model=EduSubjects
+        fields=('subject_name', 'sub_category', 'active')
+
+class EduForm(forms.ModelForm):
+    class Meta:
+        model=Education
+        fields=('title','description','document_path','youtube_link','youtube_channel_link','category','sub_category', 'subject', 'active')
+
 class NewsForm(forms.ModelForm):
     class Meta:
         model=News
@@ -81,11 +91,6 @@ class BlogForm(forms.ModelForm):
     class Meta:
         model=Blog
         fields=('title','description','image','youtube_link','category','active')
-
-class EduForm(forms.ModelForm):
-    class Meta:
-        model=Education
-        fields=('title','description','document_path','youtube_link','youtube_channel_link','category','sub_category','active')
 
 class GalleryCatForm(forms.ModelForm):
     class Meta:
