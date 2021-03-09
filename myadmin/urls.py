@@ -32,6 +32,7 @@ urlpatterns = [
     path('updatepandp/<int:id>', home.edit_policy, name="updatepandp"),
     path('deletepandp/<int:id>', home.delete_policy, name="deletepandp"),
     path('admiusers/', home.users_view, name="admiusers"),
+    path('admininquiry/', home.inquiry_view, name="admininquiry"),
     path('adminentry/', home.admin_view, name="adminentry"),
     path('addadminentry/', home.add_admin, name="addadminentry"),
     path('updatedminentry/<int:id>', home.edit_admin, name="updatedminentry"),
@@ -79,6 +80,11 @@ urlpatterns = [
     path('addnedusubcat/', home.add_edu_sub_category, name="addnedusubcat"),
     path('updateedusubcat/<int:id>', home.edit_edu_sub_category, name="updateedusubcat"),
     path('deleteedusubcat/<int:id>', home.delete_edu_sub_cat, name="deleteedusubcat"),
+
+    path('edusub/', home.edu_subjects_view, name="edusub"),
+    path('addnedusub/', home.add_edu_subjects, name="addnedusub"),
+    path('updateedusub/<int:id>', home.edit_edu_subjects, name="updateedusub"),
+    path('deleteedusub/<int:id>', home.delete_edu_subject, name="deleteedusub"),
 
     path('edu/', home.edu_view, name="edu"),
     path('addnedu/', home.add_edu, name="addnedu"),

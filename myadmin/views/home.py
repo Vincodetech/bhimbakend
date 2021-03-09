@@ -452,6 +452,22 @@ def users_view(request):
     }
     return render(request, 'myadmin/users.html', data)
 
+def inquiry_view(request):
+    allusers = Inquiry.objects.all()
+    print("============>>", allusers)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allusers, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    data = {
+        'users': users,
+    }
+    return render(request, 'myadmin/inquiry.html', data)
+
 def admin_view(request):
     allusers = User.objects.filter(is_staff=True)
     page = request.GET.get('page', 1)
@@ -1011,6 +1027,62 @@ def delete_edu_sub_cat(request, id):
     single_edu_sub_cat.delete()
     messages.success(request, 'Edu Sub Category is deleted.')
     return redirect('edusubcat')
+
+# edu subjects crud
+def edu_subjects_view(request):
+    allcontents = EduSubjects.get_all_subjects()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allcontents, 10)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/edusubjectsview.html', data)
+
+def add_edu_subjects(request):
+    if request.method == 'POST':
+        forms = EduSubjectsForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Edu Subjects created successfully.')
+            return redirect('addnedusub')
+        else:
+            messages.error(request, 'Edu Subjects is not created successfully.')
+            return redirect('addnedusub')
+    else:
+        forms = EduSubjectsForm()
+    return render(request, 'myadmin/add_edusub_view.html', {
+        'forms': forms
+    })
+
+def edit_edu_subjects(request, id):
+    if request.method == 'POST':
+        single_edu_sub = EduSubjects.get_subject_by_id(id)
+        forms = EduSubjectsForm(request.POST, instance=single_edu_sub)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Edu Subjects updated successfully.')
+            return redirect('edusub')
+        else:
+            messages.error(request, 'Edu Subjects is not updated successfully.')
+            return redirect('edusub')
+    else:
+        single_edu_sub = EduSubjects.get_subject_by_id(id)
+        forms = EduSubjectsForm(instance=single_edu_sub)
+    return render(request, 'myadmin/add_edusub_view.html', {
+        'forms': forms
+    })
+
+def delete_edu_subject(request, id):
+    single_edu_sub = EduSubjects.get_subject_by_id(id)
+    single_edu_sub.delete()
+    messages.success(request, 'Edu Subjects is deleted.')
+    return redirect('edusub')
 
 # edu crud
 def edu_view(request):
