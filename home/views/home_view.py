@@ -13,6 +13,7 @@ from home.models import Country
 from home.models import State
 from home.models import City
 from home.models import Degree
+from home.models import *
 from myadmin.models import TermsAndConditions
 from myadmin.models import PrivecyAndProlicy
 from myadmin.models import AboutUsCms
@@ -59,11 +60,19 @@ def events(request):
     })
 
 def news(request):
+    id = request.GET.get('id')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
+    if not id:
+        allnews = News.get_news_by_active()
+    else:
+        allnews = News.objects.filter(category=id)
     return render(request, "home/news.html", {
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'news_all_categories': news_all_categories,
+        'allnews': allnews
     })
 
 def gallery(request):
