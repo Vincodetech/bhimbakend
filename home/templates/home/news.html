@@ -32,7 +32,7 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
     <div class="row" style="overflow: auto;">
       <div class="col-lg-12">
         <ul class="nav nav-pills list-inline">
-          <li class="active"><a href="/newsview">All</a></li>
+          <li><a href="/newsview">All</a></li>
           {% for nc in news_all_categories %}
           <li><a href="/newsview?id={{nc.id}}">{{nc.category_name}}</a></li>
           {% endfor %}
@@ -48,20 +48,15 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
         <div class="thumb">
           <img src="{{n.image.url}}" alt="" class="img-fullwidth">
           <div class="overlay-donate-now">
-            <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
+            <a href="{% url 'newssingle' n.id %}" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
               Read More <i class="fa fa-info-circle font-16 ml-5"></i></a>
           </div>
         </div>
-        <div class="progress-item mt-0">
-          <div class="progress mb-0">
-            <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-          </div>
-        </div>
         <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-          <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">{{n.title}}</a></h5>
+          <h5 class="font-weight-600 font-16"><a href="{% url 'newssingle' n.id %}">{{n.title}}</a></h5>
           <p>{{n.description|safe|slice:'100'}}</p>
           <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-            <li class="text-theme-colored pull-left pr-0"><a href="#">Read More</a></li>
+            <li class="text-theme-colored pull-left pr-0"><a href="{% url 'newssingle' n.id %}">Read More</a></li>
           </ul>
         </div>
       </div>

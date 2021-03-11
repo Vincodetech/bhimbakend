@@ -81,11 +81,16 @@ class EduForm(forms.ModelForm):
     class Meta:
         model=Education
         fields=('title','description','document_path','youtube_link','youtube_channel_link','category','sub_category', 'subject', 'active')
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class NewsForm(forms.ModelForm):
     class Meta:
         model=News
-        fields=('title','description','image','youtube_link','category','active')
+        fields=('title','description','image','youtube_link','category', 'news_date','active')
+        widgets = {
+            'news_date': DateInput()
+        }
 
 class BlogForm(forms.ModelForm):
     class Meta:
