@@ -51,7 +51,7 @@ def blog(request):
     if not id:
         all_blogs = Blog.get_blog_by_active()
     else:
-        all_blogs = Blog.get_blog_by_id(id)
+        all_blogs = Blog.objects.filter(category=id)
     page = request.GET.get('page', 1)
     paginator = Paginator(all_blogs, 8)
     try:
