@@ -24,6 +24,7 @@ from myadmin.forms import InquiryForm
 import random
 from urllib.request import Request, urlopen 
 from urllib.parse import quote
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     header_content = HeaderCms.get_content_by_active()
@@ -44,11 +45,51 @@ def about(request):
     })
 
 def blog(request):
+    id = request.GET.get('id')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    if not id:
+        all_blogs = Blog.get_blog_by_active()
+    else:
+        all_blogs = Blog.get_blog_by_id(id)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(all_blogs, 8)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    
     return render(request, "home/blog.html", {
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'result': result
+    })
+
+def blog_detail(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    blog_all_categories = BlogCategory.get_category_by_active()
+    single_blog = Blog.get_blog_by_id(id)
+    all_blogs = Blog.objects.filter(category=single_blog.category)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(all_blogs, 8)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, "home/blog_detail.html", {
+        'header_content': header_content,
+        'footer_content': footer_content,
+        'single_blog': single_blog,
+        'blog_all_categories': blog_all_categories,
+        'result': result
     })
 
 def events(request):
@@ -71,6 +112,20 @@ def news(request):
     return render(request, "home/news.html", {
         'header_content': header_content,
         'footer_content': footer_content,
+        'news_all_categories': news_all_categories,
+        'allnews': allnews
+    })
+
+def news_detail(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
+    single_news = News.get_news_by_id(id)
+    allnews = News.objects.filter(category=single_news.category)
+    return render(request, "home/news_detail.html", {
+        'header_content': header_content,
+        'footer_content': footer_content,
+        'single_news': single_news,
         'news_all_categories': news_all_categories,
         'allnews': allnews
     })

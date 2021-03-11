@@ -172,6 +172,7 @@ class News(models.Model):
     youtube_link = models.CharField(max_length=255, default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(NewsCategory, on_delete=models.CASCADE, default="")
+    news_date = models.DateField(default=datetime.datetime.now)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 
@@ -201,6 +202,7 @@ class Blog(models.Model):
     youtube_link = models.CharField(max_length=255, default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE, default="")
+    blog_date = models.DateField(default=datetime.datetime.now)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 

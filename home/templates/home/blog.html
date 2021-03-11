@@ -18,8 +18,74 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
   </div>
 </section>
 
-<div class="container">
-    <h1 class="text-center">Under Constructions</h1>
-</div>
+<section>
+  <div class="container">
+    <div class="row multi-row-clearfix">
+      <div class="blog-posts">
+        {% for data in result %}
+        <div class="col-md-3">
+          <article class="post clearfix mb-30 bg-lighter">
+            <div class="entry-header">
+              <div class="post-thumb thumb"> 
+                <img src="{{data.image.url}}" alt="" class="img-responsive img-fullwidth"> 
+              </div>
+            </div>
+            <div class="entry-content p-20 pr-10">
+              <div class="entry-meta media mt-0 no-bg no-border">
+                <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                  <span class="font-13 text-white font-weight-600">{{data.blog_date}}</span>
+                </div>
+                <div class="media-body pl-15">
+                  <div class="event-content pull-left flip">
+                    <h4 class="entry-title text-white m-0 mt-5"><a href="{% url 'blogsingle' data.id %}">{{data.title}}</a></h4>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-10">{{data.description|safe}}</p>
+              <a href="{% url 'blogsingle' data.id %}" class="btn-read-more">Read more</a>
+              <div class="clearfix"></div>
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+        <div class="col-md-12">
+          <nav>
+              <ul class="pagination theme-colored">
+                {% if result.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous"
+                    href="?page={{ result.previous_page_number }}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Previous"
+                    href="#">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for i in result.paginator.page_range %}
+                {% if result.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if result.has_next %}
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next"
+                    href="?page={{ result.next_page_number }}">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link disabled" aria-label="Next"
+                    href="#">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

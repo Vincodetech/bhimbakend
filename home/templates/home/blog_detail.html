@@ -1,0 +1,151 @@
+{% extends 'home/base.html' %}
+{% block title %} Bhim Connect - Blog {% endblock %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load get_news_by_cat %}
+
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-stellar-background-ratio="0.5" 
+data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
+  <div class="container pt-100 pb-50">
+    <!-- Section Content -->
+    <div class="section-content pt-100">
+      <div class="row"> 
+        <div class="col-md-12">
+          <h3 class="title text-white">Single Blog</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+    <div class="container mt-30 mb-30 pt-30 pb-30">
+      <div class="row">
+        <div class="col-md-9 pull-right flip sm-pull-none">
+          <div class="blog-posts single-post">
+            <article class="post clearfix mb-0">
+              <div class="entry-header">
+                <div class="post-thumb thumb"> <img src="{{single_blog.image.url}}" alt="" class="img-responsive img-fullwidth"> </div>
+              </div>
+              <div class="entry-content">
+                <div class="entry-meta media no-bg no-border mt-15 pb-20">
+                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                    <span class="font-13 text-white font-weight-600">{{single_blog.news_date}}</span>
+                  </div>
+                  <div class="media-body pl-15">
+                    <div class="event-content pull-left flip">
+                      <h4 class="entry-title text-white text-uppercase m-0"><a href="#">{{single_blog.title}}</a></h4>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-15">{{single_blog.description|safe}}</p>
+                
+                <div class="mt-30 mb-0">
+                  <div class="row">
+                      <div class="cil-lg-12 col-md-12 col-sm-12">
+                        <h5 class="pull-left mt-10 mr-20 text-theme-colored">Related Posts:</h5>
+                      </div>
+                  </div>
+                  <div class="row multi-row-clearfix">
+                    <div class="blog-posts">
+                      {% for data in result %}
+                      <div class="col-md-3">
+                        <article class="post clearfix mb-30 bg-lighter">
+                          <div class="entry-header">
+                            <div class="post-thumb thumb"> 
+                              <img src="{{data.image.url}}" alt="" class="img-responsive img-fullwidth"> 
+                            </div>
+                          </div>
+                          <div class="entry-content p-20 pr-10">
+                            <div class="entry-meta media mt-0 no-bg no-border">
+                              <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                                <span class="font-13 text-white font-weight-600">{{data.blog_date}}</span>
+                              </div>
+                              <div class="media-body pl-15">
+                                <div class="event-content pull-left flip">
+                                  <h4 class="entry-title text-white m-0 mt-5"><a href="{% url 'blogsingle' data.id %}">{{data.title}}</a></h4>
+                                </div>
+                              </div>
+                            </div>
+                            <p class="mt-10">{{data.description|safe}}</p>
+                            <a href="{% url 'blogsingle' data.id %}" class="btn-read-more">Read more</a>
+                            <div class="clearfix"></div>
+                          </div>
+                        </article>
+                      </div>
+                      {% endfor %}
+                      <div class="col-md-12">
+                        <nav>
+                            <ul class="pagination theme-colored">
+                              {% if result.has_previous %}
+                              <li class="page-item">
+                                  <a class="page-link" aria-label="Previous"
+                                  href="?page={{ result.previous_page_number }}">&laquo;</a>
+                              </li>
+                              {% else %}
+                              <li class="page-item disabled">
+                                  <a class="page-link" aria-label="Previous"
+                                  href="#">&laquo;</a>
+                              </li>
+                              {% endif %}
+                              {% for i in result.paginator.page_range %}
+                              {% if result.number == i %}
+                                  <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                              {% else %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                              {% endif %}
+                              {% endfor %}
+                              {% if result.has_next %}
+                              <li class="page-item">
+                                  <a class="page-link" aria-label="Next"
+                                  href="?page={{ result.next_page_number }}">&raquo;</a>
+                              </li>
+                              {% else %}
+                              <li class="page-item">
+                                  <a class="page-link disabled" aria-label="Next"
+                                  href="#">&raquo;</a>
+                              </li>
+                              {% endif %}
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="sidebar sidebar-left mt-sm-30">
+            <div class="widget">
+              <!-- <h5 class="widget-title line-bottom">Search box</h5>
+              <div class="search-form">
+                <form>
+                  <div class="input-group">
+                    <input type="text" placeholder="Click to Search" class="form-control search-input">
+                    <span class="input-group-btn">
+                    <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div>
+                </form>
+              </div> -->
+            </div>
+            <div class="widget">
+              <h5 class="widget-title line-bottom">Categories</h5>
+              <div class="categories">
+                <ul class="list list-border angle-double-right">
+                {% for nc in blog_all_categories %}
+                  <li><a href="/blogview?id={{nc.id}}">{{nc.category_name}}</a></li>
+                {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
