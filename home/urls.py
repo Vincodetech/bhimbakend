@@ -19,4 +19,5 @@ urlpatterns = [
     path('tc/',home_view.terms_conditions_view,name='tc'),
     path('privecy/',home_view.privecy_policy_view,name='privecy'),
     path('otp/',home_view.otp,name='otp'),
+    path('educatview/',home_view.edu_cat_list,name='educatview'),
 ]

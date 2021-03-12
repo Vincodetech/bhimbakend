@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 import datetime
+from embed_video.fields import EmbedVideoField
 
 class Country(models.Model):
     country_name = models.CharField(max_length=150, default="")
@@ -169,7 +170,7 @@ class News(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='news/', blank=True, null=True)
-    youtube_link = models.CharField(max_length=255, default="", blank=True, null=True)
+    youtube_link = EmbedVideoField(default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(NewsCategory, on_delete=models.CASCADE, default="")
     news_date = models.DateField(default=datetime.datetime.now)
@@ -199,7 +200,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='blog/', blank=True, null=True)
-    youtube_link = models.CharField(max_length=255, default="", blank=True, null=True)
+    youtube_link = EmbedVideoField(default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE, default="")
     blog_date = models.DateField(default=datetime.datetime.now)
@@ -302,7 +303,7 @@ class Education(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
     document_path = models.FileField(upload_to="material/", blank=True, null=True)
-    youtube_link = models.CharField(max_length=255, default="", blank=True, null=True)
+    youtube_link = EmbedVideoField(default="", blank=True, null=True)
     youtube_channel_link = models.CharField(max_length=255, default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="")

@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'rest_framework.authtoken',
+    'embed_video',
+    'django_social_share',
 ]
 
 REST_FRAMEWORK = {

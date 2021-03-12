@@ -327,3 +327,11 @@ def privecy_policy_view(request):
         'header_content': header_content,
         'footer_content': footer_content
     })
+
+def edu_cat_list(request):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    return render(request, 'home/education_category.html', {
+       'header_content': header_content, 
+       'footer_content': footer_content
+    })
