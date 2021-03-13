@@ -28,7 +28,8 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
           <div class="blog-posts single-post">
             <article class="post clearfix mb-0">
               <div class="entry-header">
-                <div class="post-thumb thumb"> <img src="{{single_news.image.url}}" alt="" class="img-responsive img-fullwidth"> </div>
+                <div class="post-thumb thumb"> <img src="{{single_news.image.url}}" alt="" 
+                  class="img-responsive" width="700pt" height="600pt"> </div>
               </div>
               <div class="entry-content">
                 <div class="entry-meta media no-bg no-border mt-15 pb-20">
@@ -41,22 +42,18 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
                     </div>
                   </div>
                 </div>
+                <h5 class="text-theme-colored" style="font-size: 20pt;">Description:</h5>
                 <p class="mb-15">{{single_news.description|safe}}</p>
 
-                <div class="row">
+                <div class="row" style="margin-top: 100pt;">
                   <div class="col-lg-12 col-md-12 col-sm-12">
-                    {% video single_news.youtube_link '150% x 70%' %}
+                    {% video single_news.youtube_link '250% x 100%' %}
                   </div>
                 </div>
 
                 <div class="mt-30 mb-0">
-                  <h5 class="pull-left mt-10 mr-20 text-theme-colored">Share:</h5>
-                  <!-- <div class="fb-share-button" data-href="http://127.0.0.1:8000/newssingle/{{single_news.id}}" data-layout="button_count" 
-                  data-size="large"><a target="_blank" 
-                  href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fnewssingle%2F1&amp;src=sdkpreparse" 
-                  class="fb-xfbml-parse-ignore">Share</a>
-                  </div> -->
-                  {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary" %}
+                  <h5 class="text-theme-colored">Share On:</h5>
+                  {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary fa fa-facebook" %}
                 </div>
                 
                 <div class="mt-10 mb-0">

@@ -134,8 +134,8 @@
               </li>
               <li><a href="{% url 'blogview' %}">Blog</a></li>
               <li><a href="{% url 'newsview' %}">News</a></li>
-              <li><a href="#">Education</a></li>
-              <li><a href="#">Business</a></li>
+              <li><a href="{% url 'educatview' %}">Education</a></li>
+              <!-- <li><a href="#">Business</a></li> -->
               <li><a href="{% url 'contact' %}">Contact Us</a></li>
               {% if request.session.uid %}
               <li><a href="#">My Account</a>

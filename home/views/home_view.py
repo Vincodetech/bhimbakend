@@ -25,6 +25,8 @@ import random
 from urllib.request import Request, urlopen 
 from urllib.parse import quote
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from home.middlewares.auth import auth_middleware
+from django.utils.decorators import method_decorator
 
 def index(request):
     header_content = HeaderCms.get_content_by_active()
@@ -238,6 +240,7 @@ def otp(request):
     })
 
 def user_login(request):
+    flag = request.GET.get('flag')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     flag = None
@@ -247,6 +250,7 @@ def user_login(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = CustomUser.get_user_by_phone(cd['phone'])
+            return_url = request.GET.get('return_url')
             if user is not None and user.active:
                 request.session['uid'] = user.id
                 return redirect("index")
@@ -331,7 +335,64 @@ def privecy_policy_view(request):
 def edu_cat_list(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    education_all_cat = EducationCategory.get_category_by_active()
     return render(request, 'home/education_category.html', {
        'header_content': header_content, 
-       'footer_content': footer_content
+       'footer_content': footer_content,
+       'education_all_cat': education_all_cat
+    })
+
+def edu_sub_cat_list_by_cat(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    edu_sub_cat_list_for_cat = EducationSubCategory.get_sub_category_by_cat(id)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(edu_sub_cat_list_for_cat, 4)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    return render(request, 'home/education_sub_category.html', {
+       'header_content': header_content, 
+       'footer_content': footer_content,
+       'result': result
+    })
+
+def edu_subjects_list_by_subcat(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    edu_subjects_list_for_subcat = EduSubjects.get_subjects_by_sub_cat(id)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(edu_subjects_list_for_subcat, 4)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    return render(request, 'home/education_subjects.html', {
+       'header_content': header_content, 
+       'footer_content': footer_content,
+       'result': result
+    })
+
+
+def edu_chapters_list_by_subjects(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    edu_chs = Education.objects.filter(subject=id, active=True)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(edu_chs, 4)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    return render(request, 'home/education_chapters.html', {
+       'header_content': header_content, 
+       'footer_content': footer_content,
+       'result': result
     })

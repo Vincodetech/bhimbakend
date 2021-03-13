@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .views import home_view
 from django.contrib.auth import views as auth_views
+from home.middlewares.auth import auth_middleware
 
 urlpatterns = [
     path('', home_view.index, name="index"),
@@ -20,4 +21,7 @@ urlpatterns = [
     path('privecy/',home_view.privecy_policy_view,name='privecy'),
     path('otp/',home_view.otp,name='otp'),
     path('educatview/',home_view.edu_cat_list,name='educatview'),
+    path('edusubcatview/<int:id>',home_view.edu_sub_cat_list_by_cat,name='edusubcatview'),
+    path('edusubjectsview/<int:id>',home_view.edu_subjects_list_by_subcat,name='edusubjectsview'),
+    path('chview/<int:id>',home_view.edu_chapters_list_by_subjects ,name='chview'),
 ]
