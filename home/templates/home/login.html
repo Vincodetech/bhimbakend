@@ -48,9 +48,12 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
               data-bg-color="#3b5998" type="submit">
               Login</button>
             </div>
-            <!-- <div class="clear text-center pt-10">
-              <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
-            </div> -->
+            <div class="clear text-center pt-10">
+              <a class="text-theme-colored font-weight-600 font-12" href="{% url 'register' %}">Don`t Have an Account Then? 
+                <span class="text-theme-colored">
+                Register
+              </span></a>
+            </div>
             <!-- <div class="clear text-center pt-10">
               <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" 
               href="{% url 'social:begin' 'facebook' %}" data-bg-color="#3b5998"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;

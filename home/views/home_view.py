@@ -13,6 +13,8 @@ from home.models import Country
 from home.models import State
 from home.models import City
 from home.models import Degree
+from home.models import GalleryCategory
+from home.models import Gallery
 from home.models import *
 from myadmin.models import TermsAndConditions
 from myadmin.models import PrivecyAndProlicy
@@ -133,11 +135,19 @@ def news_detail(request, id):
     })
 
 def gallery(request):
+    id = request.GET.get('id')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    gallery_cat = GalleryCategory.objects.filter(active=True)
+    if not id:
+        images = Gallery.objects.filter(active=True)
+    else:
+        images = Gallery.objects.filter(category=id)
     return render(request, "home/galley.html", {
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'gallery_cat': gallery_cat,
+        'images': images
     })
 
 def contactus(request):
@@ -240,7 +250,8 @@ def otp(request):
     })
 
 def user_login(request):
-    flag = request.GET.get('flag')
+    return_url = None
+    return_url = request.GET.get('return_url')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     flag = None
@@ -253,7 +264,11 @@ def user_login(request):
             return_url = request.GET.get('return_url')
             if user is not None and user.active:
                 request.session['uid'] = user.id
-                return redirect("index")
+                if return_url:
+                    return HttpResponseRedirect(return_url)
+                else:
+                    return_url = None
+                    return redirect("index")
             else:
                 flag = 'error'
                 mgs = 'Disabled Account!.'
