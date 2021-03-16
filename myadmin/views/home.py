@@ -1235,3 +1235,59 @@ def delete_gallery(request, id):
     single_gallery.delete()
     messages.success(request, 'Gallery Image is deleted.')
     return redirect('gallery')
+
+# crud for Slider
+def slider_view(request):
+    allslider = Slider.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allslider, 10)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/slider_view.html', data)
+
+def post_slider(request):
+    if request.method == 'POST':
+        forms = SliderForm(request.POST, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Slider created successfully.')
+            return redirect('addslider')
+        else:
+            messages.error(request, 'Slider is not created successfully.')
+            return redirect('addslider')
+    else:
+        forms = SliderForm()
+    return render(request, 'myadmin/add_slider_view.html', {
+        'forms': forms
+    })
+
+def edit_slider(request, id):
+    if request.method == 'POST':
+        single_slider = Slider.objects.get(id=id)
+        forms = SliderForm(request.POST, instance=single_slider, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Slider updated successfully.')
+            return redirect('slider')
+        else:
+            messages.error(request, 'Slider is not updated successfully.')
+            return redirect('slider')
+    else:
+        single_slider = Slider.objects.get(id=id)
+        forms = SliderForm(instance=single_slider)
+    return render(request, 'myadmin/add_slider_view.html', {
+        'forms': forms
+    })
+
+def delete_slider(request, id):
+    single_slider = Slider.objects.get(id=id)
+    single_slider.delete()
+    messages.success(request, 'Slider is deleted.')
+    return redirect('slider')

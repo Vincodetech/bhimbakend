@@ -140,3 +140,13 @@ class AdminProfile(models.Model):
 
     def __str__(self):
         return self.phone
+
+class Slider(models.Model):
+    image = models.ImageField(upload_to='slider/', blank=True, null=True)
+    title = models.CharField(max_length=255, default='', blank=True, null=True)
+    active = models.BooleanField(default=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.title
