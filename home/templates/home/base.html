@@ -177,9 +177,9 @@
   
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-color="#25272e">
-    <div class="container pt-70 pb-40">
-      <div class="row border-bottom-black">
-        <div class="col-lg-4 col-md-3 col-sm-3">
+    <div class="container pt-70">
+      <div class="row border-bottom-black text-center">
+        <div class="col-lg-12 col-md-4 col-sm-3">
           <div class="widget dark">
             <img class="mt-10 mb-20" alt="" src="{{header_content.image.url}}"
             width="100pt" height="100pt">
@@ -187,18 +187,21 @@
             <ul class="list-inline mt-5">
               <li class="m-0 pl-10 pr-10"> 
                 <i class="fa fa-phone text-theme-colored mr-5"></i> 
-                <a class="text-gray" href="#">{{footer_content.phone}}</a>
+                <span class="text-gray">{{footer_content.phone}}</span>
               </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-colored mr-5"></i> 
-                <a class="text-gray" href="#">{{footer_content.email}}</a> </li>
+                <span class="text-gray">{{footer_content.email}}</span> </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-colored mr-5"></i> 
-                <a class="text-gray" href="#">{{footer_content.website}}</a> </li>
+                <a class="text-gray" href="{% url 'index' %}">{{footer_content.website}}</a> </li>
+                <li class="m-0 pl-10 pr-10"> <i class="fa fa-map-marker text-theme-colored mr-5"></i> 
+                  <span class="text-gray">{{footer_content.address}}</span> </li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-4 col-md-3 col-sm-3">
+      </div>
+      <div class="row border-bottom-black text-center">
+        <div class="col-lg-12 col-md-4 col-sm-3">
           <div class="widget dark">
-            <h5 class="widget-title mb-10">Connect With Us</h5>
             <ul class="styled-icons icon-dark icon-theme-colored icon-circled icon-sm">
               <li><a href="{{header_content.facebook}}"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="{{header_content.twitter}}"><i class="fa fa-twitter"></i></a></li>
@@ -208,10 +211,11 @@
             </ul>
           </div>
         </div>
-        <div class="col-sm-4 col-md-3 col-sm-3">
+      </div>
+      <div class="row border-bottom-black text-center">
+        <div class="col-lg-12 col-md-4 col-sm-3">
           <div class="widget dark">
-            <h5 class="widget-title line-bottom">Quick Links</h5>
-            <ul class="list angle-double-right list-border">
+            <ul class="list angle-double-right list-border list-inline">
               <li><a href="{% url 'index' %}">Home</a></li>
               <li><a href="{% url 'about' %}">About Us</a></li>
               <li><a href="{% url 'blog' %}">Blog</a></li>

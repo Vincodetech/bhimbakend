@@ -6,19 +6,24 @@
 {% load embed_video_tags %}
 {% load social_share %}
 
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-stellar-background-ratio="0.5" 
+<section class="inner-header divider parallax layer-overlay overlay-dark-6" 
 data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
-  <div class="container pt-100 pb-50">
-    <!-- Section Content -->
-    <div class="section-content pt-100">
-      <div class="row"> 
-        <div class="col-md-12">
-          <h3 class="title text-white">Education Chapters</h3>
+    <div class="container pt-60 pb-60">
+      <!-- Section Content -->
+      <div class="section-content">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3 class="font-28 text-white">Education Chapters</h2>
+            <ol class="breadcrumb text-center text-black mt-10">
+              <li><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'educatview' %}">Education Category</a></li>
+              <li class="active text-theme-colored">Education Chapters</li>
+            </ol>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </div>      
+  </section>
 
 <section style="margin-top: 15pt; padding: 10pt;">
     <div class="row mt-5 p-4">

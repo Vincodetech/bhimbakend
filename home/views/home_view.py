@@ -22,6 +22,7 @@ from myadmin.models import AboutUsCms
 from myadmin.models import HeaderCms
 from myadmin.models import FooterCms
 from myadmin.models import Inquiry
+from myadmin.models import Slider
 from myadmin.forms import InquiryForm
 import random
 from urllib.request import Request, urlopen 
@@ -33,9 +34,15 @@ from django.utils.decorators import method_decorator
 def index(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    slider_images = Slider.objects.filter(active=True)[0:3]
+    news = News.objects.filter(active=True).order_by('-created_at')[:4]
+    result = Blog.objects.filter(active=True).order_by('-created_at')[:4]
     return render(request, "home/index.html", {
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'slider_images': slider_images,
+        'news': news,
+        'result': result    
     })
 
 def about(request):
