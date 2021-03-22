@@ -30,12 +30,13 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
       {% for ec in result %}
       <div class="col-lg-3 col-md-3 col-sm-3">
         <div class="panel panel-default text-theme-colored">
-          <div class="panel-heading">
-            <span class="font-20 font-weight-600">Education Chapter</span>
+          <div class="panel-heading bg-theme-colored text-white">
+            <span class="font-20 font-weight-600">{{ec.title}}</span>
           </div>
           <div class="panel-body">
-            <span class="glyphicon glyphicon-file pull-left font-30"></span>
-            <span class="font-15 font-weight-600">{{ec.title}}</span>
+            {% if ec.image %}
+            <img src="{{ec.image.url}}" alt="image" width="100pt" height="100pt">
+            {% endif %}
           </div>
           <div class="panel-footer">
             <a href="#" class="font-15 font-weight-600 text-theme-colored"
