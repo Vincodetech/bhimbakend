@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import *
 from home.models import *
+from myadmin.models import *
 
 class LoginForm(forms.Form):
     username=forms.CharField()
@@ -106,3 +107,8 @@ class GalleryForm(forms.ModelForm):
     class Meta:
         model=Gallery
         fields=('image','category','active')
+
+class SliderForm(forms.ModelForm):
+    class Meta:
+        model=Slider
+        fields=('title', 'image', 'active')

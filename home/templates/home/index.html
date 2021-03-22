@@ -14,16 +14,17 @@
             <ul>
 
               <!-- SLIDE 1 -->
-              <li data-index="rs-1" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
+              {% for i in slider_images %}
+              <li data-index="rs-{{i.id}}" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
               data-easein="default" data-easeout="default" data-masterspeed="default" 
-              data-thumb="{% static 'website_assets/images/bg/bg.jpg' %}" data-rotate="0" 
-              data-saveperformance="off" data-title="Slide 1" data-description="">
+              data-thumb="{{i.image.url}}" data-rotate="0" 
+              data-saveperformance="off" data-title="{{i.title}}" data-description="">
                 <!-- MAIN IMAGE -->
-                <img src="{% static 'website_assets/images/bg/bg.jpg' %}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                <img src="{{i.image.url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
-                <div class="tp-caption tp-resizeme text-uppercase  bg-dark-transparent text-white font-raleway pl-30 pr-30"
+                <!-- <div class="tp-caption tp-resizeme text-uppercase  bg-dark-transparent text-white font-raleway pl-30 pr-30"
                   id="rs-1-layer-1"
                 
                   data-x="['center']"
@@ -45,8 +46,8 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:400; border-radius: 30px;">
-                  
-                </div>
+                  {{i.title}}
+                </div> -->
 
                 <!-- LAYER NR. 2 -->
                 <div class="tp-caption tp-resizeme text-uppercase bg-theme-colored-transparent text-white font-raleway pl-30 pr-30"
@@ -71,11 +72,11 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:700; border-radius: 30px;">
-                  Local For Vocal
+                  {{i.title}}
                 </div>
 
                 <!-- LAYER NR. 3 -->
-                <div class="tp-caption tp-resizeme text-white text-center" 
+                <!-- <div class="tp-caption tp-resizeme text-white text-center" 
                   id="rs-1-layer-3"
 
                   data-x="['center']"
@@ -97,11 +98,11 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
-                  
-                </div>
+                  {{i.title}}
+                </div> -->
 
                 <!-- LAYER NR. 4 -->
-                <div class="tp-caption tp-resizeme" 
+                <!-- <div class="tp-caption tp-resizeme" 
                   id="rs-1-layer-4"
 
                   data-x="['center']"
@@ -121,21 +122,23 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
-                  <!-- <a class="btn btn-default btn-circled btn-transparent pl-20 pr-20" href="#">Donate Now</a>  -->
-                </div>
+                  <a class="btn btn-default btn-circled btn-transparent pl-20 pr-20" href="#">Donate Now</a> 
+                  {{i.title}}
+                </div> -->
               </li>
+              {% endfor %}
 
               <!-- SLIDE 2 -->
-              <li data-index="rs-2" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
+              <!-- <li data-index="rs-2" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
               data-easein="default" data-easeout="default" data-masterspeed="default" 
               data-thumb="{% static 'website_assets/images/bg/bg.jpg' %}" data-rotate="0" data-saveperformance="off" data-title="Slide 2" 
-              data-description="">
+              data-description=""> -->
                 <!-- MAIN IMAGE -->
-                <img src="{% static 'website_assets/images/bg/bg.jpg' %}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                <!-- <img src="{% static 'website_assets/images/bg/bg.jpg' %}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina> -->
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
-                <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway"
+                <!-- <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway"
                   id="rs-2-layer-1"
 
                   data-x="['left']"
@@ -157,10 +160,10 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:700;">
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 2 -->
-                <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pl-20 pr-20"
+                <!-- <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pl-20 pr-20"
                   id="rs-2-layer-2"
 
                   data-x="['left']"
@@ -183,10 +186,10 @@
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:600;">
                   Local For Vocal 
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 3 -->
-                <div class="tp-caption tp-resizeme text-white" 
+                <!-- <div class="tp-caption tp-resizeme text-white" 
                   id="rs-2-layer-3"
 
                   data-x="['left']"
@@ -209,10 +212,10 @@
                   data-responsive_offset="on"
                   style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
                   
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 4 -->
-                <div class="tp-caption tp-resizeme" 
+                <!-- <div class="tp-caption tp-resizeme" 
                   id="rs-2-layer-4"
 
                   data-x="['left']"
@@ -233,20 +236,20 @@
                   data-responsive_offset="on"
                   style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
                   
-                </div>
-              </li>
+                </div> -->
+              <!-- </li> -->
 
               <!-- SLIDE 3 -->
-              <li data-index="rs-3" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
+              <!-- <li data-index="rs-3" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
               data-easein="default" data-easeout="default" data-masterspeed="default" 
               data-thumb="{% static 'website_assets/images/bg/bg.jpg' %}" data-rotate="0" 
-              data-saveperformance="off" data-title="Slide 3" data-description="">
+              data-saveperformance="off" data-title="Slide 3" data-description=""> -->
                 <!-- MAIN IMAGE -->
-                <img src="{% static 'website_assets/images/bg/bg.jpg' %}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                <!-- <img src="{% static 'website_assets/images/bg/bg.jpg' %}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina> -->
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
-                <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pr-20 pl-20"
+                <!-- <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pr-20 pl-20"
                   id="rs-3-layer-1"
 
                   data-x="['right']"
@@ -268,10 +271,10 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:600;"><span class="">Local For Vocal
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 2 -->
-                <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway"
+                <!-- <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway"
                   id="rs-3-layer-2"
 
                   data-x="['right']"
@@ -293,10 +296,10 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:600;">
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 3 -->
-                <div class="tp-caption tp-resizeme text-white text-right" 
+                <!-- <div class="tp-caption tp-resizeme text-white text-right" 
                   id="rs-3-layer-3"
 
                   data-x="['right']"
@@ -318,10 +321,10 @@
                   data-splitout="none" 
                   data-responsive_offset="on"
                   style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 4 -->
-                <div class="tp-caption tp-resizeme" 
+                <!-- <div class="tp-caption tp-resizeme" 
                   id="rs-3-layer-4"
 
                   data-x="['right']"
@@ -342,8 +345,8 @@
                   data-responsive_offset="on"
                   style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
                   
-                </div>
-              </li>
+                </div> -->
+              <!-- </li> -->
 
             </ul>
           </div>
@@ -447,116 +450,6 @@
       </div>
     </section>
 
-    <!-- Section: Upcoming Events -->
-    <section class="bg-silver-light">
-      <div class="container">
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-5">
-              <h3 class="text-uppercase title line-bottom mt-0 mb-30">
-                <i class="fa fa-calendar text-gray-darkgray mr-10"></i>
-                Upcoming <span class="text-theme-colored">Events</span>
-              </h3>
-              <h3>Comming Soon</h3>
-              <!-- <article class="post media-post clearfix pb-0 mb-10">
-                <a href="#" class="post-thumb mr-20"><img alt="" 
-                    src="{% static 'website_assets/images/events/1.jpg' %}"></a>
-                <div class="post-right">
-                  <h4 class="mt-0 mb-5"><a href="page-single-event.html">Upcoming Event Title</a></h4>
-                  <ul class="list-inline font-12 mb-5">
-                    <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
-                    <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
-                  </ul>
-                  <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
-                  <a class="text-theme-colored font-13" href="page-single-event.html">Read More →</a>
-                </div>
-              </article>
-              <article class="post media-post clearfix pb-0 mb-10">
-                <a href="#" class="post-thumb mr-20"><img alt="" 
-                    src="{% static 'website_assets/images/events/2.jpg' %}"></a>
-                <div class="post-right">
-                  <h4 class="mt-0 mb-5"><a href="page-single-event.html">Upcoming Event Title</a></h4>
-                  <ul class="list-inline font-12 mb-5">
-                    <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
-                    <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
-                  </ul>
-                  <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
-                  <a class="text-theme-colored font-13" href="page-single-event.html">Read More →</a>
-                </div>
-              </article>
-              <article class="post media-post clearfix pb-0 mb-10">
-                <a href="#" class="post-thumb mr-20"><img alt="" 
-                    src="{% static 'website_assets/images/events/3.jpg' %} "></a>
-                <div class="post-right">
-                  <h4 class="mt-0 mb-5"><a href="page-single-event.html">Upcoming Event Title</a></h4>
-                  <ul class="list-inline font-12 mb-5">
-                    <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
-                    <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
-                  </ul>
-                  <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
-                  <a class="text-theme-colored font-13" href="page-single-event.html">Read More →</a>
-                </div>
-              </article> -->
-            </div>
-            <div class="col-md-7">
-              <h3 class="text-uppercase title line-bottom mt-0 mb-30 mt-sm-40">
-                  <i class="fa fa-thumb-tack text-gray-darkgray mr-10"></i>
-                  Find Your <span class="text-theme-colored">Coummunity</span>
-              </h3>
-              <h3>Comming Soon</h3>
-              <!-- <form action="#" method="POST">
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <select name="country_id" id="country_id" class="form-control">
-                      <option value="default">Select Country</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row" style="padding-top: 10px;">
-                  <div class="col-lg-6 col-md-6 col-sm-6">
-                    <select name="add_state_id" id="add_state_id" class="form-control">
-                      <option value="default">Select State</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6">
-                    <select name="add_city_id" id="add_city_id" class="form-control">
-                      <option value="default">Select City</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row" style="padding-top: 10px;">
-                  <div class="col-lg-6 col-md-6 col-sm-6">
-                    <select name="add_block_id" id="add_block_id" class="form-control">
-                      <option value="default">Select Block</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6">
-                    <select name="add_village_id" id="add_village_id" class="form-control">
-                      <option value="default">Select Village</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row" style="padding-top: 10px;">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <select name="profession_type_id" id="profession_type_id" class="form-control">
-                      <option value="default">Select Profession Type</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row" style="padding-top: 15px;">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <button type="submit" class="btn btn-primary">
-                      <i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp; Search Community
-                    </button>
-                  </div>
-                </div>
-              </form> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Divider: Become a Volunteer -->
     <section class="divider parallax layer-overlay overlay-dark-4" 
     data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}" 
@@ -584,190 +477,25 @@
           </div>
         </div>
         <div class="row multi-row-clearfix">
+          {% for n in news %}
           <div class="col-sm-6 col-md-3 col-lg-3">
             <div class="causes bg-white maxwidth500 mb-30">
               <div class="thumb">
-                <img src="{% static 'website_assets/images/project/1.jpg' %}" alt="" class="img-fullwidth">
+                <img src="{{n.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt">
                 <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
+                  <a href="{% url 'newssingle' n.id %}" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
+                    Read More <i class="fa fa-info-circle font-16 ml-5"></i></a>
                 </div>
               </div>
               <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Education for Childreen</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
+                <h5 class="font-weight-600 font-16"><a href="{% url 'newssingle' n.id %}">{{n.title}}</a></h5>
                 <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
+                  <li class="text-theme-colored pull-left pr-0"><a href="{% url 'newssingle' n.id %}">Read More</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/2.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Sponsor a child today</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/3.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Shelter for Poor Child</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/4.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Happiness for orphan child</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-sm-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/5.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Donation for helpless child</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-sm-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/6.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Foor for Poor child</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-sm-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/7.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Help the poor girls</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="causes bg-white maxwidth500 mb-sm-30">
-              <div class="thumb">
-                <img src="{% static 'website_assets/images/project/8.jpg' %}" alt="" class="img-fullwidth">
-                <div class="overlay-donate-now">
-                  <a href="page-donate.html" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">Donate <i class="flaticon-charity-make-a-donation font-16 ml-5"></i></a>
-                </div>
-              </div>
-              <div class="progress-item mt-0">
-                <div class="progress mb-0">
-                  <div data-percent="84" class="progress-bar"><span class="percent">0</span></div>
-                </div>
-              </div>
-              <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                <h5 class="font-weight-600 font-16"><a href="page-single-cause.html">Donate for child happiness</a></h5>
-                <p>Lorem ipsum dolor sit amet, consect adipisicing elit. Praesent quos sit.</p>
-                <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                  <li class="pull-left pr-0">Raised: $1890</li>
-                  <li class="text-theme-colored pull-right pr-0">Goal: $2500</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -784,93 +512,32 @@
         </div>
         <div class="section-content">
           <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <article class="post clearfix mb-sm-30 bg-silver-light">
+            {% for data in result %}
+            <div class="col-md-3">
+              <article class="post clearfix mb-30 bg-lighter">
                 <div class="entry-header">
                   <div class="post-thumb thumb"> 
-                    <img src="{% static 'website_assets/images/blog/1.jpg' %}" alt="" class="img-responsive img-fullwidth"> 
+                    <img src="{{data.image.url}}" alt="" class="img-responsive" 
+                    width="400pt" height="200pt"> 
                   </div>
                 </div>
                 <div class="entry-content p-20 pr-10">
                   <div class="entry-meta media mt-0 no-bg no-border">
                     <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                      <ul>
-                        <li class="font-16 text-white font-weight-600 border-bottom">28</li>
-                        <li class="font-12 text-white text-uppercase">Feb</li>
-                      </ul>
+                      <span class="font-13 text-white font-weight-600">{{data.blog_date}}</span>
                     </div>
                     <div class="media-body pl-15">
                       <div class="event-content pull-left flip">
-                        <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#">Post title here</a></h4>
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>                       
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>                       
+                        <h4 class="entry-title text-white m-0 mt-5"><a href="{% url 'blogsingle' data.id %}">{{data.title}}</a></h4>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti, sint assumenda. Pariatur iste veritatis excepturi, ipsa optio nobis.</p>
-                  <a href="#" class="btn-read-more">Read more</a>
+                  <a href="{% url 'blogsingle' data.id %}" class="btn-read-more">Read more</a>
                   <div class="clearfix"></div>
                 </div>
               </article>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <article class="post clearfix mb-sm-30 bg-silver-light">
-                <div class="entry-header">
-                  <div class="post-thumb thumb"> 
-                    <img src="{% static 'website_assets/images/blog/2.jpg' %}" alt="" class="img-responsive img-fullwidth"> 
-                  </div>
-                </div>
-                <div class="entry-content p-20 pr-10">
-                  <div class="entry-meta media mt-0 no-bg no-border">
-                    <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                      <ul>
-                        <li class="font-16 text-white font-weight-600 border-bottom">28</li>
-                        <li class="font-12 text-white text-uppercase">Feb</li>
-                      </ul>
-                    </div>
-                    <div class="media-body pl-15">
-                      <div class="event-content pull-left flip">
-                        <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#">Post title here</a></h4>
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>                       
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>                       
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti, sint assumenda. Pariatur iste veritatis excepturi, ipsa optio nobis.</p>
-                  <a href="#" class="btn-read-more">Read more</a>
-                  <div class="clearfix"></div>
-                </div>
-              </article>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <article class="post clearfix mb-sm-30 bg-silver-light">
-                <div class="entry-header">
-                  <div class="post-thumb thumb"> 
-                    <img src="{% static 'website_assets/images/blog/3.jpg' %}" alt="" class="img-responsive img-fullwidth"> 
-                  </div>
-                </div>
-                <div class="entry-content p-20 pr-10">
-                  <div class="entry-meta media mt-0 no-bg no-border">
-                    <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                      <ul>
-                        <li class="font-16 text-white font-weight-600 border-bottom">28</li>
-                        <li class="font-12 text-white text-uppercase">Feb</li>
-                      </ul>
-                    </div>
-                    <div class="media-body pl-15">
-                      <div class="event-content pull-left flip">
-                        <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#">Post title here</a></h4>
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>                       
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>                       
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti, sint assumenda. Pariatur iste veritatis excepturi, ipsa optio nobis.</p>
-                  <a href="#" class="btn-read-more">Read more</a>
-                  <div class="clearfix"></div>
-                </div>
-              </article>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>

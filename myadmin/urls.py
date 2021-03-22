@@ -99,4 +99,9 @@ urlpatterns = [
     path('gallery/', home.gallery_view, name="gallery"),
     path('addgallery/', home.add_gallery, name="addgallery"),
     path('deletegallery/<int:id>', home.delete_gallery, name="deletegallery"),
+
+    path('slider/', home.slider_view, name="slider"),
+    path('addslider/', home.post_slider, name="addslider"),
+    path('updateslider/<int:id>', home.edit_slider, name="updateslider"),
+    path('deleteslider/<int:id>', home.delete_slider, name="deleteslider"),
 ]
