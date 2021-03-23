@@ -32,8 +32,12 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
           <div class="blog-posts single-post">
             <article class="post clearfix mb-0">
               <div class="entry-header">
-                <div class="post-thumb thumb"> <img src="{{single_news.image.url}}" alt="" 
-                  class="img-responsive" width="700pt" height="600pt"> </div>
+                <div class="post-thumb thumb"> 
+                  {% if single_news.image %}
+                  <img src="{{single_news.image.url}}" alt="" 
+                  class="img-responsive" width="700pt" height="600pt">
+                  {% endif %} 
+                </div>
               </div>
               <div class="entry-content">
                 <div class="entry-meta media no-bg no-border mt-15 pb-20">
@@ -73,7 +77,9 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
                     <div class="col-sm-6 col-md-3 col-lg-3">
                       <div class="causes bg-white maxwidth500 mb-30">
                         <div class="thumb">
+                          {% if n.image %}
                           <img src="{{n.image.url}}" alt="" class="img-fullwidth">
+                          {% endif %}
                           <div class="overlay-donate-now">
                             <a href="{% url 'newssingle' n.id %}" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
                               Read More <i class="fa fa-info-circle font-16 ml-5"></i></a>
