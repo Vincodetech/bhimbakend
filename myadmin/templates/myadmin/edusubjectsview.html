@@ -54,7 +54,7 @@
                 {% if result %}
                 {% for data in result %}
                 <tr>
-                    <td>{{forloop.counter}}</td>
+                    <td>{{forloop.counter0|add:result.start_index}}</td>
                     <td>{{data.subject_name}}</td>
                     <td>{{data.sub_category.category_name}}</td>
                     <td>{{data.active}}</td>
