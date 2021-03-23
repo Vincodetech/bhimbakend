@@ -317,7 +317,7 @@ class Education(models.Model):
     updated_at = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):
-        return self.category_name
+        return self.title
         
     @staticmethod
     def get_all_edu():

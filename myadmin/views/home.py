@@ -15,6 +15,7 @@ from django.forms import modelformset_factory
 from ..models import *
 from ..forms import *
 import datetime
+from django.http import JsonResponse
 
 def dashboard_admin(request):
     total_users = CustomUser.objects.all().count()
@@ -1139,6 +1140,19 @@ def delete_edu(request, id):
     single_edu.delete()
     messages.success(request, 'Edu is deleted.')
     return redirect('edu')
+
+#Ajax 
+def load_edusubcat(request):
+    educstId = request.GET.get('educstId')
+    sub_categorylst = EducationSubCategory.objects.filter(category=educstId)
+    print("--------------->>>", sub_categorylst)
+    return JsonResponse(list(sub_categorylst.values('id', 'category_name')), safe=False)
+
+def load_edusubjects(request):
+    edusubid = request.GET.get('edusubid')
+    subjectslst = EduSubjects.objects.filter(sub_category=edusubid)
+    print("--------------->>>", subjectslst)
+    return JsonResponse(list(subjectslst.values('id', 'subject_name')), safe=False)
 
 # gallery cat crud
 def gallery_category_view(request):
