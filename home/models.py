@@ -169,7 +169,7 @@ class BlogCategory(models.Model):
 class News(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
-    image = models.ImageField(upload_to='news/', blank=True, null=True)
+    image = models.ImageField(upload_to='news/', default="", blank=True, null=True)
     youtube_link = EmbedVideoField(default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(NewsCategory, on_delete=models.CASCADE, default="")
@@ -199,7 +199,7 @@ class News(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
-    image = models.ImageField(upload_to='blog/', blank=True, null=True)
+    image = models.ImageField(upload_to='blog/', default="", blank=True, null=True)
     youtube_link = EmbedVideoField(default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE, default="")
