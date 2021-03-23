@@ -228,6 +228,7 @@ class Blog(models.Model):
 
 class EducationCategory(models.Model):
     category_name = models.CharField(max_length=255, default="")
+    photo = models.ImageField(upload_to='educattion/', default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
@@ -249,6 +250,7 @@ class EducationCategory(models.Model):
 
 class EducationSubCategory(models.Model):
     category_name = models.CharField(max_length=255, default="")
+    image = models.ImageField(upload_to='educattion/', default="",  blank=True, null=True)
     active = models.BooleanField(default=True)
     category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="")
     created_at = models.DateField(default=datetime.datetime.now)
@@ -275,6 +277,7 @@ class EducationSubCategory(models.Model):
 
 class EduSubjects(models.Model):
     subject_name = models.CharField(max_length=255, default="")
+    image = models.ImageField(upload_to='educattion/', default="", blank=True, null=True)
     active = models.BooleanField(default=True)
     sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="")
     created_at = models.DateField(default=datetime.datetime.now)
@@ -302,7 +305,8 @@ class EduSubjects(models.Model):
 class Education(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
-    document_path = models.FileField(upload_to="material/", blank=True, null=True)
+    document_path = models.FileField(upload_to="material/", default="", blank=True, null=True)
+    image = models.ImageField(upload_to='educattion/', default="", blank=True, null=True)
     youtube_link = EmbedVideoField(default="", blank=True, null=True)
     youtube_channel_link = models.CharField(max_length=255, default="", blank=True, null=True)
     active = models.BooleanField(default=True)

@@ -934,7 +934,7 @@ def edu_category_view(request):
 
 def add_edu_category(request):
     if request.method == 'POST':
-        forms = EduCatForm(request.POST)
+        forms = EduCatForm(request.POST, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Edu Category created successfully.')
@@ -951,7 +951,7 @@ def add_edu_category(request):
 def edit_edu_category(request, id):
     if request.method == 'POST':
         single_edu_cat = EducationCategory.get_category_by_id(id)
-        forms = EduCatForm(request.POST, instance=single_edu_cat)
+        forms = EduCatForm(request.POST, instance=single_edu_cat, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Edu Category updated successfully.')
@@ -990,7 +990,7 @@ def edu_sub__category_view(request):
 
 def add_edu_sub_category(request):
     if request.method == 'POST':
-        forms = EduSubCatForm(request.POST)
+        forms = EduSubCatForm(request.POST, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Edu Sub Category created successfully.')
@@ -1007,7 +1007,7 @@ def add_edu_sub_category(request):
 def edit_edu_sub_category(request, id):
     if request.method == 'POST':
         single_edu_sub_cat = EducationSubCategory.get_sub_category_by_id(id)
-        forms = EduSubCatForm(request.POST, instance=single_edu_sub_cat)
+        forms = EduSubCatForm(request.POST, instance=single_edu_sub_cat, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Edu Sub Category updated successfully.')
@@ -1046,7 +1046,7 @@ def edu_subjects_view(request):
 
 def add_edu_subjects(request):
     if request.method == 'POST':
-        forms = EduSubjectsForm(request.POST)
+        forms = EduSubjectsForm(request.POST, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Edu Subjects created successfully.')
@@ -1063,7 +1063,7 @@ def add_edu_subjects(request):
 def edit_edu_subjects(request, id):
     if request.method == 'POST':
         single_edu_sub = EduSubjects.get_subject_by_id(id)
-        forms = EduSubjectsForm(request.POST, instance=single_edu_sub)
+        forms = EduSubjectsForm(request.POST, instance=single_edu_sub, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Edu Subjects updated successfully.')

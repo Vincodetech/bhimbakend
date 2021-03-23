@@ -51,9 +51,11 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
                   </div>
                 </div>
 
-                <div class="mt-30 mb-0">
+                <div class="mt-30 mb-0 p-10">
                   <h5 class="text-theme-colored">Share On:</h5>
-                  {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary fa fa-facebook" %}
+                  {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}
+                  <br>
+                  {% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}
                 </div>
                 
                 <div class="mt-10 mb-0">
@@ -75,7 +77,6 @@ data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}">
                         </div>
                         <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
                           <h5 class="font-weight-600 font-16"><a href="{% url 'newssingle' n.id %}">{{n.title}}</a></h5>
-                          <p>{{n.description|safe|slice:'100'}}</p>
                           <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
                             <li class="text-theme-colored pull-left pr-0"><a href="{% url 'newssingle' n.id %}">Read More</a></li>
                           </ul>

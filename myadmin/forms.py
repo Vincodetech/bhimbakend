@@ -66,22 +66,22 @@ class BlogCatForm(forms.ModelForm):
 class EduCatForm(forms.ModelForm):
     class Meta:
         model=EducationCategory
-        fields=('category_name', 'active')
+        fields=('category_name', 'photo', 'active')
 
 class EduSubCatForm(forms.ModelForm):
     class Meta:
         model=EducationSubCategory
-        fields=('category_name', 'category', 'active')
+        fields=('category_name', 'category', 'image', 'active')
 
 class EduSubjectsForm(forms.ModelForm):
     class Meta:
         model=EduSubjects
-        fields=('subject_name', 'sub_category', 'active')
+        fields=('subject_name', 'sub_category', 'image', 'active')
 
 class EduForm(forms.ModelForm):
     class Meta:
         model=Education
-        fields=('title','description','document_path','youtube_link','youtube_channel_link','category','sub_category', 'subject', 'active')
+        fields=('title','description', 'image','document_path','youtube_link','youtube_channel_link','category','sub_category', 'subject', 'active')
 class DateInput(forms.DateInput):
     input_type = 'date'
 
