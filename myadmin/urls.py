@@ -91,6 +91,9 @@ urlpatterns = [
     path('updateedu/<int:id>', home.edit_edu, name="updateedu"),
     path('deleteedu/<int:id>', home.delete_edu, name="deleteedu"),
 
+    path('ajax/edusubcat', home.load_edusubcat, name="ajax_load_edusubcat"), # AJAX
+    path('ajax/edusubjects/', home.load_edusubjects, name="ajax_load_edusubjects"), # AJAX
+
     path('gallerycat/', home.gallery_category_view, name="gallerycat"),
     path('addgallerycat/', home.add_gallery_category, name="addgallerycat"),
     path('updategallerycat/<int:id>', home.edit_gallery_category, name="updategallerycat"),

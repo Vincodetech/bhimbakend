@@ -47,6 +47,7 @@
                   <th>Title</th>
                   <th>Education Category</th>
                   <th>Education Sub Category</th>
+                  <th>Education Subjects</th>
                   <th>Active</th>
                   <th>Action</th>
                 </tr>
@@ -59,6 +60,7 @@
                     <td>{{data.title}}</td>
                     <td>{{data.category.category_name}}</td>
                     <td>{{data.sub_category.category_name}}</td>
+                    <td>{{data.subject.subject_name}}</td>
                     <td>{{data.active}}</td>
                     <td>
                         <a href="{% url 'updateedu' data.id %}"><i class="fas fa-edit"></i></a>
@@ -68,7 +70,7 @@
                 {% endfor %}
                 {% else %}
                 <tr>
-                  <td colspan="6">No Recored found.</td>
+                  <td colspan="7">No Recored found.</td>
                 </tr>
                 {% endif %}
               </tbody>

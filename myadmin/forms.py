@@ -81,7 +81,31 @@ class EduSubjectsForm(forms.ModelForm):
 class EduForm(forms.ModelForm):
     class Meta:
         model=Education
-        fields=('title','description', 'image','document_path','youtube_link','youtube_channel_link','category','sub_category', 'subject', 'active')
+        fields=('title','description', 'image','document_path','youtube_link','youtube_channel_link',
+        'category','sub_category', 'subject', 'active')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['sub_category'].queryset = EducationSubCategory.objects.none()
+        self.fields['subject'].queryset = EduSubjects.objects.none()
+
+        if 'category' in self.data:
+            try:
+                category_id = int(self.data.get('category'))
+                self.fields['sub_category'].queryset = EducationSubCategory.objects.filter(category=category_id).order_by('category_name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+
+        if 'sub_category' in self.data:
+            try:
+                category_id = int(self.data.get('sub_category'))
+                self.fields['subject'].queryset = EduSubjects.objects.filter(sub_category=category_id).order_by('subject_name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        # elif self.instance.id:
+        #     # self.fields['sub_category'].queryset = EducationSubCategory.objects.filter(category=self.instance.id)
+        #     self.fields['sub_category'].queryset = self.instance.country.city_set.order_by('name')
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
