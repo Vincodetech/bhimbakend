@@ -441,7 +441,7 @@ def users_view(request):
     allusers = CustomUser.objects.all()
     print("============>>", allusers)
     page = request.GET.get('page', 1)
-    paginator = Paginator(allusers, 10)
+    paginator = Paginator(allusers, 100)
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
@@ -457,7 +457,7 @@ def inquiry_view(request):
     allusers = Inquiry.objects.all()
     print("============>>", allusers)
     page = request.GET.get('page', 1)
-    paginator = Paginator(allusers, 10)
+    paginator = Paginator(allusers, 100)
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
@@ -469,10 +469,16 @@ def inquiry_view(request):
     }
     return render(request, 'myadmin/inquiry.html', data)
 
+def delete_inquiry(request, id):
+    single_user = Inquiry.objects.get(id=id)
+    single_user.delete()
+    messages.success(request, 'Inquiry is deleted.')
+    return redirect('admininquiry')
+
 def admin_view(request):
     allusers = User.objects.filter(is_staff=True)
     page = request.GET.get('page', 1)
-    paginator = Paginator(allusers, 10)
+    paginator = Paginator(allusers, 100)
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
@@ -977,7 +983,7 @@ def delete_edu_cat(request, id):
 def edu_sub__category_view(request):
     allcontents = EducationSubCategory.get_all_sub_categories()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 20)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1033,7 +1039,7 @@ def delete_edu_sub_cat(request, id):
 def edu_subjects_view(request):
     allcontents = EduSubjects.get_all_subjects()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 20)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1087,17 +1093,17 @@ def delete_edu_subject(request, id):
 
 # edu crud
 def edu_view(request):
-    allcontents = Education.get_all_edu()
-    page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
-    try:
-        result = paginator.page(page)
-    except PageNotAnInteger:
-        result = paginator.page(1)
-    except EmptyPage:
-        result = paginator.page(paginator.num_pages)
+    allcontents = Education.get_edu_by_active()
+    # page = request.GET.get('page', 1)
+    # paginator = Paginator(allcontents, 10)
+    # try:
+    #     result = paginator.page(page)
+    # except PageNotAnInteger:
+    #     result = paginator.page(1)
+    # except EmptyPage:
+    #     result = paginator.page(paginator.num_pages)
     data = {
-        'result': result,
+        'result': allcontents,
     }
     return render(request, 'myadmin/eduview.html', data)
 
