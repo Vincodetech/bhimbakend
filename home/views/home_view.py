@@ -405,16 +405,16 @@ def edu_chapters_list_by_subjects(request, id):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     edu_chs = Education.objects.filter(subject=id, active=True)
-    page = request.GET.get('page', 1)
-    paginator = Paginator(edu_chs, 4)
-    try:
-        result = paginator.page(page)
-    except PageNotAnInteger:
-        result = paginator.page(1)
-    except EmptyPage:
-        result = paginator.page(paginator.num_pages)
+    # page = request.GET.get('page', 1)
+    # paginator = Paginator(edu_chs, 4)
+    # try:
+    #     result = paginator.page(page)
+    # except PageNotAnInteger:
+    #     result = paginator.page(1)
+    # except EmptyPage:
+    #     result = paginator.page(paginator.num_pages)
     return render(request, 'home/education_chapters.html', {
        'header_content': header_content, 
        'footer_content': footer_content,
-       'result': result
+       'result': edu_chs
     })
