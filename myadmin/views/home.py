@@ -1094,16 +1094,16 @@ def delete_edu_subject(request, id):
 # edu crud
 def edu_view(request):
     allcontents = Education.get_edu_by_active()
-    # page = request.GET.get('page', 1)
-    # paginator = Paginator(allcontents, 10)
-    # try:
-    #     result = paginator.page(page)
-    # except PageNotAnInteger:
-    #     result = paginator.page(1)
-    # except EmptyPage:
-    #     result = paginator.page(paginator.num_pages)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allcontents, 10)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
     data = {
-        'result': allcontents,
+        'result': result,
     }
     return render(request, 'myadmin/eduview.html', data)
 
