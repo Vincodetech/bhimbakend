@@ -102,9 +102,10 @@ class EduForm(forms.ModelForm):
                 self.fields['subject'].queryset = EduSubjects.objects.filter(sub_category=category_id).order_by('subject_name')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
-        # elif self.instance.id:
-        #     # self.fields['sub_category'].queryset = EducationSubCategory.objects.filter(category=self.instance.id)
-        #     self.fields['sub_category'].queryset = self.instance.country.city_set.order_by('name')
+        elif self.instance.id:
+            self.fields['category'].queryset = EducationCategory.objects.all()
+            self.fields['sub_category'].queryset = EducationSubCategory.objects.filter(category=self.instance.category)
+            self.fields['subject'].queryset = EduSubjects.objects.filter(sub_category=self.instance.sub_category)
 
 class DateInput(forms.DateInput):
     input_type = 'date'

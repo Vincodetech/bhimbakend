@@ -32,7 +32,10 @@ urlpatterns = [
     path('updatepandp/<int:id>', home.edit_policy, name="updatepandp"),
     path('deletepandp/<int:id>', home.delete_policy, name="deletepandp"),
     path('admiusers/', home.users_view, name="admiusers"),
+    
     path('admininquiry/', home.inquiry_view, name="admininquiry"),
+    path('deleteadmininquiry/<int:id>', home.delete_inquiry, name="deleteadmininquiry"),
+
     path('adminentry/', home.admin_view, name="adminentry"),
     path('addadminentry/', home.add_admin, name="addadminentry"),
     path('updatedminentry/<int:id>', home.edit_admin, name="updatedminentry"),

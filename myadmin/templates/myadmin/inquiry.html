@@ -44,8 +44,8 @@
                   <th>Phone</th>
                   <th>Email</th>
                   <th>Subject</th>
-                  <th>Message</th>
                   <th>Active</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,8 +57,10 @@
                         <td>{{user.phone}}</td>
                         <td>{{user.email}}</td>
                         <td>{{user.subject}}</td>
-                        <td>{{user.message}}</td>
                         <td>{{user.active}}</td>
+                        <td>
+                            <a href="{% url 'deleteadmininquiry' user.id %}"><i class="fas fa-trash"></i></a>
+                        </td>
                     </tr>
                     {% endfor %}
                    {% else %} 

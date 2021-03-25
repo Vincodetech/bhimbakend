@@ -33,7 +33,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
           <div class="panel-heading bg-theme-colored text-white">
             <span class="font-20 font-weight-600">{{ec.title}}</span>
           </div>
-          <div class="panel-body">
+          <div class="panel-body text-center">
             {% if ec.image %}
             <img src="{{ec.image.url}}" alt="image" width="100pt" height="100pt">
             {% endif %}
@@ -72,14 +72,18 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
                         data-toggle="tooltip" data-placement="top" title="Go To Youtube Channel!" target="__blank">
                             <span class="glyphicon glyphicon-facetime-video font-10"></span>
                         </a>
+                        {% if ec.document_path %}
                         <a href="{{ec.document_path.url}}" class="btn btn-default btn-theme-colored"
                         data-toggle="tooltip" data-placement="top" title="View In PDF!" target="__blank">
                             <span class="glyphicon glyphicon-eye-open font-10"></span>
                         </a>
+                        {% endif %}
+                        {% if ec.document_path %}
                         <a href="{{ec.document_path.url}}" download="{{ec.document_path.url}}" class="btn btn-default btn-theme-colored"
                         data-toggle="tooltip" data-placement="top" title="download PDF!">
                             <span class="glyphicon glyphicon-download-alt font-10"></span>
                         </a>
+                        {% endif %}
                         <button type="button" class="btn btn-default btn-theme-colored" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -89,7 +93,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
       </div>
       {% endfor %}
     </div>
-    <div class="row" style="padding: 5pt; margin-top: 10pt; overflow: auto;">
+    <!-- <div class="row" style="padding: 5pt; margin-top: 10pt; overflow: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <ul class="pagination theme-colored">
                 {% if result.has_previous %}
@@ -123,7 +127,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
                 {% endif %}
             </ul>
         </div>
-    </div>
+    </div> -->
 </section>
 
 {% endblock %}
