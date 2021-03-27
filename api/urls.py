@@ -29,4 +29,6 @@ urlpatterns = [
 
     path('newslist', news_list, name="newslistapi"),
     path('news/<int:id>', news, name="newsapi"),
+
+    path('sendotp', perform_otp_sms, name="sendotp"),
 ]

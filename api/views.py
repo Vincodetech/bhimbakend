@@ -32,13 +32,18 @@ def send_sms(phoneno, otp):
     output = response.read() 
     print("=======>>", output)
 
+@api_view(['GET'])
+def perform_otp_sms(request):
+    send_sms(request.GET.get('phone'), request.GET.get('otp'))
+    return Response('sent', status=status.HTTP_200_OK)
+
 @api_view(['POST'])
 def perform_registration(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
         Profile.objects.create(user=user)
-        send_sms(request.data.get('phone'), request.data.get('otp'))
+        
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
