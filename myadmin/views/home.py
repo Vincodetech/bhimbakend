@@ -1256,6 +1256,12 @@ def delete_gallery(request, id):
     messages.success(request, 'Gallery Image is deleted.')
     return redirect('gallery')
 
+def delete_all_gallery(request):
+    all_gallery = Gallery.objects.all()
+    all_gallery.delete()
+    messages.success(request, 'All Gallery Images is deleted.')
+    return redirect('gallery')
+
 # crud for Slider
 def slider_view(request):
     allslider = Slider.objects.all()

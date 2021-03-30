@@ -477,11 +477,15 @@
           </div>
         </div>
         <div class="row multi-row-clearfix">
+          {% if news %}
           {% for n in news %}
           <div class="col-sm-6 col-md-3 col-lg-3">
             <div class="causes bg-white maxwidth500 mb-30">
               <div class="thumb">
-                <img src="{{n.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt">
+                {% if n.image %}
+                <img src="{{n.image.url}}" alt="image" class="img-responsive" width="400pt" 
+                height="200pt">
+                {% endif %}
                 <div class="overlay-donate-now">
                   <a href="{% url 'newssingle' n.id %}" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
                     Read More <i class="fa fa-info-circle font-16 ml-5"></i></a>
@@ -496,6 +500,7 @@
             </div>
           </div>
           {% endfor %}
+          {% endif %}
         </div>
       </div>
     </section>
@@ -512,13 +517,16 @@
         </div>
         <div class="section-content">
           <div class="row">
+            {% if n.result %}
             {% for data in result %}
             <div class="col-md-3">
               <article class="post clearfix mb-30 bg-lighter">
                 <div class="entry-header">
                   <div class="post-thumb thumb"> 
+                    {% if n.image %}
                     <img src="{{data.image.url}}" alt="" class="img-responsive" 
                     width="400pt" height="200pt"> 
+                    {% endif %}
                   </div>
                 </div>
                 <div class="entry-content p-20 pr-10">
@@ -538,6 +546,7 @@
               </article>
             </div>
             {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>

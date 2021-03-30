@@ -6,7 +6,7 @@
 
 <section class="inner-header divider parallax layer-overlay overlay-dark-6" 
 data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
-    <div class="container pt-60 pb-60">
+    <div class="container pt-0 pb-0">
       <!-- Section Content -->
       <div class="section-content">
         <div class="row">
@@ -43,6 +43,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
             {% for i in images %}
             <div class="gallery-item photography">
               <div class="thumb">
+                {% if i.image %}
                 <img class="img-fullwidth" src="{{i.image.url}}" alt="project" width="100pt" height="200pt">
                 <div class="overlay-shade"></div>
                 <div class="icons-holder">
@@ -56,6 +57,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
                 <a class="hover-link" data-lightbox="image" 
                 href="{{i.image.url}}">View more</a>
               </div>
+              {% endif %}
             </div>
             {% endfor %}
             <!-- Portfolio Item End -->                

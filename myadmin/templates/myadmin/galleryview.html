@@ -34,7 +34,10 @@
                 </h6>
             </div>
             <div class="col-sm-6">
-                
+                <a href="{% url 'deleteallgallery' %}" class="btn btn-sm btn-primary float-right"
+                onclick="if (!confirm('Are You Sure to Delete All Gallery.')) {return false}">
+                  Delete All Images
+                </a>
             </div>
           </div>
         </div>
@@ -56,7 +59,9 @@
                 <tr>
                     <td>{{forloop.counter}}</td>
                     <td>
+                        {% if data.image %}
                         <img src="{{data.image.url}}" alt="" width="80px", height="80px">
+                        {% endif %}
                     </td>
                     <td>{{data.category.category_name}}</td>
                     <td>{{data.active}}</td>

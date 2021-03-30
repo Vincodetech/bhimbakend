@@ -1,0 +1,91 @@
+{% extends 'home/base.html' %}
+{% block title %} Bhim Connect - Education{% endblock %}
+{% block mycustomcss %} 
+<style>
+    ul, #myUL {
+        list-style-type: none;
+        }
+
+        #myUL {
+        margin: 0;
+        padding: 0;
+        }
+
+        .caret {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+        }
+
+        .caret::before {
+        content: "\25B6";
+        color: black;
+        display: inline-block;
+        margin-right: 10px;
+        }
+
+        .caret-down::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        transform: rotate(90deg);  
+        }
+
+        .nested {
+        display: none;
+        }
+
+        .active {
+        display: block;
+        }
+</style>
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<section>
+    <div class="row" style="padding: 10pt;">
+        <div class="col-lg-8 col-md-8 col-sm-8" style="height: 500px;">
+            <ul id="myUL">
+                <li class="caret">
+                  <ul class="nested">
+                    
+                    <li class="caret"><span>Academic</span>
+                      <ul class="nested">
+                       
+                        <li class="caret"><span>chamestry</span>
+                          <ul class="nested">
+                            <li>chepter 1</li>
+                            <li>chepter 2</li>
+                            <li>chepter 3</li>
+                            <li>chepter 4</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>  
+                  </ul>
+                </li>
+              </ul>
+        </div>
+        <!-- <div class="col-lg-8 col-md-8 col-sm-8">
+            <h3>view</h3>
+        </div> -->
+    </div>
+</section>
+
+{% endblock %}
+{% block mycustomjs %} 
+<script>
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function() {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+</script>
+{% endblock %}
