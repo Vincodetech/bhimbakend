@@ -6,7 +6,7 @@
 
 <section class="inner-header divider parallax layer-overlay overlay-dark-6" 
 data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
-    <div class="container pt-60 pb-60">
+    <div class="container pt-0 pb-0">
       <!-- Section Content -->
       <div class="section-content">
         <div class="row">
@@ -26,9 +26,13 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
 <section class="bg-lighter">
   <div class="container pb-30">
     <div class="section-content">
+      {% if about_content %}
       <div class="row">
         <div class="col-md-6">
-          <img class="img-responsive" src="{{about_content.image.url}}" alt="" width="400pt" height="400pt">
+          {% if about_content.image %}
+          <img class="img-responsive" src="{{about_content.image.url}}" alt="" width="400pt" 
+          height="400pt">
+          {% endif %}
           <h3 class="line-bottom">{{about_content.title1}}</h3>
           <p style="text-align: justify;">
             {{about_content.description1|safe}}
@@ -41,6 +45,13 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
           </p>
         </div>
       </div>
+      {% else %}
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h3 class="text-theme-colored">No Content</h3>
+        </div>
+      </div>
+      {% endif %}
     </div>
   </div>
 </section>

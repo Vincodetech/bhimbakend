@@ -8,7 +8,7 @@
 
 <section class="inner-header divider parallax layer-overlay overlay-dark-6" 
 data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
-    <div class="container pt-60 pb-60">
+    <div class="container pt-0 pb-0">
       <!-- Section Content -->
       <div class="section-content">
         <div class="row">
@@ -31,7 +31,12 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
           <div class="blog-posts single-post">
             <article class="post clearfix mb-0">
               <div class="entry-header">
-                <div class="post-thumb thumb"> <img src="{{single_blog.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt"> </div>
+                <div class="post-thumb thumb">
+                  {% if single_blog.image %} 
+                  <img src="{{single_blog.image.url}}" alt="" class="img-responsive" 
+                  width="400pt" height="200pt"> 
+                  {% endif %}
+                </div>
               </div>
               <div class="entry-content">
                 <div class="entry-meta media no-bg no-border mt-15 pb-20">
