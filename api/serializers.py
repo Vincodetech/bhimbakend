@@ -7,6 +7,7 @@ from home.models import State
 from home.models import City
 from home.models import EducationCategory
 from home.models import EducationSubCategory
+from home.models import EduSubjects
 from home.models import Education
 from home.models import NewsCategory
 from home.models import News
@@ -95,6 +96,11 @@ class EducationCategorySerializer(serializers.ModelSerializer):
 class EducationSubCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = EducationSubCategory
+        fields = '__all__'
+
+class EducationSubjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EduSubjects
         fields = '__all__'
 
 class EducationSerializer(serializers.ModelSerializer):

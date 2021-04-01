@@ -6,6 +6,7 @@ from home.models import CustomUser
 from home.models import Profile
 from home.models import EducationCategory
 from home.models import EducationSubCategory
+from home.models import EduSubjects
 from home.models import Education
 from home.models import NewsCategory
 from home.models import News
@@ -211,6 +212,28 @@ def education_by_sub_cat(request, id):
     if request.method == 'GET':
         edu_by_sub_cat_serializer = EducationSerializer(edu_by_sub_cat, many=True)
         return Response(edu_by_sub_cat_serializer.data)
+
+@api_view(['GET'])
+def subjects_by_sub_cat(request, id):
+    try:
+        sub_by_sub_cat = EduSubjects.objects.filter(sub_category=id)
+    except:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        subjects_by_sub_cat_serializer = EducationSubjectsSerializer(sub_by_sub_cat, many=True)
+        return Response(subjects_by_sub_cat_serializer.data)
+
+@api_view(['GET'])
+def edu_by_subjects(request, id):
+    try:
+        edu_by_subject = Education.objects.filter(subject=id)
+    except:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        edu_by_subject_serializer = EducationSerializer(edu_by_subject, many=True)
+        return Response(edu_by_subject_serializer.data)
 
 @api_view(['GET'])
 def newscat(request, id):

@@ -19,10 +19,13 @@ urlpatterns = [
     path('edusubcat/<int:id>', education_sub_category, name="edusubcat"),
     path('edusubcatfilter/<int:id>', education_sub_category_by_cat, name="edusubcatfilter"),
 
+    path('subjects/<int:id>', subjects_by_sub_cat, name="subjects"),
+
     path('edulistlist', education_list, name="edulistlist"),
     path('edu/<int:id>', education, name="edu"),
     path('edufiltercat/<int:id>', education_by_cat, name="edufiltercat"),
     path('edufiltersubcat/<int:id>', education_by_sub_cat, name="edufiltersubcat"),
+    path('edubysubjects/<int:id>', edu_by_subjects, name="edubysubjects"),
 
     path('newscatlist', newscat_list, name="newscatlistapi"),
     path('newscat/<int:id>', newscat, name="newscatapi"),
