@@ -5,24 +5,24 @@
 <!-- Start main-content -->
 <div class="main-content">
     <!-- Section: home -->
-    <section id="home">
-      <div class="container-fluid p-0">
+    <!-- <section id="home">
+      <div class="container-fluid p-0"> -->
         
         <!-- Slider Revolution Start -->
-        <div class="rev_slider_wrapper">
+        <!-- <div class="rev_slider_wrapper">
           <div class="rev_slider rev_slider_default" data-version="5.0">
-            <ul>
+            <ul> -->
 
               <!-- SLIDE 1 -->
-              {% for i in slider_images %}
+              <!-- {% for i in slider_images %}
               <li data-index="rs-{{i.id}}" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
               data-easein="default" data-easeout="default" data-masterspeed="default" 
               data-thumb="{{i.image.url}}" data-rotate="0" 
-              data-saveperformance="off" data-title="{{i.title}}" data-description="">
+              data-saveperformance="off" data-title="{{i.title}}" data-description=""> -->
                 <!-- MAIN IMAGE -->
-                {% if i.image %}
+                <!-- {% if i.image %}
                 <img src="{{i.image.url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg img-responsive" data-bgparallax="10" data-no-retina>
-                {% endif %}
+                {% endif %} -->
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
@@ -52,7 +52,7 @@
                 </div> -->
 
                 <!-- LAYER NR. 2 -->
-                <div class="tp-caption tp-resizeme text-uppercase bg-theme-colored-transparent text-white font-raleway pl-30 pr-30"
+                <!-- <div class="tp-caption tp-resizeme text-uppercase bg-theme-colored-transparent text-white font-raleway pl-30 pr-30"
                   id="rs-1-layer-2"
 
                   data-x="['center']"
@@ -75,7 +75,7 @@
                   data-responsive_offset="on"
                   style="z-index: 7; white-space: nowrap; font-weight:700; border-radius: 30px;">
                   {{i.title}}
-                </div>
+                </div> -->
 
                 <!-- LAYER NR. 3 -->
                 <!-- <div class="tp-caption tp-resizeme text-white text-center" 
@@ -127,8 +127,8 @@
                   <a class="btn btn-default btn-circled btn-transparent pl-20 pr-20" href="#">Donate Now</a> 
                   {{i.title}}
                 </div> -->
-              </li>
-              {% endfor %}
+              <!-- </li>
+              {% endfor %} -->
 
               <!-- SLIDE 2 -->
               <!-- <li data-index="rs-2" data-transition="slidingoverlayhorizontal" data-slotamount="default" 
@@ -350,12 +350,12 @@
                 </div> -->
               <!-- </li> -->
 
-            </ul>
-          </div>
+            <!-- </ul>
+          </div> -->
         <!-- end .rev_slider -->
-        </div>
+        <!-- </div> -->
         <!--  Revolution slider scriopt -->
-        <script>
+        <!-- <script>
           $(document).ready(function(e) {
             $(".rev_slider_default").revolution({
               sliderType:"standard",
@@ -447,13 +447,13 @@
               }
             });
           });
-        </script>
+        </script> -->
         <!-- Slider Revolution Ends -->
-      </div>
-    </section>
+      <!-- </div>
+    </section> -->
 
     <!-- Divider: Become a Volunteer -->
-    <section class="divider parallax layer-overlay overlay-dark-4" 
+    <!-- <section class="divider parallax layer-overlay overlay-dark-4" 
     data-bg-img="{% static 'website_assets/images/bg/bg.jpg' %}" 
     data-parallax-ratio="0.7">
       <div class="container pt-110 pb-110">
@@ -465,8 +465,8 @@
             <a href="{% url 'register' %}" class="btn btn-lg btn-default mt-20">Join Now</a>
           </div>
         </div>
-      </div>
-    </section>
+      </div>s
+    </section> -->
 
     <!-- Section: Causes -->
     <section class="bg-silver-light">
