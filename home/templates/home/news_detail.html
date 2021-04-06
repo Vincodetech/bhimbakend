@@ -1,4 +1,8 @@
 {% extends 'home/base.html' %}
+{% block meta %} 
+<meta property="og:title" content="{{single_news.title}}" />
+<meta property="og:image" content="{{single_news.image.url}}">
+{% endblock %}
 {% block title %} Bhim Connect - News {% endblock %}
 {% block content %}
 {% load static %}
@@ -7,103 +11,113 @@
 {% load embed_video_tags %}
 {% load social_share %}
 
-<section class="inner-header divider parallax layer-overlay overlay-dark-6" 
-data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
-    <div class="container pt-0 pb-0">
-      <!-- Section Content -->
-      <div class="section-content">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h3 class="font-28 text-white">Single News</h2>
+<section class="inner-header divider parallax layer-overlay overlay-dark-6"
+  data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
+  <div class="container pt-0 pb-0">
+    <!-- Section Content -->
+    <div class="section-content">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="font-28 text-white">Single News</h2>
             <ol class="breadcrumb text-center text-black mt-10">
               <li><a href="{% url 'index' %}">Home</a></li>
               <li class="active text-theme-colored">Single News</li>
             </ol>
-          </div>
         </div>
       </div>
-    </div>      
-  </section>
+    </div>
+  </div>
+</section>
 
 <section>
-    <div class="container mt-30 mb-30 pt-30 pb-30">
-      <div class="row">
-        <div class="col-md-9 pull-right flip sm-pull-none">
-          <div class="blog-posts single-post">
-            <article class="post clearfix mb-0">
-              <div class="entry-header">
-                <div class="post-thumb thumb"> 
-                  {% if single_news.image %}
-                  <img src="{{single_news.image.url}}" alt="" 
-                  class="img-responsive" width="700pt" height="600pt">
-                  {% endif %} 
-                </div>
-              </div>
-              <div class="entry-content">
-                <div class="entry-meta media no-bg no-border mt-15 pb-20">
-                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                    <span class="font-13 text-white font-weight-600">{{single_news.news_date}}</span>
-                  </div>
-                  <div class="media-body pl-15">
-                    <div class="event-content pull-left flip">
-                      <h4 class="entry-title text-white text-uppercase m-0"><a href="#">{{single_news.title}}</a></h4>
-                    </div>
-                  </div>
-                </div>
-                <h5 class="text-theme-colored" style="font-size: 20pt;">Description:</h5>
-                <p class="mb-15">{{single_news.description|safe}}</p>
-
-                <div class="row" style="margin-top: 100pt;">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    {% video single_news.youtube_link '250% x 100%' %}
-                  </div>
-                </div>
-
-                <div class="mt-30 mb-0 p-10">
-                  <h5 class="text-theme-colored">Share On:</h5>
-                  {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}
-                  <br>
-                  {% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}
-                </div>
-                
-                <div class="mt-10 mb-0">
-                  <div class="row">
-                      <div class="cil-lg-12 col-md-12 col-sm-12">
-                        <h5 class="pull-left mt-10 mr-20 text-theme-colored">Related News:</h5>
-                      </div>
-                  </div>
-                  <div class="row multi-row-clearfix">
-                    {% for n in allnews %}
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                      <div class="causes bg-white maxwidth500 mb-30">
-                        <div class="thumb">
-                          {% if n.image %}
-                          <img src="{{n.image.url}}" alt="" class="img-fullwidth">
-                          {% endif %}
-                          <div class="overlay-donate-now">
-                            <a href="{% url 'newssingle' n.id %}" class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
-                              Read More <i class="fa fa-info-circle font-16 ml-5"></i></a>
-                          </div>
-                        </div>
-                        <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
-                          <h5 class="font-weight-600 font-16"><a href="{% url 'newssingle' n.id %}">{{n.title}}</a></h5>
-                          <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
-                            <li class="text-theme-colored pull-left pr-0"><a href="{% url 'newssingle' n.id %}">Read More</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
+  <div class="container mt-30 mb-30 pt-30 pb-30">
+    <div class="row">
+      <div class="col-md-9 pull-right flip sm-pull-none">
+        <div class="mt-30 mb-0 p-0">
+          <h5 class="text-theme-colored">Share On:</h5>
+          <ul class="list-inline">
+            <!-- <li>
+              <div class="fb-share-button" data-href="http://127.0.0.1:8000/newssingle/{{single_news.id}}" 
+              data-layout="button_count" data-size="small"><a target="_blank" 
+              href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fnewssingle%2F1&amp;src=sdkpreparse" 
+              class="fb-xfbml-parse-ignore">Share</a></div>
+            </li> -->
+            <li>{% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}</li>
+            <li>{% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}</li>
+            <li>{% post_to_twitter "{{single_news.title}}" object_or_url "Post to Twitter" "btn btn-info btn-sm fa fa-twitter" %}</li>
+          </ul>
         </div>
-        <div class="col-md-3">
-          <div class="sidebar sidebar-left mt-sm-30">
-            <div class="widget">
-              <!-- <h5 class="widget-title line-bottom">Search box</h5>
+        <div class="blog-posts single-post">
+          <article class="post clearfix mb-0">
+            <div class="entry-header">
+              <div class="post-thumb thumb">
+                {% if single_news.image %}
+                <img src="{{single_news.image.url}}" alt="" class="img-responsive" width="700pt" height="600pt">
+                {% endif %}
+              </div>
+            </div>
+            <div class="entry-content">
+              <div class="entry-meta media no-bg no-border mt-15 pb-20">
+                <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                  <span class="font-13 text-white font-weight-600">{{single_news.news_date}}</span>
+                </div>
+                <div class="media-body pl-15">
+                  <div class="event-content pull-left flip">
+                    <h4 class="entry-title text-white text-uppercase m-0"><a href="#">{{single_news.title}}</a></h4>
+                  </div>
+                </div>
+              </div>
+              <h5 class="text-theme-colored" style="font-size: 20pt;">Description:</h5>
+              <p class="mb-15">{{single_news.description|safe}}</p>
+
+              <div class="row" style="margin-top: 100pt;">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  {% video single_news.youtube_link '250% x 100%' %}
+                </div>
+              </div>
+
+              
+
+              <div class="mt-10 mb-0">
+                <div class="row">
+                  <div class="cil-lg-12 col-md-12 col-sm-12">
+                    <h5 class="pull-left mt-10 mr-20 text-theme-colored">Related News:</h5>
+                  </div>
+                </div>
+                <div class="row multi-row-clearfix">
+                  {% for n in allnews %}
+                  <div class="col-sm-6 col-md-3 col-lg-3">
+                    <div class="causes bg-white maxwidth500 mb-30">
+                      <div class="thumb">
+                        {% if n.image %}
+                        <img src="{{n.image.url}}" alt="" class="img-fullwidth">
+                        {% endif %}
+                        <div class="overlay-donate-now">
+                          <a href="{% url 'newssingle' n.id %}"
+                            class="btn btn-dark btn-theme-colored btn-flat btn-sm pull-left mt-10">
+                            Read More <i class="fa fa-info-circle font-16 ml-5"></i></a>
+                        </div>
+                      </div>
+                      <div class="causes-details clearfix border-bottom p-15 pt-10 pb-10">
+                        <h5 class="font-weight-600 font-16"><a href="{% url 'newssingle' n.id %}">{{n.title}}</a></h5>
+                        <ul class="list-inline font-weight-600 border-top clearfix mt-20 pt-10">
+                          <li class="text-theme-colored pull-left pr-0"><a href="{% url 'newssingle' n.id %}">Read
+                              More</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="sidebar sidebar-left mt-sm-30">
+          <div class="widget">
+            <!-- <h5 class="widget-title line-bottom">Search box</h5>
               <div class="search-form">
                 <form>
                   <div class="input-group">
@@ -114,21 +128,21 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
                   </div>
                 </form>
               </div> -->
-            </div>
-            <div class="widget">
-              <h5 class="widget-title line-bottom">Categories</h5>
-              <div class="categories">
-                <ul class="list list-border angle-double-right">
+          </div>
+          <div class="widget">
+            <h5 class="widget-title line-bottom">Categories</h5>
+            <div class="categories">
+              <ul class="list list-border angle-double-right">
                 {% for nc in news_all_categories %}
-                  <li><a href="/newsview?id={{nc.id}}">{{nc.category_name}}</a></li>
+                <li><a href="/newsview?id={{nc.id}}">{{nc.category_name}}</a></li>
                 {% endfor %}
-                </ul>
-              </div>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 {% endblock %}
