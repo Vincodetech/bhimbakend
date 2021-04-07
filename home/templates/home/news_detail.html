@@ -33,15 +33,9 @@
   <div class="container mt-30 mb-30 pt-30 pb-30">
     <div class="row">
       <div class="col-md-9 pull-right flip sm-pull-none">
-        <div class="mt-30 mb-0 p-0">
+        <div class="mt-30 mb-0 p-10">
           <h5 class="text-theme-colored">Share On:</h5>
           <ul class="list-inline">
-            <!-- <li>
-              <div class="fb-share-button" data-href="http://127.0.0.1:8000/newssingle/{{single_news.id}}" 
-              data-layout="button_count" data-size="small"><a target="_blank" 
-              href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fnewssingle%2F1&amp;src=sdkpreparse" 
-              class="fb-xfbml-parse-ignore">Share</a></div>
-            </li> -->
             <li>{% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}</li>
             <li>{% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}</li>
             <li>{% post_to_twitter "{{single_news.title}}" object_or_url "Post to Twitter" "btn btn-info btn-sm fa fa-twitter" %}</li>

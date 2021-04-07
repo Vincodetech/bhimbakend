@@ -35,8 +35,8 @@ def index(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     slider_images = Slider.objects.filter(active=True)[0:3]
-    news = News.objects.filter(active=True).order_by('-created_at')[:4]
-    result = Blog.objects.filter(active=True).order_by('-created_at')[:4]
+    news = News.objects.filter(active=True).order_by('-created_at')[0:4]
+    result = Blog.objects.filter(active=True).order_by('-created_at')[0:4]
     return render(request, "home/index.html", {
         'header_content': header_content,
         'footer_content': footer_content,
