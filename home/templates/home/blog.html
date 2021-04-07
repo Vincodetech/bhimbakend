@@ -31,7 +31,11 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
           <article class="post clearfix mb-30 bg-lighter">
             <div class="entry-header">
               <div class="post-thumb thumb"> 
-                <img src="{{data.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt"> 
+                <a href="{% url 'blogsingle' data.id %}">
+                  {% if data.image %}
+                  <img src="{{data.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt"> 
+                  {% endif %}
+                </a>
               </div>
             </div>
             <div class="entry-content p-20 pr-10">

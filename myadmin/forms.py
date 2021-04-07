@@ -121,7 +121,10 @@ class NewsForm(forms.ModelForm):
 class BlogForm(forms.ModelForm):
     class Meta:
         model=Blog
-        fields=('title','description','image','youtube_link','category','active')
+        fields=('title','description','image','youtube_link','category', 'blog_date','active')
+        widgets = {
+            'blog_date': DateInput()
+        }
 
 class GalleryCatForm(forms.ModelForm):
     class Meta:
