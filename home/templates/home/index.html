@@ -475,6 +475,7 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <h2 class="text-uppercase line-bottom-center mt-0">News</h2>
+              <hr>
             </div>
           </div>
         </div>
@@ -486,8 +487,8 @@
               <div class="thumb">
                 {% if n.image %}
                 <a href="{% url 'newssingle' n.id %}">
-                  <img src="{{n.image.url}}" alt="image" class="img-responsive" width="400pt" 
-                height="200pt">
+                  <img src="{{n.image.url}}" alt="image" class="" width="400px" 
+                height="200px">
                 </a>
                 {% endif %}
                 <div class="overlay-donate-now">
@@ -516,6 +517,7 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <h2 class="text-uppercase line-bottom-center mt-0">Our Blog</h2>
+              <hr>
             </div>
           </div>
         </div>
@@ -528,8 +530,8 @@
                   <div class="post-thumb thumb"> 
                     <a href="{% url 'blogsingle' data.id %}">
                       {% if data.image %}
-                        <img src="{{data.image.url}}" alt="" class="img-responsive" 
-                        width="400pt" height="200pt"> 
+                        <img src="{{data.image.url}}" alt="" class="" 
+                        width="400px" height="200px"> 
                       {% endif %}
                     </a>
                   </div>
