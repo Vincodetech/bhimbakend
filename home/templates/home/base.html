@@ -136,7 +136,14 @@
               <li><a href="{% url 'about' %}">About Us</a>
               </li>
               <li><a href="{% url 'educatview' %}">Education</a></li>
-              <li><a href="{% url 'newsview' %}">News</a></li>
+              <li><a href="{% url 'newsview' %}">News</a>
+                <ul class="dropdown">
+                  <li class="bg-theme-colored"><a href="/newsview">All</a></li>
+                  {% for nc in news_all_categories %}
+                  <li><a href="/newsview?id={{nc.id}}">{{nc.category_name}}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
               <li><a href="{% url 'blogview' %}">Blog</a></li>
               <li><a href="{% url 'galleryview' %}">Gallery</a></li>
               <!-- <li><a href="#">Business</a></li> -->
@@ -181,7 +188,7 @@
   
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-color="#25272e">
-    <div class="container pt-10">
+    <div class="container pt-10 mt-60">
       <div class="row border-bottom-black text-center">
         <div class="col-lg-12 col-md-4 col-sm-3">
           <div class="widget dark">

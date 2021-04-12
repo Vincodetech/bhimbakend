@@ -10,10 +10,9 @@
 {% load get_news_by_cat %}
 {% load social_share %}
 
-<section class="inner-header divider parallax layer-overlay overlay-dark-6" 
+<!-- <section class="inner-header divider parallax layer-overlay overlay-dark-6" 
 data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
     <div class="container pt-0 pb-0">
-      <!-- Section Content -->
       <div class="section-content">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -26,7 +25,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
         </div>
       </div>
     </div>      
-  </section>
+  </section> -->
 
 <section>
     <div class="container mt-30 mb-30 pt-30 pb-30">
@@ -45,8 +44,8 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
               <div class="entry-header">
                 <div class="post-thumb thumb">
                   {% if single_blog.image %} 
-                  <img src="{{single_blog.image.url}}" alt="" class="img-responsive" 
-                  width="400pt" height="200pt"> 
+                  <img src="{{single_blog.image.url}}" alt="" class="" 
+                  width="700pt" height="550pt"> 
                   {% endif %}
                 </div>
               </div>
@@ -76,7 +75,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
                         <article class="post clearfix mb-30 bg-lighter">
                           <div class="entry-header">
                             <div class="post-thumb thumb"> 
-                              <img src="{{data.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt"> 
+                              <img src="{{data.image.url}}" alt="" class="" width="400px" height="200px"> 
                             </div>
                           </div>
                           <div class="entry-content p-20 pr-10">

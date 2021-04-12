@@ -6,10 +6,10 @@
 {% load get_news_by_cat %}
 {% load social_share %}
 
-<section class="inner-header divider parallax layer-overlay overlay-dark-6" 
+<!-- <section class="inner-header divider parallax layer-overlay overlay-dark-6" 
 data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
     <div class="container pt-0 pb-0">
-      <!-- Section Content -->
+      Section Content 
       <div class="section-content">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -22,7 +22,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
         </div>
       </div>
     </div>      
-  </section>
+  </section> -->
 
 <div class="container" style="margin-top: 10pt; margin-bottom: 10pt;">
   <div class="section-title text-center">
@@ -32,11 +32,13 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
       </div>
     </div>
   </div>
+
+  <hr>
   
-  <div class="section-title text-center">
+  <!-- <div class="section-title text-center">
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ul class="nav nav-pills list-inline" style="overflow: auto;">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow: auto;">
+        <ul class="nav nav-pills list-inline">
           <li class="bg-theme-colored"><a href="/newsview">All</a></li>
           {% for nc in news_all_categories %}
           <li><a href="/newsview?id={{nc.id}}">{{nc.category_name}}</a></li>
@@ -44,7 +46,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
   
   <div class="row multi-row-clearfix">
     {% for n in allnews %}
@@ -53,7 +55,7 @@ data-bg-img="{% static 'website_assets/images/bg/size.jpg' %}">
         <div class="thumb">
           {% if n.image %}
           <a href="{% url 'newssingle' n.id %}">
-            <img src="{{n.image.url}}" alt="" class="img-responsive" width="400pt" height="200pt">
+            <img src="{{n.image.url}}" alt="" class="" width="400px" height="200px">
           </a>
           {% endif %}
           <div class="overlay-donate-now">
