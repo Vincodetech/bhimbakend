@@ -32,31 +32,41 @@ from home.middlewares.auth import auth_middleware
 from django.utils.decorators import method_decorator
 
 def index(request):
+    id = request.GET.get('id')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     slider_images = Slider.objects.filter(active=True)[0:3]
     news = News.objects.filter(active=True).order_by('-created_at')[0:4]
     result = Blog.objects.filter(active=True).order_by('-created_at')[0:4]
+    news_all_categories = NewsCategory.get_category_by_active()
+    if not id:
+        allnews = News.get_news_by_active()
+    else:
+        allnews = News.objects.filter(category=id)
     return render(request, "home/index.html", {
         'header_content': header_content,
         'footer_content': footer_content,
         'slider_images': slider_images,
         'news': news,
-        'result': result    
+        'result': result,
+        'news_all_categories': news_all_categories   
     })
 
 def about(request):
+    news_all_categories = NewsCategory.get_category_by_active()
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     about_content = AboutUsCms.get_content_by_active()
     return render(request, "home/about.html", {
         'about_content': about_content,
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'news_all_categories': news_all_categories
     })
 
 def blog(request):
     id = request.GET.get('id')
+    news_all_categories = NewsCategory.get_category_by_active()
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     if not id:
@@ -75,10 +85,12 @@ def blog(request):
     return render(request, "home/blog.html", {
         'header_content': header_content,
         'footer_content': footer_content,
-        'result': result
+        'result': result,
+        'news_all_categories': news_all_categories
     })
 
 def blog_detail(request, id):
+    news_all_categories = NewsCategory.get_category_by_active()
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     blog_all_categories = BlogCategory.get_category_by_active()
@@ -92,15 +104,16 @@ def blog_detail(request, id):
         result = paginator.page(1)
     except EmptyPage:
         result = paginator.page(paginator.num_pages)
-    data = {
-        'result': result,
-    }
+    # data = {
+    #     'result': result,
+    # }
     return render(request, "home/blog_detail.html", {
         'header_content': header_content,
         'footer_content': footer_content,
         'single_blog': single_blog,
         'blog_all_categories': blog_all_categories,
-        'result': result
+        'result': result,
+        'news_all_categories': news_all_categories
     })
 
 def events(request):
@@ -112,6 +125,7 @@ def events(request):
     })
 
 def news(request):
+    news_all_categories = NewsCategory.get_category_by_active()
     id = request.GET.get('id')
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
@@ -124,10 +138,12 @@ def news(request):
         'header_content': header_content,
         'footer_content': footer_content,
         'news_all_categories': news_all_categories,
-        'allnews': allnews
+        'allnews': allnews,
+        'news_all_categories': news_all_categories
     })
 
 def news_detail(request, id):
+    news_all_categories = NewsCategory.get_category_by_active()
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     news_all_categories = NewsCategory.get_category_by_active()
@@ -143,6 +159,7 @@ def news_detail(request, id):
 
 def gallery(request):
     id = request.GET.get('id')
+    news_all_categories = NewsCategory.get_category_by_active()
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     gallery_cat = GalleryCategory.objects.filter(active=True)
@@ -154,10 +171,12 @@ def gallery(request):
         'header_content': header_content,
         'footer_content': footer_content,
         'gallery_cat': gallery_cat,
-        'images': images
+        'images': images,
+        'news_all_categories': news_all_categories
     })
 
 def contactus(request):
+    news_all_categories = NewsCategory.get_category_by_active()
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
     flag = None
@@ -178,7 +197,8 @@ def contactus(request):
         'footer_content': footer_content,
         'forms': forms,
         'flag': flag,
-        'msg': msg
+        'msg': msg,
+        'news_all_categories': news_all_categories
     })
 
 def generate_otp():
@@ -202,6 +222,7 @@ def register(request):
     flag = None
     msg = None
     header_content = HeaderCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     footer_content = FooterCms.get_content_by_active()
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -232,7 +253,8 @@ def register(request):
         'header_content': header_content,
         'footer_content': footer_content,
         'flag': flag,
-        'msg': msg
+        'msg': msg,
+        'news_all_categories': news_all_categories
     })
 
 def otp(request):
@@ -260,6 +282,7 @@ def user_login(request):
     return_url = None
     return_url = request.GET.get('return_url')
     header_content = HeaderCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     footer_content = FooterCms.get_content_by_active()
     flag = None
     mgs = None
@@ -289,7 +312,8 @@ def user_login(request):
         'flag': flag,
         'msg': mgs,
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'news_all_categories': news_all_categories
     })
 
 def logout_view(request):
@@ -300,6 +324,7 @@ def logout_view(request):
 def edit(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     flag = None
     mgs = None
     user = CustomUser.objects.get(id=request.session['uid'])
@@ -331,42 +356,50 @@ def edit(request):
         'flag': flag,
         'msg': mgs,
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'news_all_categories': news_all_categories
     })
 
 def terms_conditions_view(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     tc_content = TermsAndConditions.objects.get(active=True)
     return render(request,'home/t_and_c.html', {
         'tc_content': tc_content,
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'news_all_categories': news_all_categories
     })
 
 def privecy_policy_view(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     pp_content = PrivecyAndProlicy.objects.get(active=True)
     return render(request,'home/privecy_policy.html', {
         'pp_content': pp_content,
         'header_content': header_content,
-        'footer_content': footer_content
+        'footer_content': footer_content,
+        'news_all_categories': news_all_categories
     })
 
 def edu_cat_list(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     education_all_cat = EducationCategory.get_category_by_active()
     return render(request, 'home/education_category.html', {
        'header_content': header_content, 
        'footer_content': footer_content,
-       'education_all_cat': education_all_cat
+       'education_all_cat': education_all_cat,
+       'news_all_categories': news_all_categories
     })
 
 def edu_sub_cat_list_by_cat(request, id):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     edu_sub_cat_list_for_cat = EducationSubCategory.get_sub_category_by_cat(id)
     page = request.GET.get('page', 1)
     paginator = Paginator(edu_sub_cat_list_for_cat, 4)
@@ -379,12 +412,14 @@ def edu_sub_cat_list_by_cat(request, id):
     return render(request, 'home/education_sub_category.html', {
        'header_content': header_content, 
        'footer_content': footer_content,
-       'result': result
+       'result': result,
+       'news_all_categories': news_all_categories
     })
 
 def edu_subjects_list_by_subcat(request, id):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     edu_subjects_list_for_subcat = EduSubjects.get_subjects_by_sub_cat(id)
     page = request.GET.get('page', 1)
     paginator = Paginator(edu_subjects_list_for_subcat, 4)
@@ -397,13 +432,15 @@ def edu_subjects_list_by_subcat(request, id):
     return render(request, 'home/education_subjects.html', {
        'header_content': header_content, 
        'footer_content': footer_content,
-       'result': result
+       'result': result,
+       'news_all_categories': news_all_categories
     })
 
 
 def edu_chapters_list_by_subjects(request, id):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    news_all_categories = NewsCategory.get_category_by_active()
     edu_chs = Education.objects.filter(subject=id, active=True)
     # page = request.GET.get('page', 1)
     # paginator = Paginator(edu_chs, 4)
@@ -416,5 +453,6 @@ def edu_chapters_list_by_subjects(request, id):
     return render(request, 'home/education_chapters.html', {
        'header_content': header_content, 
        'footer_content': footer_content,
-       'result': edu_chs
+       'result': edu_chs,
+       'news_all_categories': news_all_categories
     })
