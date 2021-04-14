@@ -74,7 +74,7 @@ def validate(country):
 def country_view(request):
     allcountries = Country.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcountries, 10)
+    paginator = Paginator(allcountries, 100)
     try:
         countries = paginator.page(page)
     except PageNotAnInteger:
@@ -144,7 +144,7 @@ def delete_country(request, id):
 def state_view(request):
     allstates = State.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allstates, 10)
+    paginator = Paginator(allstates, 100)
     try:
         states = paginator.page(page)
     except PageNotAnInteger:
@@ -211,7 +211,7 @@ def delete_state(request, id):
 def city_view(request):
     allcities = City.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcities, 10)
+    paginator = Paginator(allcities, 100)
     try:
         cities = paginator.page(page)
     except PageNotAnInteger:
@@ -277,7 +277,7 @@ def delete_city(request, id):
 def degree_view(request):
     alldegree = Degree.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(alldegree, 10)
+    paginator = Paginator(alldegree, 100)
     try:
         degrees = paginator.page(page)
     except PageNotAnInteger:
@@ -759,7 +759,7 @@ def delete_news_cat(request, id):
 def news_view(request):
     allcontents = News.get_all_news()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -815,7 +815,7 @@ def delete_news(request, id):
 def blog_category_view(request):
     allcontents = BlogCategory.get_all_categories()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -871,7 +871,7 @@ def delete_blog_cat(request, id):
 def blog_view(request):
     allcontents = Blog.get_all_blog()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -927,7 +927,7 @@ def delete_blog(request, id):
 def edu_category_view(request):
     allcontents = EducationCategory.get_all_categories()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -983,7 +983,7 @@ def delete_edu_cat(request, id):
 def edu_sub__category_view(request):
     allcontents = EducationSubCategory.get_all_sub_categories()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 20)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1039,7 +1039,7 @@ def delete_edu_sub_cat(request, id):
 def edu_subjects_view(request):
     allcontents = EduSubjects.get_all_subjects()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 20)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1095,7 +1095,7 @@ def delete_edu_subject(request, id):
 def edu_view(request):
     allcontents = Education.get_edu_by_active()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1164,7 +1164,7 @@ def load_edusubjects(request):
 def gallery_category_view(request):
     allcontents = GalleryCategory.get_all_categories()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1220,7 +1220,7 @@ def delete_gallery_cat(request, id):
 def gallery_view(request):
     allcontents = Gallery.get_all_gallery()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allcontents, 10)
+    paginator = Paginator(allcontents, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
@@ -1266,7 +1266,7 @@ def delete_all_gallery(request):
 def slider_view(request):
     allslider = Slider.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(allslider, 10)
+    paginator = Paginator(allslider, 100)
     try:
         result = paginator.page(page)
     except PageNotAnInteger:
