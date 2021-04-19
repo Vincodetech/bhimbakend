@@ -1,0 +1,600 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} Home - Bim Connect {% endblock %}
+{% block content %} 
+        <div class="breadcrumb-banner-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcrumb-text">
+                            <h1 class="text-center">POPULAR COURSES</h1>
+                            <div class="breadcrumb-bar">
+                                <ul class="breadcrumb">
+                                    <!-- <li><a href="index.html">Home</a></li> -->
+                                    <li>Home</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Breadcrumb Banner Area-->
+        <div class="search-category">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form action="#" method="post">
+                            <div class="form-container">
+                                <div class="box-select">
+                                    <div class="select large">
+                                        <select name="category">
+                                            <option>All Categories</option>
+                                            <option>Web Design</option>
+                                            <option>Designing</option>
+                                            <option>Development</option>
+                                            <option>Programming</option>
+                                            <option>Developing</option>
+                                        </select>
+                                    </div>
+                                    <div class="select small">
+                                        <select name="date">
+                                            <option>Price</option>
+                                            <option>$10000</option>
+                                            <option>$35000</option>
+                                            <option>$67000</option>
+                                            <option>$82000</option>
+                                            <option>$95000</option>
+                                        </select>
+                                    </div>
+                                    <div class="select medium">
+                                        <select name="date">
+                                            <option>Course Type</option>
+                                            <option>Web Design</option>
+                                            <option>Designing</option>
+                                            <option>Development</option>
+                                            <option>Programming</option>
+                                            <option>Developing</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="button">Search Course</button>
+                            </div>
+                        </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Course Area Start-->
+        <div class="course-area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>POPULAR COURSES</h3>
+                                <p>There are many types of Courses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-item">
+                            <div class="single-item-image overlay-effect">
+                                <a href="#"><img src="{% static 'resource/img/course/1.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-item-text">
+                                <h4><a href="#">Photoshop CC 2016</a></h4>
+                                <div class="single-item-text-info">
+                                    <span>By: <span>M S Nawaz</span></span>
+                                    <span>Date: <span>20.5.15</span></span>
+                                </div>
+                                <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
+                                <div class="single-item-content">
+                                    <div class="single-item-comment-view">
+                                        <span><i class="zmdi zmdi-eye"></i>59</span>
+                                        <span><i class="zmdi zmdi-comments"></i>19</span>
+                                   </div>
+                                   <div class="single-item-rating">
+                                       <i class="zmdi zmdi-star"></i>
+                                       <i class="zmdi zmdi-star"></i>
+                                       <i class="zmdi zmdi-star"></i>
+                                       <i class="zmdi zmdi-star"></i>
+                                       <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>   
+                            </div>
+                            <div class="button-bottom">
+                                <a href="#" class="button-default">Learn Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-item">
+                            <div class="single-item-image overlay-effect">
+                                <a href="#"><img src="{% static 'resource/img/course/2.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-item-text">
+                                <h4><a href="#">Illustrator CC 2016</a></h4>
+                                <div class="single-item-text-info">
+                                    <span>By: <span>Subas Das</span></span>
+                                    <span>Date: <span>20.5.15</span></span>
+                                </div>
+                                <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
+                                <div class="single-item-content">
+                                   <div class="single-item-comment-view">
+                                       <span><i class="zmdi zmdi-eye"></i>59</span>
+                                       <span><i class="zmdi zmdi-comments"></i>19</span>
+                                    </div>
+                                    <div class="single-item-rating">
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>   
+                            </div>
+                            <div class="button-bottom">
+                                <a href="#" class="button-default">Learn Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 hidden-sm">
+                        <div class="single-item">
+                            <div class="single-item-image overlay-effect">
+                                <a href="#"><img src="{% static 'resource/img/course/3.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-item-text">
+                                <h4><a href="#">Indesign CC 2016</a></h4>
+                                <div class="single-item-text-info">
+                                    <span>By: <span>Momin Boss</span></span>
+                                    <span>Date: <span>20.5.15</span></span>
+                                </div>
+                                <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
+                                <div class="single-item-content">
+                                    <div class="single-item-comment-view">
+                                        <span><i class="zmdi zmdi-eye"></i>59</span>
+                                        <span><i class="zmdi zmdi-comments"></i>19</span>
+                                    </div>
+                                    <div class="single-item-rating">
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>   
+                            </div>
+                            <div class="button-bottom">
+                                <a href="#" class="button-default">Learn Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <a href="#" class="button-default button-large">Browse All Courses <i class="zmdi zmdi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Course Area-->
+        <!--Fun Factor Area Start-->
+        <div class="fun-factor-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper white">
+                            <div class="section-title">
+                                <h3>IMPORTANT FACTS</h3>
+                                <p>There are many variations of passages of Lorem Ipsum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-fun-factor">
+                            <h4>Teachers</h4>
+                            <h2><span class="counter">79</span>+</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-fun-factor">
+                            <h4>Members</h4>
+                            <h2><span class="counter">120</span>+</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-fun-factor">
+                            <h4>Courses</h4>
+                            <h2><span class="counter">36</span>+</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-fun-factor">
+                            <h4>Countries</h4>
+                            <h2><span class="counter">20</span>+</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Fun Factor Area-->   
+        <!--Latest News Area Start--> 
+        <div class="latest-area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>Latest News</h3>
+                                <p>There are many variations of passages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="single-latest-item">
+                            <div class="single-latest-image">
+                                <a href="#"><img src="{% static 'resource/img/latest/1.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-latest-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
+                                    <span><i class="zmdi zmdi-eye"></i>59</span>
+                                    <span><i class="zmdi zmdi-comments"></i>19</span>
+                                </div>
+                                <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
+                               <a href="#" class="button-default">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-latest-item">
+                            <div class="single-latest-image">
+                                <a href="#"><img src="{% static 'resource/img/latest/2.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-latest-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
+                                    <span><i class="zmdi zmdi-eye"></i>59</span>
+                                    <span><i class="zmdi zmdi-comments"></i>19</span>
+                                </div>
+                                <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
+                                <a href="#" class="button-default">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-latest-item">
+                            <div class="single-latest-image">
+                                <a href="#"><img src="{% static 'resource/img/latest/3.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-latest-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
+                                    <span><i class="zmdi zmdi-eye"></i>59</span>
+                                    <span><i class="zmdi zmdi-comments"></i>19</span>
+                                </div>
+                                <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
+                                <a href="#" class="button-default">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-latest-item">
+                            <div class="single-latest-image">
+                                <a href="#"><img src="{% static 'resource/img/latest/4.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-latest-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
+                                    <span><i class="zmdi zmdi-eye"></i>59</span>
+                                   <span><i class="zmdi zmdi-comments"></i>19</span>
+                                </div>
+                                <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
+                               <a href="#" class="button-default">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Latest News Area--> 
+        <!--Online Product Area Start-->
+        <div class="product-area section-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>Online Library</h3>
+                                <p>There are many variations of passages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-4">
+                        <div class="single-product-item">
+                            <div class="single-product-image">
+                                <a href="#"><img src="{% static 'resource/img/product/1.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-product-text">
+                                <h4><a href="#">Title Product Here</a></h4>
+                                <h5>Book</h5>
+                                <div class="product-price">
+                                    <h3>$ 28</h3>
+                                    <div class="single-item-rating">
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>
+                                <div class="product-buttons">
+                                    <button type="button" class="button-default cart-btn">ADD TO CART</button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <div class="single-product-item">
+                            <div class="single-product-image">
+                                <a href="#"><img src="{% static 'resource/img/product/2.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-product-text">
+                                <h4><a href="#">Title Product Here</a></h4>
+                                <h5>Book</h5>
+                                <div class="product-price">
+                                    <h3>$ 28</h3>
+                                    <div class="single-item-rating">
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>
+                                <div class="product-buttons">
+                                    <button type="button" class="button-default cart-btn">ADD TO CART</button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <div class="single-product-item">
+                            <div class="single-product-image">
+                                <a href="#"><img src="{% static 'resource/img/product/3.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-product-text">
+                                <h4><a href="#">Title Product Here</a></h4>
+                                <h5>Book</h5>
+                                <div class="product-price">
+                                    <h3>$ 28</h3>
+                                    <div class="single-item-rating">
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>
+                                <div class="product-buttons">
+                                    <button type="button" class="button-default cart-btn">ADD TO CART</button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 hidden-sm">
+                        <div class="single-product-item">
+                            <div class="single-product-image">
+                                <a href="#"><img src="{% static 'resource/img/product/4.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-product-text">
+                                <h4><a href="#">Title Product Here</a></h4>
+                                <h5>Book</h5>
+                                <div class="product-price">
+                                    <h3>$ 28</h3>
+                                    <div class="single-item-rating">
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star"></i>
+                                        <i class="zmdi zmdi-star-half"></i>
+                                    </div>
+                                </div>
+                                <div class="product-buttons">
+                                    <button type="button" class="button-default cart-btn">ADD TO CART</button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
+                                    <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Online Product Area-->
+        <!--Teachers Area Start-->
+        <div class="teachers-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>OUR TEACHERS</h3>
+                                <p>There are many variations of passages of Lorem Ipsum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-teacher-item">
+                            <div class="single-teacher-image">
+                                <a href="#"><img src="{% static 'resource/img/teacher/l-1.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-teacher-text">
+                                <h3><a href="#">Louis Smith</a></h3>
+                                <h4>Teacher</h4>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-teacher-item">
+                            <div class="single-teacher-image">
+                                <a href="#"><img src="{% static 'resource/img/teacher/l-2.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-teacher-text">
+                                <h3><a href="#">Louis Smith</a></h3>
+                                <h4>Teacher</h4>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 hidden-sm">
+                        <div class="single-teacher-item">
+                            <div class="single-teacher-image">
+                                <a href="#"><img src="{% static 'resource/img/teacher/l-3.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-teacher-text">
+                                <h3><a href="#">Louis Smith</a></h3>
+                                <h4>Teacher</h4>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 hidden-md hidden-sm">
+                        <div class="single-teacher-item">
+                            <div class="single-teacher-image">
+                                <a href="#"><img src="{% static 'resource/img/teacher/l-4.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="single-teacher-text">
+                                <h3><a href="#">Louis Smith</a></h3>
+                                <h4>Teacher</h4>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Teachers Area-->
+        <!--Event Area Start-->
+        <div class="event-area" style="padding-bottom: 30px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>Our Blogs</h3>
+                                <p>There are many variations of passages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-event-item">
+                            <div class="single-event-image">
+                                <a href="#">
+                                    <img src="{% static 'resource/img/event/1.jpg' %}" alt="">
+                                    <span><span>15</span>Jun</span>
+                                </a>
+                            </div>
+                            <div class="single-event-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                    <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
+                                </div>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                               <a class="button-default" href="#">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-event-item">
+                            <div class="single-event-image">
+                                <a href="#">
+                                    <img src="{% static 'resource/img/event/2.jpg' %}" alt="">
+                                    <span><span>20</span>Apr</span>
+                                </a>
+                            </div>
+                            <div class="single-event-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                    <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
+                                </div>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                                <a class="button-default" href="#">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 hidden-sm">
+                        <div class="single-event-item">
+                            <div class="single-event-image">
+                                <a href="#">
+                                    <img src="{% static 'resource/img/event/3.jpg' %}" alt="">
+                                    <span><span>06</span>Dec</span>
+                                </a>
+                            </div>
+                            <div class="single-event-text">
+                                <h3><a href="#">Learn English in ease</a></h3>
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                    <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
+                                </div>
+                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                                <a class="button-default" href="#">LEARN Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <a href="#" class="button-default button-large">Browse All Blogs <i class="zmdi zmdi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Event Area-->
+{% endblock %}
