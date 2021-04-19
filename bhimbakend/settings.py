@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'myadmin.apps.MyadminConfig',
     'home.apps.HomeConfig',
     'api.apps.ApiConfig',
+    'website.apps.WebsiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
