@@ -2,15 +2,21 @@ from django import forms
 from .models import CustomUser
 from .models import Profile
 from django.conf import settings
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(max_length=15)
+    username=forms.CharField(label='User Name OR Email')
+    password=forms.CharField(label='Password',widget=forms.PasswordInput)
+    class Meta:
+        model=User
+        fields = ('username')
 
 class UserRegistrationForm(forms.ModelForm):
+    password=forms.CharField(label='Password',widget=forms.PasswordInput)
+    password2=forms.CharField(label='Repeat Password',widget=forms.PasswordInput)
     class Meta:
-        model=CustomUser
-        fields = ('first_name', 'last_name', 'email','phone')
+        model=User
+        fields = ('first_name', 'last_name', 'email','username')
 
 
 class UserEditForm(forms.ModelForm):

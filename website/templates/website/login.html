@@ -1,0 +1,27 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} Login - Bim Connect {% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row" style="margin-top: 8pt; padding: 50pt;">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1">
+        <form action="" method="post">
+            <div class="panel panel-default" style="padding: 5pt;">
+                <div class="panel-header">
+                    <h2 class="text-center">Login Here</h2>
+                </div>
+                <div class="panel-body">
+                    {{ login_form|crispy }}
+                    {% csrf_token %}
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success btn-lg btn-block mt-15" type="submit">Login</button>
+                    <a href="{% url 'register' %}" class="btn btn-link btn-lg btn-block mt-15" type="submit">Don`t have an account ? Register</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

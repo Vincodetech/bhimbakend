@@ -86,8 +86,8 @@
                                 <div class="content"><a href="#"><i class="zmdi zmdi-account"></i> My Account</a>
                                     <ul class="account-dropdown">
                                         <!-- <li><a href="#">My Account</a></li> -->
-                                        <li><a href="#">Log In</a></li>
-                                        <li><a href="#">Register</a></li>
+                                        <li><a href="{% url 'login' %}">Log In</a></li>
+                                        <li><a href="{% url 'register' %}">Register</a></li>
                                     </ul>
                                 </div>
                                 <div class="content"><a href="#"><i class="zmdi zmdi-favorite"></i> Wishlist</a></div>
@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
                             <div class="logo">
-                                <a href="index.html"><img src="{% static 'resource/img/logo/logo.png' %}" alt="EDUCAT"></a>
+                                <a href="{% url 'index' %}"><img src="{% static 'resource/img/logo/logo.png' %}" alt="EDUCAT"></a>
                             </div>
                         </div>
                         <div class="col-md-9 hidden-sm hidden-xs">
@@ -120,10 +120,10 @@
                                                 </ul>
                                             </li>
                                             <li><a href="{% url 'news-list' %}">News</a></li>
-                                            <li><a href="{% url 'teachers-list' %}">Blog</a></li>
-                                            <li><a href="{% url 'teachers-list' %}">E-Books</a>
+                                            <li><a href="{% url 'blog-list' %}">Blog</a></li>
+                                            <li><a href="{% url 'ebooks-list' %}">E-Books</a>
                                             </li>
-                                            <li><a href="{% url 'teachers-list' %}">Contact</a></li>
+                                            <li><a href="{% url 'contact' %}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -156,52 +156,21 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="mobile-menu">
                                 <nav id="dropdown">
-                                    <ul>
-                                        <li><a href="index.html">HOME</a>
-                                            <ul>
-                                                <li><a href="index-2.html">Homepage Version 2</a></li>
-                                            </ul>
+                                    <ul id="nav">
+                                        <li class="current"><a href="{% url 'index' %}">Home</a>
                                         </li>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="courses.html">Courses</a>
+                                        <li><a href="{% url 'about' %}">About</a></li>
+                                        <li><a href="#">Courses</a>
                                             <ul class="sub-menu">
-                                                <li><a href="courses-details.html">Courses Details</a></li>
+                                                <li><a href="{% url 'course-list' %}">Our Courses</a></li>
+                                                <li><a href="{% url 'teachers-list' %}">Our Teachers</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="shop-grid.html">Shop</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="product-details.html">Product Details</a></li>
-                                            </ul>
+                                        <li><a href="{% url 'news-list' %}">News</a></li>
+                                        <li><a href="{% url 'blog-list' %}">Blog</a></li>
+                                        <li><a href="{% url 'ebooks-list' %}">E-Books</a>
                                         </li>
-                                        <li><a href="event.html">Event</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="event-details.html">Event Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="index.html">Shortcode</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="shortcode-alerts.html">Alerts</a></li>
-                                                <li><a href="shortcode-breadcrumbs.html">Breadcrumb</a></li>
-                                                <li><a href="shortcode-button.html">Button</a></li>
-                                                <li><a href="shortcode-course.html">Courses</a></li>
-                                                <li><a href="shortcode-dropdown.html">Dropdown</a></li>
-                                                <li><a href="shortcode-event.html">Event</a></li>
-                                                <li><a href="shortcode-latest-news.html">Latest News</a></li>
-                                                <li><a href="shortcode-pagination.html">Pagination</a></li>
-                                                <li><a href="shortcode-product.html">Product</a></li>
-                                                <li><a href="shortcode-facts.html">Facts</a></li>
-                                                <li><a href="shortcode-map.html">Map</a></li>
-                                                <li><a href="shortcode-contact-form.html">Contact Form</a></li>
-                                                <li><a href="shortcode-progressbar.html">Progressbar</a></li>
-                                                <li><a href="shortcode-testimonial.html">Testimonial</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="latest-news.html">Latest News</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="news-details.html">News Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact us</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>					
@@ -269,11 +238,11 @@
                         <div class="single-footer-widget">
                             <h3>Useful Links</h3>
                             <ul class="footer-list">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">New</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Courses</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li><a href="{% url 'news-list' %}">New</a></li>
+                                <li><a href="{% url 'blog-list' %}">Blog</a></li>
+                                <li><a href="{% url 'course-list' %}">Courses</a></li>
+                                <li><a href="{% url 'index' %}">Privacy Policy</a></li>
                             </ul>
                         </div>
                     </div>
