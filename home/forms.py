@@ -17,12 +17,18 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model=User
         fields = ('first_name', 'last_name', 'email','username')
+    
+    def clean_password2(self):
+        cd=self.cleaned_data
+        if cd['password']!=cd['password2']:
+            raise forms.ValidationError('Passwords don\'t Match')
+        return cd['password2']
 
 
 class UserEditForm(forms.ModelForm):
     class Meta:
-        model = CustomUser
-        fields = ('first_name','last_name','email', 'phone')
+        model = User
+        fields = ('first_name','last_name','email', 'username')
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -43,7 +49,7 @@ class ProfileEditForm(forms.ModelForm):
     intrests = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=INTREST_CHOICES)
     class Meta:
         model = Profile
-        fields = ('date_of_birth', 'gender','photo', 'street1', 'street2','country','add_state','add_city',
+        fields = ('phone', 'date_of_birth', 'gender','photo', 'street1', 'street2','country','add_state','add_city',
                     'add_block','add_village','add_international','degree','profession_type','title', 'intrests')
         widgets = {
             'date_of_birth': DateInput(),

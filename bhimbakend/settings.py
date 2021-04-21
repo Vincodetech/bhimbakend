@@ -161,6 +161,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 # EMAIL_HOST_PASSWORD = 'Rinku@1234'
 # EMAIL_USE_TLS = True
 
+AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
+                         'home.authentication.EmailAuthBackend',
+]
+
 # AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
 #                          'home.authentication.EmailAuthBackend',
 #                          'social_core.backends.facebook.FacebookOAuth2',

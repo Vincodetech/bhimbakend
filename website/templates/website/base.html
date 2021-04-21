@@ -84,11 +84,18 @@
                         <div class="col-lg-5 col-md-6 col-sm-7 col-xs-12">
                             <div class="header-top-right">
                                 <div class="content"><a href="#"><i class="zmdi zmdi-account"></i> My Account</a>
+                                    {% if request.session.uid %}
+                                    <ul class="account-dropdown">
+                                        <li><a href="{% url 'user-profile' %}">My Profile</a></li>
+                                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    </ul>
+                                    {% else %}
                                     <ul class="account-dropdown">
                                         <!-- <li><a href="#">My Account</a></li> -->
                                         <li><a href="{% url 'login' %}">Log In</a></li>
                                         <li><a href="{% url 'register' %}">Register</a></li>
                                     </ul>
+                                    {% endif %}
                                 </div>
                                 <div class="content"><a href="#"><i class="zmdi zmdi-favorite"></i> Wishlist</a></div>
                                 <div class="content"><a href="#"><i class="zmdi zmdi-shopping-basket"></i> Chechout</a></div>
