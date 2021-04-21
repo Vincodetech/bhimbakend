@@ -1317,3 +1317,209 @@ def delete_slider(request, id):
     single_slider.delete()
     messages.success(request, 'Slider is deleted.')
     return redirect('slider')
+
+# crud for Teacher
+def teacher_view(request):
+    allslider = Teacher.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allslider, 100)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/teacher_view.html', data)
+
+def post_teacher(request):
+    if request.method == 'POST':
+        forms = TeachererForm(request.POST, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Teacher created successfully.')
+            return redirect('addtecher')
+        else:
+            messages.error(request, 'Teacher is not created successfully.')
+            return redirect('addtecher')
+    else:
+        forms = TeachererForm()
+    return render(request, 'myadmin/add_teacher_view.html', {
+        'forms': forms
+    })
+
+def edit_teacher(request, id):
+    if request.method == 'POST':
+        single_teacher = Teacher.objects.get(id=id)
+        forms = TeachererForm(request.POST, instance=single_teacher, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Teacher updated successfully.')
+            return redirect('teacher')
+        else:
+            messages.error(request, 'Teacher is not updated successfully.')
+            return redirect('teacher')
+    else:
+        single_teacher = Teacher.objects.get(id=id)
+        forms = TeachererForm(instance=single_teacher)
+    return render(request, 'myadmin/add_teacher_view.html', {
+        'forms': forms
+    })
+
+def delete_teacher(request, id):
+    single_teacher = Teacher.objects.get(id=id)
+    single_teacher.delete()
+    messages.success(request, 'Teacher is deleted.')
+    return redirect('teacher')
+
+# crud for Tag
+def tag_view(request):
+    allslider = Tag.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allslider, 100)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/tag_view.html', data)
+
+def post_tag(request):
+    if request.method == 'POST':
+        forms = TagForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Tag created successfully.')
+            return redirect('addtag')
+        else:
+            messages.error(request, 'Tag is not created successfully.')
+            return redirect('addtag')
+    else:
+        forms = TagForm()
+    return render(request, 'myadmin/add_tag_view.html', {
+        'forms': forms
+    })
+
+def delete_tag(request, id):
+    single_tag = Tag.objects.get(id=id)
+    single_tag.delete()
+    messages.success(request, 'Tag is deleted.')
+    return redirect('tag')
+
+# ebook cat crud
+def ebook_category_view(request):
+    allcontents = EbookCategory.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allcontents, 100)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/ebook_category_view.html', data)
+
+def add_ebook_category(request):
+    if request.method == 'POST':
+        forms = EbookCatForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Ebook Category created successfully.')
+            return redirect('addebookcat')
+        else:
+            messages.error(request, 'Ebook Category is not created successfully.')
+            return redirect('addebookcat')
+    else:
+        forms = EbookCatForm()
+    return render(request, 'myadmin/add_ebookcat_view.html', {
+        'forms': forms
+    })
+
+def edit_ebook_category(request, id):
+    if request.method == 'POST':
+        single_ebook_cat = EbookCategory.objects.get(id=id)
+        forms = EbookCatForm(request.POST, instance=single_ebook_cat)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Ebook Category updated successfully.')
+            return redirect('ebookcat')
+        else:
+            messages.error(request, 'Ebook Category is not updated successfully.')
+            return redirect('ebookcat')
+    else:
+        single_ebook_cat = EbookCategory.objects.get(id=id)
+        forms = EbookCatForm(instance=single_ebook_cat)
+    return render(request, 'myadmin/add_ebookcat_view.html', {
+        'forms': forms
+    })
+
+def delete_ebook_cat(request, id):
+    single_ebook_cat = EbookCategory.objects.get(id=id)
+    single_ebook_cat.delete()
+    messages.success(request, 'Ebook Category is deleted.')
+    return redirect('ebookcat')
+
+# Ebook crud
+def ebook_view(request):
+    allcontents = Ebook.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allcontents, 100)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/ebookview.html', data)
+
+def add_ebook(request):
+    if request.method == 'POST':
+        forms = EbookForm(request.POST, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Ebook Image created successfully.')
+            return redirect('addebook')
+        else:
+            messages.error(request, 'Ebook Image is not created successfully.')
+            return redirect('addebook')
+    else:
+        forms = EbookForm()
+    return render(request, 'myadmin/add_ebook_view.html', {
+        'forms': forms
+    })
+
+def edit_ebook(request, id):
+    if request.method == 'POST':
+        single_ebook = Ebook.objects.get(id=id)
+        forms = EbookForm(request.POST, instance=single_ebook, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Ebook updated successfully.')
+            return redirect('ebook')
+        else:
+            messages.error(request, 'Ebook is not updated successfully.')
+            return redirect('ebook')
+    else:
+        single_ebook = Ebook.objects.get(id=id)
+        forms = EbookForm(instance=single_ebook)
+    return render(request, 'myadmin/add_ebook_view.html', {
+        'forms': forms
+    })
+
+def delete_ebook(request, id):
+    single_ebook = Ebook.objects.get(id=id)
+    single_ebook.delete()
+    messages.success(request, 'Ebook is deleted.')
+    return redirect('ebook')

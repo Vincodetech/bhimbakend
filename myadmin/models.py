@@ -150,3 +150,40 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.title
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Full Name")
+    skill = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Specialization")
+    address = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Full Address")
+    phone = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Phone")
+    email = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Email")
+    discription = RichTextField(blank=True, null=True)
+    image = models.ImageField(upload_to='teacher/', blank=True, null=True)
+    active = models.BooleanField(default=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.name
+
+class EbookCategory(models.Model):
+    category_name = models.CharField(max_length=255, default="")
+    active = models.BooleanField(default=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.category_name
+
+class Ebook(models.Model):
+    title = models.CharField(max_length=255, default="")
+    active = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='ebooks/', blank=True, null=True)
+    file = models.FileField(upload_to='ebooks/', blank=True, null=True)
+    discription = RichTextField(blank=True, null=True)
+    category = models.ForeignKey(EbookCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.title
