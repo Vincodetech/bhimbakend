@@ -37,66 +37,27 @@
             </div>
         </div>
         <div class="row">
+            {% for hb in all_blogs %}
             <div class="col-md-4 col-sm-6">
                 <div class="single-event-item">
                     <div class="single-event-image">
-                        <a href="#">
-                            <img src="{% static 'resource/img/event/1.jpg' %}" alt="">
-                            <span><span>15</span>Jun</span>
+                        <a href="{% url 'blog-detail' hb.id %}">
+                            {% if hb.image %}
+                            <img src="{{hb.image.url}}" alt="" width="370px" height="252px">
+                            {% endif %}
                         </a>
                     </div>
                     <div class="single-event-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
+                        <h3><a href="{% url 'blog-detail' hb.id %}">{{hb.title}}</a></h3>
                         <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                            <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
+                            <span><i class="zmdi zmdi-time"></i>{{hb.blog_date}}</span>
+                            <span><i class="zmdi zmdi-folder"></i>{{hb.category}}</span>
                         </div>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                       <a class="button-default" href="{% url 'blog-detail' %}">LEARN Now</a>
+                        <a class="button-default" href="{% url 'blog-detail' hb.id %}">LEARN Now</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="single-event-item">
-                    <div class="single-event-image">
-                        <a href="#">
-                            <img src="{% static 'resource/img/event/2.jpg' %}" alt="">
-                            <span><span>20</span>Apr</span>
-                        </a>
-                    </div>
-                    <div class="single-event-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                            <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
-                        </div>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                        <a class="button-default" href="#">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 hidden-sm">
-                <div class="single-event-item">
-                    <div class="single-event-image">
-                        <a href="#">
-                            <img src="{% static 'resource/img/event/3.jpg' %}" alt="">
-                            <span><span>06</span>Dec</span>
-                        </a>
-                    </div>
-                    <div class="single-event-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                            <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
-                        </div>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                        <a class="button-default" href="#">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 text-center">
-                
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

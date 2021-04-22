@@ -16,56 +16,145 @@ from myadmin.models import *
 from myadmin.forms import *
 
 def index(request):
-    return render(request, 'website/index.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    home_news = News.objects.filter(active=True).order_by('-news_date')[0:4]
+    home_blog = Blog.objects.filter(active=True).order_by('-blog_date')[0:4]
+    home_ebook = Ebook.objects.filter(active=True)[0:4]
+
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "home_news": home_news,
+        "home_blog": home_blog,
+        "home_ebook": home_ebook,
+    }
+    return render(request, 'website/index.html', context)
 
 def aboutus(request):
-    return render(request, 'website/aboutus.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    aboutus = AboutUsCms.objects.get(active=True)
+
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "aboutus": aboutus,
+    }
+    return render(request, 'website/aboutus.html', context)
 
 def courses(request):
-    return render(request, 'website/courses.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+    }
+    return render(request, 'website/courses.html', context)
 
 def teachers(request):
-    return render(request, 'website/teachers.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+    }
+    return render(request, 'website/teachers.html', context)
 
 def news(request):
-    return render(request, 'website/news.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    all_news = News.objects.filter(active=True)
 
-def news_details(request):
-    return render(request, 'website/news_details.html')
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "all_news": all_news,
+    }
+    return render(request, 'website/news.html', context)
+
+def news_details(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    news = News.objects.get(id=id)
+    related_news = News.objects.filter(category=news.category.id)
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "news": news,
+        "related_news": related_news,
+    }
+    return render(request, 'website/news_details.html', context)
 
 def blog(request):
-    return render(request, 'website/blog.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    all_blogs = Blog.objects.filter(active=True)
 
-def blog_details(request):
-    return render(request, 'website/blog_details.html')
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "all_blogs": all_blogs,
+    }
+    return render(request, 'website/blog.html', context)
+
+def blog_details(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    blog = Blog.objects.get(id=id)
+    related_blog = Blog.objects.filter(category=blog.category.id)
+
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "blog": blog,
+        "related_blog": related_blog,
+    }
+    return render(request, 'website/blog_details.html', context)
 
 def shop(request):
-    return render(request, 'website/shop.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    home_ebook = Ebook.objects.filter(active=True)
 
-def ebook_details(request):
-    return render(request, 'website/ebook_details.html')
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "home_ebook": home_ebook,
+    }
+    return render(request, 'website/shop.html', context)
+
+def ebook_details(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    sigle_ebook = Ebook.objects.get(id=id)
+    related_ebook = Ebook.objects.filter(category=sigle_ebook.category.id)
+
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "sigle_ebook": sigle_ebook,
+        "related_ebook": related_ebook,
+    }
+    return render(request, 'website/ebook_details.html', context)
 
 def contactus(request):
-    return render(request, 'website/contactus.html')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
 
-def generate_otp():
-    rno = random.randrange(1000, 10000)
-    return rno
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+    }
+    return render(request, 'website/contactus.html', context)
 
-def send_sms(phoneno, otp):
-    user = "DEMOUSER"
-    key = "1b23df7a0aXX"
-    mobile = "+91" + phoneno
-    message = "Hi, Your verification code is " + str(otp) + " Please do not share it. www.bhimconnect.com"
-    msg = quote(message)
-    senderid = "vincod"
-    url = f"http://sms.vincode.in/submitsms.jsp?user={user}&key={key}&mobile={mobile}&senderid={senderid}&accusage=1&message={msg}"
-    req = Request(url=url, method='GET')
-    response = urlopen(req)
-    output = response.read() 
-    print("=======>>", output)
 
 def register(request):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid:
@@ -77,12 +166,18 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'website/register.html', {
-        'user_form': user_form
+        'user_form': user_form,
+        'header_content': header_content,
+        'footer_content': footer_content,
     })
 
 def user_login(request):
     flag = None
     mgs = None
+
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
@@ -106,6 +201,8 @@ def user_login(request):
         'login_form': login_form,
         'flag': flag,
         'msg': mgs,
+        'header_content': header_content,
+        'footer_content': footer_content,
     })
 
 def logout(request):
@@ -115,6 +212,8 @@ def logout(request):
 def edit(request):
     flag = None
     mgs = None
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
     user = User.objects.get(id=request.session['uid'])
     user_profile_id = Profile.objects.filter(user=user)
     if not user_profile_id:
@@ -143,4 +242,6 @@ def edit(request):
         'user_profile_data': user_profile_data,
         'flag': flag,
         'msg': mgs,
+        'header_content': header_content,
+        'footer_content': footer_content,
     })

@@ -37,110 +37,31 @@
             </div>
         </div>
         <div class="row">
+            {% for eb in home_ebook %}
             <div class="col-md-3 col-sm-4">
                 <div class="single-product-item">
                     <div class="single-product-image">
-                        <a href="#"><img src="{% static 'resource/img/product/1.jpg' %}" alt=""></a>
+                        <a href="{% url 'ebooks-detail' eb.id %}">
+                            {% if eb.image %}
+                            <img src="{{eb.image.url}}" alt="" width="270px" height="252px">
+                            {% endif %}
+                        </a>
                     </div>
                     <div class="single-product-text">
-                        <h4><a href="{% url 'ebooks-detail' %}">Title Product Here</a></h4>
-                        <h5>Book</h5>
+                        <h4><a href="{% url 'ebooks-detail' eb.id %}">{{eb.title}}</a></h4>
+                        <h5>{{eb.category}}</h5>
                         <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
+                            <h3>Free</h3>
                         </div>
                         <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
+                            <a href="{% url 'ebooks-detail' eb.id %}" role="button" class="button-default cart-btn">VIEW</a>
+                            <!-- <button type="button" class="button-default">
+                                <i class="zmdi zmdi-favorite"></i></button> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="{% static 'resource/img/product/2.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="{% static 'resource/img/product/3.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 hidden-sm">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="{% static 'resource/img/product/4.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">

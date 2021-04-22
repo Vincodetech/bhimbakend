@@ -1,7 +1,12 @@
 {% extends 'website/base.html' %}
+{% block meta %} 
+<meta property="og:title" content="{{news.title}}" />
+<meta property="og:image" content="{{news.image.url}}">
+{% endblock %}
 {% load static %}
 {% block title %} News - Bim Connect {% endblock %}
 {% block content %}
+{% load social_share %}
 
 <!--Breadcrumb Banner Area Start-->
 <div class="breadcrumb-banner-area">
@@ -31,36 +36,24 @@
             <div class="col-lg-9 col-md-8">
                 <div class="news-details-content">
                    <div class="single-latest-item">
-                        <img src="{% static 'resource/img/details/2.jpg' %}" alt="">  
+                        {% if news.image %}
+                        <img src="{{news.image.url}}" alt="" width="870px" height="439px">  
+                        {% endif %}
                         <div class="single-latest-text">
-                            <h3>Learn English in ease simply random text</h3> 
+                            <h3>{{news.title}}</h3> 
                             <div class="single-item-comment-view">
-                               <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                               <span><i class="zmdi zmdi-eye"></i>59</span>
-                               <span><i class="zmdi zmdi-comments"></i>19</span>
+                               <span><i class="zmdi zmdi-calendar-check"></i>{{news.news_date}}</span>
+                               <span><i class="zmdi zmdi-folder"></i>{{news.category}}</span>
                             </div>
-                            <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                            <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, There are many variations of passages of Lorem Ipsum available,</p>
-                            <div class="quote-section">
-                                <p>but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                            </div>
-                            <p>Lorem Ipsuable, amrn in some by injected humour, There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                            <p>{{news.description|safe}}</p>
                             <div class="tags-and-links">
-                                <div class="related-tag">
-                                    <span>Tag:</span>
-                                    <ul class="tags">
-                                        <li><a href="#">design,</a></li>
-                                        <li><a href="#">Photoshop,</a></li>
-                                        <li><a href="#">Web Design,</a></li>
-                                        <li><a href="#">print</a></li>
-                                    </ul>
-                                </div>
                                 <div class="social-links">
-                                    <span>Share:</span>
-                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                    <span>
+                                        {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}
+                                    </span>
+                                    <span>
+                                        {% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -73,17 +66,19 @@
                     <div class="single-sidebar-widget">
                         <h4 class="title">Recent News</h4>
                         <div class="recent-content">
+                            {% for n in related_news %}
                             <div class="recent-content-item">
-                                <a href="#"><img src="{% static 'resource/img/event/7.jpg' %}" alt=""></a>
+                                {% if n.image %}
+                                <a href="#"><img src="{{n.image.url}}" alt="" width="70px" height="67px"></a>
+                                {% endif %}
                                 <div class="recent-text">
-                                    <h4><a href="#">Learn English in</a></h4>
+                                    <h4><a href="{% url 'news-detail' n.id %}">{{n.title}}</a></h4>
                                     <div class="single-item-comment-view">
-                                        <span><i class="zmdi zmdi-eye"></i>59</span>
-                                        <span><i class="zmdi zmdi-comments"></i>19</span>
+                                        <span><i class="zmdi zmdi-folder"></i>{{n.category}}</span>
                                     </div>
-                                    <p>There are many varf passages of Lorem Ipsuable,amar</p>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

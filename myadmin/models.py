@@ -78,6 +78,7 @@ class HeaderCms(models.Model):
         return HeaderCms.objects.get(id=id)
 
 class FooterCms(models.Model):
+    image = models.ImageField(upload_to='cms/', blank=True, null=True)
     description = RichTextField(blank=True, null=True)
     phone = models.CharField(max_length=255, default='', blank=True, null=True)
     email = models.CharField(max_length=255, default='', blank=True, null=True)

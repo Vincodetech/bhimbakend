@@ -23,12 +23,14 @@ def dashboard_admin(request):
     total_posts = Blog.blog_count()
     total_news = News.news_count()
     total_materials = Education.edu_count()
+    total_ebooks = Ebook.objects.all().count()
     return render(request, 'myadmin/index.html', {
         'total_users': total_users,
         'total_inquiries': total_inquiries,
         'total_posts': total_posts,
         'total_news': total_news,
         'total_materials': total_materials,
+        'total_ebooks': total_ebooks,
     })
 
 def edit_profile(request):
@@ -662,7 +664,7 @@ def footer_view(request):
 
 def add_footer(request):
     if request.method == 'POST':
-        forms = FooterForm(request.POST)
+        forms = FooterForm(request.POST, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Footer created successfully.')
@@ -679,7 +681,7 @@ def add_footer(request):
 def edit_footer(request, id):
     if request.method == 'POST':
         single_footer = FooterCms.get_content_by_id(id)
-        forms = FooterForm(request.POST, instance=single_footer)
+        forms = FooterForm(request.POST, instance=single_footer, files=request.FILES)
         if forms.is_valid():
             forms.save()
             messages.success(request, 'Footer updated successfully.')

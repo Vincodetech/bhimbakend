@@ -37,74 +37,25 @@
             </div>
         </div>
         <div class="row">
+            {% for hn in all_news %}
             <div class="col-md-6">
                 <div class="single-latest-item">
                     <div class="single-latest-image">
-                        <a href="#"><img src="{% static 'resource/img/latest/1.jpg' %}" alt=""></a>
+                        {% if hn.image %}
+                        <a href="{% url 'news-detail' hn.id %}"><img src="{{hn.image.url}}" alt="" width="236px" height="234px"></a>
+                        {% endif %}
                     </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
+                    <div class="single-latest-text" style="padding-top: 50pt;">
+                        <h5><a href="{% url 'news-detail' hn.id %}">{{hn.title|slice:'50'}}</a></h5>
                         <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
+                            <span><i class="zmdi zmdi-calendar-check"></i>{{hn.news_date}}</span>
                         </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                       <a href="{% url 'news-detail' %}" class="button-default">LEARN Now</a>
+                        <p></p>
                     </div>
+                    <a href="{% url 'news-detail' hn.id %}" class="button-default pull-right">LEARN Now</a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="{% static 'resource/img/latest/2.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                        <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="{% static 'resource/img/latest/3.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                        <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="{% static 'resource/img/latest/4.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                           <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                       <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 text-center">

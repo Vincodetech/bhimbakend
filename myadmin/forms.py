@@ -36,7 +36,7 @@ class HeaderForm(forms.ModelForm):
 class FooterForm(forms.ModelForm):
     class Meta:
         model=FooterCms
-        fields=('description', 'phone', 'email', 'website', 'copyright_content', 'address', 'active')
+        fields=('image', 'description', 'phone', 'email', 'website', 'copyright_content', 'address', 'active')
 
 class InquiryForm(forms.ModelForm):
     class Meta:
