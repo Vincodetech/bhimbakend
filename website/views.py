@@ -14,6 +14,7 @@ from home.models import *
 from home.forms import *
 from myadmin.models import *
 from myadmin.forms import *
+from django.http import JsonResponse
 
 def index(request):
     header_content = HeaderCms.get_content_by_active()
@@ -22,14 +23,38 @@ def index(request):
     home_blog = Blog.objects.filter(active=True).order_by('-blog_date')[0:4]
     home_ebook = Ebook.objects.filter(active=True)[0:4]
 
+    total_users = CustomUser.objects.all().count()
+    total_courses = Education.edu_count()
+    total_ebooks = Ebook.objects.all().count()
+    total_teachers = Teacher.objects.all().count()
+
+    categories = EducationCategory.objects.filter(active=True)
+
     context = {
         "header_content": header_content,
         "footer_content": footer_content,
         "home_news": home_news,
         "home_blog": home_blog,
         "home_ebook": home_ebook,
+        "total_users": total_users,
+        "total_courses": total_courses,
+        "total_ebooks": total_ebooks,
+        "total_teachers": total_teachers,
+        "categories": categories,
     }
     return render(request, 'website/index.html', context)
+
+def load_sub_category(request):
+    educatId = request.GET.get('educatId')
+    sub_categorylst = EducationSubCategory.objects.filter(category=educatId)
+    print("--------------->>>", sub_categorylst)
+    return JsonResponse(list(sub_categorylst.values('id', 'category_name')), safe=False)
+
+def load_subjects(request):
+    edusubid = request.GET.get('edusubid')
+    subjectslst = EduSubjects.objects.filter(sub_category=edusubid)
+    print("--------------->>>", subjectslst)
+    return JsonResponse(list(subjectslst.values('id', 'subject_name')), safe=False)
 
 def aboutus(request):
     header_content = HeaderCms.get_content_by_active()
@@ -47,10 +72,16 @@ def courses(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
 
-    context = {
-        "header_content": header_content,
-        "footer_content": footer_content,
-    }
+    if request.method == "POST":
+        pass
+    else:
+        all_edu = Education.objects.filter(active=True)
+        print("============", all_edu)
+        context = {
+            "header_content": header_content,
+            "footer_content": footer_content,
+            "all_edu": all_edu,
+        }
     return render(request, 'website/courses.html', context)
 
 def teachers(request):
@@ -149,6 +180,40 @@ def contactus(request):
         "footer_content": footer_content,
     }
     return render(request, 'website/contactus.html', context)
+
+def post_contacts(request):
+    flag = None
+    mgs = None
+
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+
+        contact = Inquiry(
+            name=name,
+            email=email,
+            phone=phone,
+            subject=subject,
+            message=message,
+            active=True
+        )
+
+        contact.save()
+        flag = 'success'
+        mgs = 'Thank You For Contact Us.'
+        context = {
+            "header_content": header_content,
+            "footer_content": footer_content,
+            "flag": flag,
+            "mgs": mgs,
+        }
+        return render(request, 'website/contactus.html', context)
 
 
 def register(request):

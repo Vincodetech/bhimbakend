@@ -14,6 +14,7 @@ urlpatterns = [
     path('ebooks/', views.shop, name="ebooks-list"),
     path('singleebook/<int:id>', views.ebook_details, name="ebooks-detail"),
     path('contact/', views.contactus, name="contact"),
+    path('post-contact/', views.post_contacts, name="post-contact"),
 
     path('register/',views.register,name='register'),
     path('login/',views.user_login,name='login'),
@@ -22,4 +23,7 @@ urlpatterns = [
 
     path('tc/',views.edit,name='tc'),
     path('privecy/',views.edit,name='privecy'),
+
+    path('edcat/',views.load_sub_category,name='edcat-ajax'),
+    path('sub/',views.load_subjects,name='sub-ajax'),
 ]

@@ -24,6 +24,7 @@ def dashboard_admin(request):
     total_news = News.news_count()
     total_materials = Education.edu_count()
     total_ebooks = Ebook.objects.all().count()
+    total_teachers = Teacher.objects.all().count()
     return render(request, 'myadmin/index.html', {
         'total_users': total_users,
         'total_inquiries': total_inquiries,
@@ -31,6 +32,7 @@ def dashboard_admin(request):
         'total_news': total_news,
         'total_materials': total_materials,
         'total_ebooks': total_ebooks,
+        'total_teachers': total_teachers,
     })
 
 def edit_profile(request):
