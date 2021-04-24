@@ -63,10 +63,11 @@
 		<!-- Responsive CSS
 		============================================ -->
         <link rel="stylesheet" href="{% static 'resource/css/responsive.css' %}">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
 		<!-- Modernizr JS
 		============================================ -->		
         <script src="{% static 'resource/js/vendor/modernizr-2.8.3.min.js' %}"></script>
+        {% block customcss %} {% endblock %}
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -124,7 +125,11 @@
                                         <ul id="nav">
                                             <li class="current"><a href="{% url 'index' %}">Home</a>
                                             </li>
-                                            <li><a href="{% url 'about' %}">About</a></li>
+                                            <li><a href="{% url 'about' %}">About</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="{% url 'gallery-view' %}">Gallery</a></li>
+                                                </ul>
+                                            </li>
                                             <li><a href="#">Courses</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{% url 'course-list' %}">Our Courses</a></li>
@@ -171,7 +176,11 @@
                                     <ul id="nav">
                                         <li class="current"><a href="{% url 'index' %}">Home</a>
                                         </li>
-                                        <li><a href="{% url 'about' %}">About</a></li>
+                                        <li><a href="{% url 'about' %}">About</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="{% url 'gallery-view' %}">Gallery</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="#">Courses</a>
                                             <ul class="sub-menu">
                                                 <li><a href="{% url 'course-list' %}">Our Courses</a></li>

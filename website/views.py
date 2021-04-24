@@ -22,6 +22,8 @@ def index(request):
     home_news = News.objects.filter(active=True).order_by('-news_date')[0:4]
     home_blog = Blog.objects.filter(active=True).order_by('-blog_date')[0:4]
     home_ebook = Ebook.objects.filter(active=True)[0:4]
+    home_edu = Education.objects.filter(active=True).order_by('-id')[0:3]
+    home_teacher = Teacher.objects.filter(active=True).order_by('-id')[0:4]
 
     total_users = CustomUser.objects.all().count()
     total_courses = Education.edu_count()
@@ -41,6 +43,8 @@ def index(request):
         "total_ebooks": total_ebooks,
         "total_teachers": total_teachers,
         "categories": categories,
+        "home_edu": home_edu,
+        "home_teacher": home_teacher,
     }
     return render(request, 'website/index.html', context)
 
@@ -69,30 +73,82 @@ def aboutus(request):
     return render(request, 'website/aboutus.html', context)
 
 def courses(request):
+    all_edu = None
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    categories = EducationCategory.objects.filter(active=True)
+
+    if request.method == "POST":
+        educate = request.POST.get("category")
+        subcategory = request.POST.get("subcategory")
+        subject = request.POST.get("subject")
+
+        if educate != "0":
+            if subcategory != "0":
+                if subject != "0":
+                    all_edu = Education.objects.filter(subject=subject)
+                    print("=====>BySubject", all_edu)
+                else:
+                    all_edu = Education.objects.filter(sub_category=subcategory)
+                    print("=====>BySubCat", all_edu)
+            else:
+                all_edu = Education.objects.filter(category=educate)
+                print("=====>ByCat", all_edu)
+        else:
+            all_edu = Education.objects.filter(active=True)
+            print("=====>All", all_edu)
+    else:
+        all_edu = Education.objects.filter(active=True)
+        print("=====>All", all_edu)
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "categories": categories,
+        "all_edu": all_edu,
+    }
+    return render(request, 'website/courses.html', context)
+
+def courses_details(request, id):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
 
-    if request.method == "POST":
-        pass
-    else:
-        all_edu = Education.objects.filter(active=True)
-        print("============", all_edu)
-        context = {
-            "header_content": header_content,
-            "footer_content": footer_content,
-            "all_edu": all_edu,
-        }
-    return render(request, 'website/courses.html', context)
+    single_edu = Education.objects.get(id=id)
+    related_edu = Education.objects.filter(subject=single_edu.subject.id)
+    print("============", related_edu)
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "single_edu": single_edu,
+        "related_edu": related_edu,
+    }
+    return render(request, 'website/courses_details.html', context)
 
 def teachers(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
+    home_teacher = Teacher.objects.filter(active=True)
 
     context = {
         "header_content": header_content,
         "footer_content": footer_content,
+        "home_teacher": home_teacher,
     }
     return render(request, 'website/teachers.html', context)
+
+def teachers_details(request, id):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+
+    single_teacher = Teacher.objects.get(id=id)
+    related_edu = Education.objects.filter(teacher=id)
+    print("============", related_edu)
+    context = {
+        "header_content": header_content,
+        "footer_content": footer_content,
+        "single_teacher": single_teacher,
+        "related_edu": related_edu,
+    }
+    return render(request, 'website/teachers_details.html', context)
 
 def news(request):
     header_content = HeaderCms.get_content_by_active()
@@ -309,4 +365,20 @@ def edit(request):
         'msg': mgs,
         'header_content': header_content,
         'footer_content': footer_content,
+    })
+
+def gallery(request):
+    id = request.GET.get('id')
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    gallery_cat = GalleryCategory.objects.filter(active=True)
+    if not id:
+        images = Gallery.objects.filter(active=True)
+    else:
+        images = Gallery.objects.filter(category=id)
+    return render(request, "website/galley.html", {
+        'header_content': header_content,
+        'footer_content': footer_content,
+        'gallery_cat': gallery_cat,
+        'images': images,
     })

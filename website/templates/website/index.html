@@ -1,435 +1,325 @@
 {% extends 'website/base.html' %}
 {% load static %}
 {% block title %} Home - Bim Connect {% endblock %}
-{% block content %} 
-        <div class="breadcrumb-banner-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="breadcrumb-text">
-                            <h1 class="text-center">POPULAR COURSES</h1>
-                            <div class="breadcrumb-bar">
-                                <ul class="breadcrumb">
-                                    <!-- <li><a href="index.html">Home</a></li> -->
-                                    <li>Home</li>
-                                </ul>
-                            </div>
-                        </div>
+{% block content %}
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">POPULAR COURSES</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <!-- <li><a href="index.html">Home</a></li> -->
+                            <li>Home</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!--End of Breadcrumb Banner Area-->
-        <div class="search-category">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <form action="#" method="post">
-                            <div class="form-container">
-                                <div class="box-select">
-                                    <div class="select large">
-                                        <select name="category" id="category" data-educat="{% url 'edcat-ajax' %}">
-                                            <option value="0">Select Category</option>
-                                            {% for i in categories %}
-                                            <option value="{{i.id}}">{{i.category_name}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="select small">
-                                        <select name="subcategory" id="subcategory" data-sub="{% url 'sub-ajax' %}">
-                                            <option value="0">=================</option>
-                                        </select>
-                                    </div>
-                                    <div class="select medium">
-                                        <select name="subject" id="subject">
-                                            <option value="0">=================</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <button type="button">Search Course</button>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+<div class="search-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <form action="{% url 'course-list' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-container">
+                        <div class="box-select">
+                            <div class="select large">
+                                <select name="category" id="category" data-educat="{% url 'edcat-ajax' %}">
+                                    <option value="0">Select Category</option>
+                                    {% for i in categories %}
+                                    <option value="{{i.id}}">{{i.category_name}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                        </form>  
+                            <div class="select small">
+                                <select name="subcategory" id="subcategory" data-sub="{% url 'sub-ajax' %}">
+                                    <option value="0">=================</option>
+                                </select>
+                            </div>
+                            <div class="select medium">
+                                <select name="subject" id="subject">
+                                    <option value="0">=================</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit">Search Course</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Course Area Start-->
+<div class="course-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>POPULAR COURSES</h3>
+                        <p>There are many types of Courses</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Course Area Start-->
-        <div class="course-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title-wrapper">
-                            <div class="section-title">
-                                <h3>POPULAR COURSES</h3>
-                                <p>There are many types of Courses</p>
-                            </div>
+        <div class="row">
+            {% for i in home_edu %}
+            <div class="col-md-4 col-sm-6">
+                <div class="single-item">
+                    <div class="single-item-image overlay-effect">
+                        <a href="{% url 'course-details' i.id %}">
+                            {% if i.image %}
+                            <img src="{{i.image.url}}" alt="" width="300px" height="211px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-item-text">
+                        <h4><a href="{% url 'course-details' i.id %}">{{i.title}}</a></h4>
+                        <div class="single-item-text-info">
+                            <span>By: <span>{{i.teacher}}</span></span>
+                            <span>Subject: <span>{{i.subject}}</span></span>
                         </div>
+                        <div class="single-item-text-info">
+                            <span>Sub Category: <span>{{i.sub_category}}</span></span><br>
+                            <span>Category: <span>{{i.category}}</span></span>
+                        </div>
+                        <p>{{i.description|safe|slice:"100"}}...</p>
+                    </div>
+                    <div class="button-bottom">
+                        <a href="{% url 'course-details' i.id %}" class="button-default">Learn Now</a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-item">
-                            <div class="single-item-image overlay-effect">
-                                <a href="#"><img src="{% static 'resource/img/course/1.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-item-text">
-                                <h4><a href="#">Photoshop CC 2016</a></h4>
-                                <div class="single-item-text-info">
-                                    <span>By: <span>M S Nawaz</span></span>
-                                    <span>Date: <span>20.5.15</span></span>
-                                </div>
-                                <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
-                                <div class="single-item-content">
-                                    <div class="single-item-comment-view">
-                                        <span><i class="zmdi zmdi-eye"></i>59</span>
-                                        <span><i class="zmdi zmdi-comments"></i>19</span>
-                                   </div>
-                                   <div class="single-item-rating">
-                                       <i class="zmdi zmdi-star"></i>
-                                       <i class="zmdi zmdi-star"></i>
-                                       <i class="zmdi zmdi-star"></i>
-                                       <i class="zmdi zmdi-star"></i>
-                                       <i class="zmdi zmdi-star-half"></i>
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="button-bottom">
-                                <a href="#" class="button-default">Learn Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-item">
-                            <div class="single-item-image overlay-effect">
-                                <a href="#"><img src="{% static 'resource/img/course/2.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-item-text">
-                                <h4><a href="#">Illustrator CC 2016</a></h4>
-                                <div class="single-item-text-info">
-                                    <span>By: <span>Subas Das</span></span>
-                                    <span>Date: <span>20.5.15</span></span>
-                                </div>
-                                <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
-                                <div class="single-item-content">
-                                   <div class="single-item-comment-view">
-                                       <span><i class="zmdi zmdi-eye"></i>59</span>
-                                       <span><i class="zmdi zmdi-comments"></i>19</span>
-                                    </div>
-                                    <div class="single-item-rating">
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star-half"></i>
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="button-bottom">
-                                <a href="#" class="button-default">Learn Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 hidden-sm">
-                        <div class="single-item">
-                            <div class="single-item-image overlay-effect">
-                                <a href="#"><img src="{% static 'resource/img/course/3.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-item-text">
-                                <h4><a href="#">Indesign CC 2016</a></h4>
-                                <div class="single-item-text-info">
-                                    <span>By: <span>Momin Boss</span></span>
-                                    <span>Date: <span>20.5.15</span></span>
-                                </div>
-                                <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
-                                <div class="single-item-content">
-                                    <div class="single-item-comment-view">
-                                        <span><i class="zmdi zmdi-eye"></i>59</span>
-                                        <span><i class="zmdi zmdi-comments"></i>19</span>
-                                    </div>
-                                    <div class="single-item-rating">
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star"></i>
-                                        <i class="zmdi zmdi-star-half"></i>
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="button-bottom">
-                                <a href="#" class="button-default">Learn Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-sm-12 text-center">
-                        <a href="#" class="button-default button-large">Browse All Courses <i class="zmdi zmdi-chevron-right"></i></a>
+            </div>
+            {% endfor %}
+            <div class="col-md-12 col-sm-12 text-center">
+                <a href="{% url 'course-list' %}" class="button-default button-large">Browse All Courses <i
+                        class="zmdi zmdi-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Course Area-->
+<!--Fun Factor Area Start-->
+<div class="fun-factor-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper white">
+                    <div class="section-title">
+                        <h3>IMPORTANT FACTS</h3>
+                        <p>There are many variations of passages of Lorem Ipsum</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--End of Course Area-->
-        <!--Fun Factor Area Start-->
-        <div class="fun-factor-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title-wrapper white">
-                            <div class="section-title">
-                                <h3>IMPORTANT FACTS</h3>
-                                <p>There are many variations of passages of Lorem Ipsum</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div class="single-fun-factor">
+                    <h4>Teachers</h4>
+                    <h2><span class="counter">{{total_teachers}}</span></h2>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-3">
-                        <div class="single-fun-factor">
-                            <h4>Teachers</h4>
-                            <h2><span class="counter">{{total_teachers}}</span></h2>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        <div class="single-fun-factor">
-                            <h4>Members</h4>
-                            <h2><span class="counter">{{total_users}}</span></h2>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        <div class="single-fun-factor">
-                            <h4>Courses</h4>
-                            <h2><span class="counter">{{total_courses}}</span></h2>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        <div class="single-fun-factor">
-                            <h4>E-Books</h4>
-                            <h2><span class="counter">{{total_ebooks}}</span></h2>
-                        </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="single-fun-factor">
+                    <h4>Members</h4>
+                    <h2><span class="counter">{{total_users}}</span></h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="single-fun-factor">
+                    <h4>Courses</h4>
+                    <h2><span class="counter">{{total_courses}}</span></h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="single-fun-factor">
+                    <h4>E-Books</h4>
+                    <h2><span class="counter">{{total_ebooks}}</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Fun Factor Area-->
+<!--Latest News Area Start-->
+<div class="latest-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Latest News</h3>
+                        <p>There are many types of News</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--End of Fun Factor Area-->   
-        <!--Latest News Area Start--> 
-        <div class="latest-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title-wrapper">
-                            <div class="section-title">
-                                <h3>Latest News</h3>
-                                <p>There are many types of News</p>
-                            </div>
-                        </div>
+        <div class="row">
+            {% for hn in home_news %}
+            <div class="col-md-6">
+                <div class="single-latest-item">
+                    <div class="single-latest-image">
+                        {% if hn.image %}
+                        <a href="{% url 'news-detail' hn.id %}"><img src="{{hn.image.url}}" alt="" width="236px"
+                                height="234px"></a>
+                        {% endif %}
                     </div>
+                    <div class="single-latest-text" style="padding-top: 50pt;">
+                        <h5><a href="{% url 'news-detail' hn.id %}">{{hn.title|slice:'50'}}</a></h5>
+                        <div class="single-item-comment-view">
+                            <span><i class="zmdi zmdi-calendar-check"></i>{{hn.news_date}}</span>
+                        </div>
+                        <p></p>
+                    </div>
+                    <a href="{% url 'news-detail' hn.id %}" class="button-default pull-right">LEARN Now</a>
                 </div>
-                <div class="row">
-                    {% for hn in home_news %}
-                    <div class="col-md-6">
-                        <div class="single-latest-item">
-                            <div class="single-latest-image">
-                                {% if hn.image %}
-                                <a href="{% url 'news-detail' hn.id %}"><img src="{{hn.image.url}}" alt="" width="236px" height="234px"></a>
-                                {% endif %}
-                            </div>
-                            <div class="single-latest-text" style="padding-top: 50pt;">
-                                <h5><a href="{% url 'news-detail' hn.id %}">{{hn.title|slice:'50'}}</a></h5>
-                                <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-calendar-check"></i>{{hn.news_date}}</span>
-                                </div>
-                                <p></p>
-                            </div>
-                            <a href="{% url 'news-detail' hn.id %}" class="button-default pull-right">LEARN Now</a>
-                        </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--End of Latest News Area-->
+<!--Online Product Area Start-->
+<div class="product-area section-bottom-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Online Library</h3>
+                        <p>There are many types of E-Books On Our Library</p>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
-        <!--End of Latest News Area--> 
-        <!--Online Product Area Start-->
-        <div class="product-area section-bottom-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title-wrapper">
-                            <div class="section-title">
-                                <h3>Online Library</h3>
-                                <p>There are many types of E-Books On Our Library</p>
-                            </div>
-                        </div>
+        <div class="row">
+            {% for eb in home_ebook %}
+            <div class="col-md-3 col-sm-4">
+                <div class="single-product-item">
+                    <div class="single-product-image">
+                        <a href="{% url 'ebooks-detail' eb.id %}">
+                            {% if eb.image %}
+                            <img src="{{eb.image.url}}" alt="" width="270px" height="252px">
+                            {% endif %}
+                        </a>
                     </div>
-                </div>
-                <div class="row">
-                    {% for eb in home_ebook %}
-                    <div class="col-md-3 col-sm-4">
-                        <div class="single-product-item">
-                            <div class="single-product-image">
-                                <a href="{% url 'ebooks-detail' eb.id %}">
-                                    {% if eb.image %}
-                                    <img src="{{eb.image.url}}" alt="" width="270px" height="252px">
-                                    {% endif %}
-                                </a>
-                            </div>
-                            <div class="single-product-text">
-                                <h4><a href="{% url 'ebooks-detail' eb.id %}">{{eb.title}}</a></h4>
-                                <h5>{{eb.category}}</h5>
-                                <div class="product-price">
-                                    <h3>Free</h3>
-                                </div>
-                                <div class="product-buttons">
-                                    <a href="{% url 'ebooks-detail' eb.id %}" role="button" class="button-default cart-btn">VIEW</a>
-                                    <!-- <button type="button" class="button-default">
+                    <div class="single-product-text">
+                        <h4><a href="{% url 'ebooks-detail' eb.id %}">{{eb.title}}</a></h4>
+                        <h5>{{eb.category}}</h5>
+                        <div class="product-price">
+                            <h3>Free</h3>
+                        </div>
+                        <div class="product-buttons">
+                            <a href="{% url 'ebooks-detail' eb.id %}" role="button"
+                                class="button-default cart-btn">VIEW</a>
+                            <!-- <button type="button" class="button-default">
                                         <i class="zmdi zmdi-favorite"></i></button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <!--End of Online Product Area-->
-        <!--Teachers Area Start-->
-        <div class="teachers-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title-wrapper">
-                            <div class="section-title">
-                                <h3>OUR TEACHERS</h3>
-                                <p>There are many variations of passages of Lorem Ipsum</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-teacher-item">
-                            <div class="single-teacher-image">
-                                <a href="#"><img src="{% static 'resource/img/teacher/l-1.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-teacher-text">
-                                <h3><a href="#">Louis Smith</a></h3>
-                                <h4>Teacher</h4>
-                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                                <div class="social-links">
-                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-teacher-item">
-                            <div class="single-teacher-image">
-                                <a href="#"><img src="{% static 'resource/img/teacher/l-2.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-teacher-text">
-                                <h3><a href="#">Louis Smith</a></h3>
-                                <h4>Teacher</h4>
-                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                                <div class="social-links">
-                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 hidden-sm">
-                        <div class="single-teacher-item">
-                            <div class="single-teacher-image">
-                                <a href="#"><img src="{% static 'resource/img/teacher/l-3.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-teacher-text">
-                                <h3><a href="#">Louis Smith</a></h3>
-                                <h4>Teacher</h4>
-                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                                <div class="social-links">
-                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 hidden-md hidden-sm">
-                        <div class="single-teacher-item">
-                            <div class="single-teacher-image">
-                                <a href="#"><img src="{% static 'resource/img/teacher/l-4.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="single-teacher-text">
-                                <h3><a href="#">Louis Smith</a></h3>
-                                <h4>Teacher</h4>
-                                <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                                <div class="social-links">
-                                    <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        <!--End of Teachers Area-->
-        <!--Event Area Start-->
-        <div class="event-area" style="padding-bottom: 30px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title-wrapper">
-                            <div class="section-title">
-                                <h3>Our Blogs</h3>
-                                <p>There are many types of Blogs</p>
-                            </div>
-                        </div>
+    </div>
+</div>
+<!--End of Online Product Area-->
+<!--Teachers Area Start-->
+<div class="teachers-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>OUR TEACHERS</h3>
                     </div>
-                </div>
-                <div class="row">
-                    {% for hb in home_blog %}
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-event-item">
-                            <div class="single-event-image">
-                                <a href="{% url 'blog-detail' hb.id %}">
-                                    {% if hb.image %}
-                                    <img src="{{hb.image.url}}" alt="" width="370px" height="252px">
-                                    {% endif %}
-                                </a>
-                            </div>
-                            <div class="single-event-text">
-                                <h3><a href="{% url 'blog-detail' hb.id %}">{{hb.title}}</a></h3>
-                                <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-time"></i>{{hb.blog_date}}</span>
-                                    <span><i class="zmdi zmdi-folder"></i>{{hb.category}}</span>
-                                </div>
-                               <a class="button-default" href="{% url 'blog-detail' hb.id %}">LEARN Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
-        <!--End of Event Area-->
+        <div class="row">
+            {% for i in home_teacher %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="single-teacher-item">
+                    <div class="single-teacher-image">
+                        <a href="{% url 'teachers-details' i.id %}">
+                            {% if i.image %}
+                            <img src="{{i.image.url}}" alt="" width="270px" height="253px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-teacher-text">
+                        <h3><a href="{% url 'teachers-details' i.id %}">{{i.name}}</a></h3>
+                        <h4>{{i.skill}}</h4>
+                        <p>{{i.discription|safe}}</p>
+                        <div class="social-links">
+                            <a href="{{header_content.facebook}}"><i class="zmdi zmdi-facebook"></i></a>
+                            <a href="{{header_content.twitter}}"><i class="zmdi zmdi-twitter"></i></a>
+                            <a href="{{header_content.google}}"><i class="zmdi zmdi-google-plus"></i></a>
+                            <a href="{{header_content.instagram}}"><i class="zmdi zmdi-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--End of Teachers Area-->
+<!--Event Area Start-->
+<div class="event-area" style="padding-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Our Blogs</h3>
+                        <p>There are many types of Blogs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for hb in home_blog %}
+            <div class="col-md-4 col-sm-6">
+                <div class="single-event-item">
+                    <div class="single-event-image">
+                        <a href="{% url 'blog-detail' hb.id %}">
+                            {% if hb.image %}
+                            <img src="{{hb.image.url}}" alt="" width="370px" height="252px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-event-text">
+                        <h3><a href="{% url 'blog-detail' hb.id %}">{{hb.title}}</a></h3>
+                        <div class="single-item-comment-view">
+                            <span><i class="zmdi zmdi-time"></i>{{hb.blog_date}}</span>
+                            <span><i class="zmdi zmdi-folder"></i>{{hb.category}}</span>
+                        </div>
+                        <a class="button-default" href="{% url 'blog-detail' hb.id %}">LEARN Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--End of Event Area-->
 {% endblock %}
 
-{% block customjs %} 
+{% block customjs %}
 <script>
-    $(document).ready(function() {
-        $('#category').change(function(){
+    $(document).ready(function () {
+        $('#category').change(function () {
             const url = $("#category").attr("data-educat");
             console.log(url);
             const educatId = $(this).val();
             console.log(educatId);
 
-            if(educatId != null){
+            if (educatId != null) {
                 $.ajax({                       // initialize an AJAX request
                     url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
                     data: {
@@ -437,7 +327,7 @@
                     },
                     success: function (data) {   // `data` is the return of the `load_cities` view function
                         //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-                    
+
 
                         let html_data = '<option value="0">=================</option>';
                         data.forEach(function (edusubcat) {
@@ -453,13 +343,13 @@
             }
         });
 
-        $('#subcategory').change(function(){
+        $('#subcategory').change(function () {
             const url = $("#subcategory").attr("data-sub");
             console.log(url);
             const edusubid = $(this).val();
             console.log(edusubid);
 
-            if(edusubid != null){
+            if (edusubid != null) {
                 $.ajax({                       // initialize an AJAX request
                     url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
                     data: {
@@ -467,7 +357,7 @@
                     },
                     success: function (data) {   // `data` is the return of the `load_cities` view function
                         //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-                    
+
 
                         let html_data = '<option value="0">=================</option>';
                         data.forEach(function (edusubcat) {

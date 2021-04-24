@@ -31,84 +31,35 @@
                 <div class="section-title-wrapper">
                     <div class="section-title">
                         <h3>OUR TEACHERS</h3>
-                        <p>There are many variations of passages of Lorem Ipsum</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
+            {% for i in home_teacher %}
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="single-teacher-item">
                     <div class="single-teacher-image">
-                        <a href="#"><img src="{% static 'resource/img/teacher/l-1.jpg' %}" alt=""></a>
+                        <a href="{% url 'teachers-details' i.id %}">
+                            {% if i.image %}
+                            <img src="{{i.image.url}}" alt="" width="270px" height="253px">
+                            {% endif %}
+                        </a>
                     </div>
                     <div class="single-teacher-text">
-                        <h3><a href="#">Louis Smith</a></h3>
-                        <h4>Teacher</h4>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
+                        <h3><a href="{% url 'teachers-details' i.id %}">{{i.name}}</a></h3>
+                        <h4>{{i.skill}}</h4>
+                        <p>{{i.discription|safe}}</p>
                         <div class="social-links">
-                            <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                            <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                            <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                            <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                            <a href="{{header_content.facebook}}"><i class="zmdi zmdi-facebook"></i></a>
+                            <a href="{{header_content.twitter}}"><i class="zmdi zmdi-twitter"></i></a>
+                            <a href="{{header_content.google}}"><i class="zmdi zmdi-google-plus"></i></a>
+                            <a href="{{header_content.instagram}}"><i class="zmdi zmdi-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-teacher-item">
-                    <div class="single-teacher-image">
-                        <a href="#"><img src="{% static 'resource/img/teacher/l-2.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-teacher-text">
-                        <h3><a href="#">Louis Smith</a></h3>
-                        <h4>Teacher</h4>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                        <div class="social-links">
-                            <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                            <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                            <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                            <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 hidden-sm">
-                <div class="single-teacher-item">
-                    <div class="single-teacher-image">
-                        <a href="#"><img src="{% static 'resource/img/teacher/l-3.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-teacher-text">
-                        <h3><a href="#">Louis Smith</a></h3>
-                        <h4>Teacher</h4>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                        <div class="social-links">
-                            <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                            <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                            <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                            <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 hidden-md hidden-sm">
-                <div class="single-teacher-item">
-                    <div class="single-teacher-image">
-                        <a href="#"><img src="{% static 'resource/img/teacher/l-4.jpg' %}" alt=""></a>
-                    </div>
-                    <div class="single-teacher-text">
-                        <h3><a href="#">Louis Smith</a></h3>
-                        <h4>Teacher</h4>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr</p>
-                        <div class="social-links">
-                            <a href="#"><i class="zmdi zmdi-facebook"></i></a>
-                            <a href="#"><i class="zmdi zmdi-twitter"></i></a>
-                            <a href="#"><i class="zmdi zmdi-google-old"></i></a>
-                            <a href="#"><i class="zmdi zmdi-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 text-center">

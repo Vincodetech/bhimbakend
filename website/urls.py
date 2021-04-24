@@ -6,7 +6,9 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('about/', views.aboutus, name="about"),
     path('course-list/', views.courses, name="course-list"),
+    path('course-details/<int:id>', views.courses_details, name="course-details"),
     path('teachers-list/', views.teachers, name="teachers-list"),
+    path('teachers-details/<int:id>', views.teachers_details, name="teachers-details"),
     path('news/', views.news, name="news-list"),
     path('singlenews/<int:id>', views.news_details, name="news-detail"), #panding
     path('blog/', views.blog, name="blog-list"),
@@ -26,4 +28,6 @@ urlpatterns = [
 
     path('edcat/',views.load_sub_category,name='edcat-ajax'),
     path('sub/',views.load_subjects,name='sub-ajax'),
+
+    path('gallery/',views.gallery,name='gallery-view'),
 ]
