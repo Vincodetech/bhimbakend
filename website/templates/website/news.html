@@ -1,0 +1,69 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} News - Bim Connect {% endblock %}
+{% block content %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">News</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>News</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--Latest News Area Start--> 
+<div class="latest-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Latest News</h3>
+                        <p>There are many variations of passages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for hn in all_news %}
+            <div class="col-md-6">
+                <div class="single-latest-item">
+                    <div class="single-latest-image">
+                        {% if hn.image %}
+                        <a href="{% url 'news-detail' hn.id %}"><img src="{{hn.image.url}}" alt="" width="236px" height="234px"></a>
+                        {% endif %}
+                    </div>
+                    <div class="single-latest-text" style="padding-top: 50pt;">
+                        <h5><a href="{% url 'news-detail' hn.id %}">{{hn.title|slice:'50'}}</a></h5>
+                        <div class="single-item-comment-view">
+                            <span><i class="zmdi zmdi-calendar-check"></i>{{hn.news_date}}</span>
+                        </div>
+                        <p></p>
+                    </div>
+                    <a href="{% url 'news-detail' hn.id %}" class="button-default pull-right">LEARN Now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 text-center">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Latest News Area--> 
+
+{% endblock %}

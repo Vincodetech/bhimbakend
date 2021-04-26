@@ -36,7 +36,7 @@ class HeaderForm(forms.ModelForm):
 class FooterForm(forms.ModelForm):
     class Meta:
         model=FooterCms
-        fields=('description', 'phone', 'email', 'website', 'copyright_content', 'address', 'active')
+        fields=('image', 'description', 'phone', 'email', 'website', 'copyright_content', 'address', 'active')
 
 class InquiryForm(forms.ModelForm):
     class Meta:
@@ -82,7 +82,7 @@ class EduForm(forms.ModelForm):
     class Meta:
         model=Education
         fields=('title','description', 'image','document_path','youtube_link','youtube_channel_link',
-        'category','sub_category', 'subject', 'active')
+        'category','sub_category', 'subject', 'teacher', 'tags', 'active')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -140,3 +140,23 @@ class SliderForm(forms.ModelForm):
     class Meta:
         model=Slider
         fields=('title', 'image', 'active')
+
+class TeachererForm(forms.ModelForm):
+    class Meta:
+        model=Teacher
+        fields=('name','skill','address','phone','email','discription','image','active')
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model=Tag
+        fields=('__all__')
+
+class EbookCatForm(forms.ModelForm):
+    class Meta:
+        model=EbookCategory
+        fields=('category_name', 'active')
+
+class EbookForm(forms.ModelForm):
+    class Meta:
+        model=Ebook
+        fields=('title', 'price','discription','image','file','category','active')

@@ -1,0 +1,63 @@
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        displayAlert("You are Successfully Registered...");
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                displayAlert(error.toString());
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> parems = new HashMap<>();
+//                parems.put("first_name", first_name);
+//                parems.put("last_name", last_name);
+//                parems.put("phone", phone);
+//                parems.put("email", email);
+//                parems.put("active", "1");
+//                parems.put("otp", otp);
+//                return parems;
+//            }
+//        };
+//        int socketTimeOut = 1000;
+//        RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+//        stringRequest.setRetryPolicy(retryPolicy);
+//        RequestQueue queue = Volley.newRequestQueue(Registration.this);
+//        queue.add(stringRequest);
+
+        //ApiContext.getInstance(Registration.this).addToRequestQueue(stringRequest);
+
+//        RequestQueue queue = Volley.newRequestQueue(Registration.this);
+//        JSONObject postData = new JSONObject();
+//
+//        try {
+//            postData.put("first_name", first_name);
+//            postData.put("last_name", last_name);
+//            postData.put("phone", phone);
+//            postData.put("email", email);
+//            postData.put("active", "1");
+//            postData.put("otp", otp);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, REG_URL, postData,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        displayAlert("You are Successfully Registered...");
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        });
+//
+//        queue.add(jsonObjectRequest);
+
+
+192.168.42.18

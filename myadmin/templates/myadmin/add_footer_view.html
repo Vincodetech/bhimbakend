@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {{ forms.media }}
                 {{ forms|crispy }}
                 {% csrf_token %}

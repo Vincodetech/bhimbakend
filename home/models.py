@@ -1,9 +1,9 @@
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 import datetime
 from embed_video.fields import EmbedVideoField
+from myadmin.models import *
 
 class Country(models.Model):
     country_name = models.CharField(max_length=150, default="")
@@ -100,17 +100,18 @@ class Profile(models.Model):
         ('Private Job', 'Private Job')
     ]
 
-    user = models.OneToOneField(CustomUser ,on_delete=models.CASCADE)
+    user = models.OneToOneField(User ,on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
     intrests = models.CharField(max_length=255, default="",blank=True, null=True)
     date_of_birth = models.CharField(blank=True,null=True, default="", max_length=255)
     photo = models.ImageField(upload_to='users/', blank=True, null=True)
     gender = models.CharField(max_length=15, default="", choices=GENDER_CHOICES, blank=True, null=True)
     street1 = models.CharField(max_length=200, blank=True, null=True, default="")
     street2 = models.CharField(max_length=200, blank=True, null=True, default="")
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, default="", blank=True, null=True)
-    add_state = models.ForeignKey(State, on_delete=models.CASCADE, default="", blank=True, null=True)
-    add_city = models.ForeignKey(City, on_delete=models.CASCADE, default="", blank=True, null=True, verbose_name="Enter District")
-    add_block = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter Taluka")
+    country = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter Country")
+    add_state = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter State")
+    add_city = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter Taluka")
+    add_block = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter City")
     add_village = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter Village")
     add_international = models.TextField(blank=True, null=True, verbose_name="International Address")
     degree = models.CharField(max_length=255, default="", blank=True, null=True, verbose_name="Enter Degree")
@@ -302,6 +303,12 @@ class EduSubjects(models.Model):
     def get_subjects_by_sub_cat(id):
         return EduSubjects.objects.filter(sub_category=id)
 
+class Tag(models.Model):
+	name = models.CharField(max_length=200, null=True)
+
+	def __str__(self):
+		return self.name
+
 class Education(models.Model):
     title = models.CharField(max_length=255, default="")
     description = RichTextField(blank=True, null=True)
@@ -313,6 +320,8 @@ class Education(models.Model):
     category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="")
     sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="")
     subject = models.ForeignKey(EduSubjects, on_delete=models.CASCADE, default="", null=True, blank=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, default="", null=True, blank=True)
+    tags = models.ManyToManyField(Tag)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 

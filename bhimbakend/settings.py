@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'myadmin.apps.MyadminConfig',
     'home.apps.HomeConfig',
     'api.apps.ApiConfig',
+    'website.apps.WebsiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -159,6 +160,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 # EMAIL_HOST_USER = 'bhimconnect@gmail.com'
 # EMAIL_HOST_PASSWORD = 'Rinku@1234'
 # EMAIL_USE_TLS = True
+
+AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
+                         'home.authentication.EmailAuthBackend',
+]
 
 # AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
 #                          'home.authentication.EmailAuthBackend',

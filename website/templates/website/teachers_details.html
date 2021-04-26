@@ -1,0 +1,89 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} Courses - Bim Connect {% endblock %}
+{% block content %}
+{% load embed_video_tags %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">Teacher Details</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'teachers-list' %}">Teachers</a></li>
+                            <li>Teacher Details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--Course Details Area Start-->
+<div class="course-details-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar-widget">
+                    <div class="single-sidebar-widget">
+                        <div class="tution-wrapper">
+                            <!-- <div class="tution-fee">
+                                <h1>$100</h1>
+                            </div> -->
+                            <div class="tutor-image">
+                                {% if single_teacher.image %}
+                                <img src="{{single_teacher.image.url}}" alt="" width="126px" height="126px">
+                                {% endif %}
+                            </div>
+                            <div class="single-teacher-text">
+                                <h3><a href="#">{{single_teacher.name}}</a></h3>
+                                <h4>{{single_teacher.skill}}</h4>
+                                
+                                <div class="social-links">
+                                    <a href="{{header_content.facebook}}"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a href="{{header_content.twitter}}"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a href="{{header_content.google}}"><i class="zmdi zmdi-google-plus"></i></a>
+                                    <a href="{{header_content.instagram}}"><i class="zmdi zmdi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="course-details-content">
+                    <div class="single-course-details">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="single-item-text">
+                                    <p>{{single_teacher.discription|safe}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-duration">
+                        <div class="duration-title">
+                            <div class="text"><span>Lessons</span> <span class="text-right">View</span></div>
+                        </div>
+                        <div class="duration-text">
+                            {% for i in related_edu %}
+                            <div class="text">
+                                <span>{{i.title}}</span> <span class="text-right"><a href="{% url 'course-details' i.id %}"><i class="fa fa-eye fa-2x"></i></a></span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Course Details Area-->
+
+{% endblock %}

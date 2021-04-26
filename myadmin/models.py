@@ -78,6 +78,7 @@ class HeaderCms(models.Model):
         return HeaderCms.objects.get(id=id)
 
 class FooterCms(models.Model):
+    image = models.ImageField(upload_to='cms/', blank=True, null=True)
     description = RichTextField(blank=True, null=True)
     phone = models.CharField(max_length=255, default='', blank=True, null=True)
     email = models.CharField(max_length=255, default='', blank=True, null=True)
@@ -145,6 +146,44 @@ class Slider(models.Model):
     image = models.ImageField(upload_to='slider/', blank=True, null=True)
     title = models.CharField(max_length=255, default='', blank=True, null=True)
     active = models.BooleanField(default=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.title
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Full Name")
+    skill = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Specialization")
+    address = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Full Address")
+    phone = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Phone")
+    email = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name="Email")
+    discription = RichTextField(blank=True, null=True)
+    image = models.ImageField(upload_to='teacher/', blank=True, null=True)
+    active = models.BooleanField(default=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.name
+
+class EbookCategory(models.Model):
+    category_name = models.CharField(max_length=255, default="")
+    active = models.BooleanField(default=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.category_name
+
+class Ebook(models.Model):
+    title = models.CharField(max_length=255, default="")
+    active = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='ebooks/', blank=True, null=True)
+    file = models.FileField(upload_to='ebooks/', blank=True, null=True)
+    discription = RichTextField(blank=True, null=True)
+    price = models.DecimalField(blank=True, null=True, max_digits=7, decimal_places=2, default=0)
+    category = models.ForeignKey(EbookCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 

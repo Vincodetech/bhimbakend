@@ -1,0 +1,79 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} E-Books - Bim Connect {% endblock %}
+{% block content %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">E-Books</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>E-Books</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--Online Product Area Start-->
+<div class="product-area section-bottom-padding" style="margin-top: 50pt;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Online E-Books Library</h3>
+                        <p>There are many variations of passages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for eb in home_ebook %}
+            <div class="col-md-3 col-sm-4">
+                <div class="single-product-item">
+                    <div class="single-product-image">
+                        <a href="{% url 'ebooks-detail' eb.id %}">
+                            {% if eb.image %}
+                            <img src="{{eb.image.url}}" alt="" width="270px" height="252px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-product-text">
+                        <h4><a href="{% url 'ebooks-detail' eb.id %}">{{eb.title}}</a></h4>
+                        <h5>{{eb.category}}</h5>
+                        <div class="product-price">
+                            {% if eb.price == 0 %}
+                            <h3>Free</h3>
+                            {% else %}
+                            <h3>{{eb.price}}</h3>
+                            {% endif %}
+                        </div>
+                        <div class="product-buttons">
+                            <a href="{% url 'ebooks-detail' eb.id %}" role="button" class="button-default cart-btn">VIEW</a>
+                            <!-- <button type="button" class="button-default">
+                                <i class="zmdi zmdi-favorite"></i></button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Online Product Area-->
+
+{% endblock %}

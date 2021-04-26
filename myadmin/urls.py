@@ -111,4 +111,23 @@ urlpatterns = [
     path('addslider/', home.post_slider, name="addslider"),
     path('updateslider/<int:id>', home.edit_slider, name="updateslider"),
     path('deleteslider/<int:id>', home.delete_slider, name="deleteslider"),
+
+    path('teacher/', home.teacher_view, name="teacher"),
+    path('addtecher/', home.post_teacher, name="addtecher"),
+    path('updateteacher/<int:id>', home.edit_teacher, name="updateteacher"),
+    path('deleteteacher/<int:id>', home.delete_teacher, name="deleteteacher"),
+
+    path('tag/', home.tag_view, name="tag"),
+    path('addtagr/', home.post_tag, name="addtag"),
+    path('deletag/<int:id>', home.delete_tag, name="deletag"),
+
+    path('ebookcat/', home.ebook_category_view, name="ebookcat"),
+    path('addebookcat/', home.add_ebook_category, name="addebookcat"),
+    path('updateebookcat/<int:id>', home.edit_ebook_category, name="updateebookcat"),
+    path('deleteebookcat/<int:id>', home.delete_ebook_cat, name="deleteebookcat"),
+
+    path('ebook/', home.ebook_view, name="ebook"),
+    path('addebook/', home.add_ebook, name="addebook"),
+    path('updateebook/<int:id>', home.edit_ebook, name="updateebook"),
+    path('deleteebook/<int:id>', home.delete_ebook, name="deleteebook"),
 ]

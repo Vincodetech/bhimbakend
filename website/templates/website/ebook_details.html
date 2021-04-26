@@ -1,0 +1,136 @@
+{% extends 'website/base.html' %}
+{% block meta %} 
+<meta property="og:title" content="{{sigle_ebook.title}}" />
+<meta property="og:image" content="{{sigle_ebook.image.url}}">
+{% endblock %}
+{% load static %}
+{% block title %} E-Books - Bim Connect {% endblock %}
+{% block content %}
+{% load social_share %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">Single E-Books</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'ebooks-list' %}">E-Books</a></li>
+                            <li>Single E-Books</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--Product Details Area Start--> 
+<div class="product-details-area section-top-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="product-details-image">
+                    {% if sigle_ebook.image %}
+                    <img src="{{sigle_ebook.image.url}}" alt="" width="570px" height="570px">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="product-details-content">
+                    <form action="#" method="post">
+                        <h2>{{sigle_ebook.title}}</h2>
+                        <div class="product-name-rating">
+                            <h5>{{sigle_ebook.category}}</h5>
+                        </div>
+                        <p>{{sigle_ebook.discription|safe}}</p>
+                        <!-- <div class="qty">
+                            <span>Qty</span>
+                            <input type="text" name="qty" id="qty" maxlength="12" value="2" class="input-text qty">
+                        </div> -->
+                        {% if sigle_ebook.price == 0 %}
+                        <h1 class="p-price">Free</h1>
+                        {% else %}
+                        <h3>{{sigle_ebook.price}}</h3>
+                        {% endif %}
+                        <a href="{{sigle_ebook.file.url}}" role="button" class="button-default" target="_blank">Free Download</a>
+                        <span>Share this product</span>
+                        <div class="social-links">
+                            <span>
+                                {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}
+                            </span>
+                            <br>
+                            <span>
+                                {% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Product Details Area--> 
+<!--Online Product Area Start-->
+<div class="product-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Related Product</h3>
+                        <p>There are many types of E-Books</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for eb in related_ebook %}
+            <div class="col-md-3 col-sm-4">
+                <div class="single-product-item">
+                    <div class="single-product-image">
+                        <a href="{% url 'ebooks-detail' eb.id %}">
+                            {% if eb.image %}
+                            <img src="{{eb.image.url}}" alt="" width="270px" height="252px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-product-text">
+                        <h4><a href="{% url 'ebooks-detail' eb.id %}">{{eb.title}}</a></h4>
+                        <h5>{{eb.category}}</h5>
+                        <div class="product-price">
+                            <h3>Free</h3>
+                        </div>
+                        <div class="product-buttons">
+                            <a href="{% url 'ebooks-detail' eb.id %}" role="button" class="button-default cart-btn">VIEW</a>
+                            <!-- <button type="button" class="button-default">
+                                <i class="zmdi zmdi-favorite"></i></button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <div class="pagination-content number">
+                    <ul class="pagination">
+                        <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li class="current"><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+<!--End of Online Product Area-->
+
+{% endblock %}

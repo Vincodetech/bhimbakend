@@ -1,0 +1,66 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} Blog - Bim Connect {% endblock %}
+{% block content %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">Blog</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--Event Area Start-->
+<div class="event-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>Our Blogs</h3>
+                        <p>There are many variations of passages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for hb in all_blogs %}
+            <div class="col-md-4 col-sm-6">
+                <div class="single-event-item">
+                    <div class="single-event-image">
+                        <a href="{% url 'blog-detail' hb.id %}">
+                            {% if hb.image %}
+                            <img src="{{hb.image.url}}" alt="" width="370px" height="252px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-event-text">
+                        <h3><a href="{% url 'blog-detail' hb.id %}">{{hb.title}}</a></h3>
+                        <div class="single-item-comment-view">
+                            <span><i class="zmdi zmdi-time"></i>{{hb.blog_date}}</span>
+                            <span><i class="zmdi zmdi-folder"></i>{{hb.category}}</span>
+                        </div>
+                        <a class="button-default" href="{% url 'blog-detail' hb.id %}">LEARN Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--End of Event Area-->
+
+{% endblock %}

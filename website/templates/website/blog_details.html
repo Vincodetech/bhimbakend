@@ -1,0 +1,91 @@
+{% extends 'website/base.html' %}
+{% block meta %} 
+<meta property="og:title" content="{{blog.title}}" />
+<meta property="og:image" content="{{blog.image.url}}">
+{% endblock %}
+{% load static %}
+{% block title %} Blog - Bim Connect {% endblock %}
+{% block content %}
+{% load social_share %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">Single Blog</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'blog-list' %}">Blog</a></li>
+                            <li>Single Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--News Details Area Start-->
+<div class="news-details-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <div class="news-details-content">
+                   <div class="single-latest-item">
+                        {% if blog.image %}
+                        <img src="{{blog.image.url}}" alt="" width="870px" height="439px">  
+                        {% endif %} 
+                        <div class="single-latest-text">
+                            <h3>Learn English in ease simply random text</h3> 
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-calendar-check"></i>{{blog.blog_date}}</span>
+                                <span><i class="zmdi zmdi-folder"></i>{{blog.category}}</span>
+                            </div>
+                            <p>{{blog.description|safe}}</p>
+                            <div class="tags-and-links">
+                                <div class="social-links">
+                                    <span>
+                                        {% post_to_facebook object_or_url "Share on Facebook" "btn btn-primary btn-sm fa fa-facebook" %}
+                                    </span>
+                                    <span>
+                                        {% post_to_whatsapp object_or_url "Share on WhatsApp" "btn btn-success btn-sm fa fa-whatsapp" %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>    
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar-widget">
+                    <div class="single-sidebar-widget">
+                        <h4 class="title">Recent Posts</h4>
+                        <div class="recent-content">
+                            {% for n in related_blog %}
+                            <div class="recent-content-item">
+                                {% if n.image %}
+                                <a href="#"><img src="{{n.image.url}}" alt="" width="70px" height="67px"></a>
+                                {% endif %}
+                                <div class="recent-text">
+                                    <h4><a href="{% url 'news-detail' n.id %}">{{n.title}}</a></h4>
+                                    <div class="single-item-comment-view">
+                                        <span><i class="zmdi zmdi-folder"></i>{{n.category}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of News Details Area-->
+
+{% endblock %}

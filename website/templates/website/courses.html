@@ -1,0 +1,173 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %} Courses - Bim Connect {% endblock %}
+{% block content %}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">Courses</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>Courses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<div class="search-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <form action="{% url 'course-list' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-container">
+                        <div class="box-select">
+                            <div class="select large">
+                                <select name="category" id="category" data-educat="{% url 'edcat-ajax' %}">
+                                    <option value="0">Select Category</option>
+                                    {% for i in categories %}
+                                    <option value="{{i.id}}">{{i.category_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="select small">
+                                <select name="subcategory" id="subcategory" data-sub="{% url 'sub-ajax' %}">
+                                    <option value="0">=================</option>
+                                </select>
+                            </div>
+                            <div class="select medium">
+                                <select name="subject" id="subject">
+                                    <option value="0">=================</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit">Search Course</button>
+                    </div>
+                </form>  
+            </div>
+        </div>
+    </div>
+</div>
+<!--Course Area Start-->
+<div class="course-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-wrapper">
+                    <div class="section-title">
+                        <h3>OUR COURSES</h3>
+                        <p>There are many types of Courses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for i in all_edu %}
+            <div class="col-md-4 col-sm-6">
+                <div class="single-item">
+                    <div class="single-item-image overlay-effect">
+                        <a href="{% url 'course-details' i.id %}">
+                            {% if i.image %}
+                            <img src="{{i.image.url}}" alt="" width="300px" height="211px">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="single-item-text">
+                        <h5><a href="{% url 'course-details' i.id %}">{{i.title}}</a></h5>
+                        <div class="single-item-text-info">
+                            <span>By:</span> <span>{{i.teacher}}</span>
+                            <span>Subject:</span> <span>{{i.subject}}</span>
+                        </div>
+                        <div class="single-item-text-info">
+                            <span>Sub Category:</span> <span>{{i.sub_category}}</span><br>
+                            <span>Category:</span> <span>{{i.category}}</span>
+                        </div>
+                        <p>{{i.description|safe|slice:"40"}}...</p>  
+                    </div>
+                    <div class="button-bottom">
+                        <a href="{% url 'course-details' i.id %}" class="button-default">Learn Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--End of Course Area-->
+
+{% endblock %}
+
+{% block customjs %} 
+<script>
+    $(document).ready(function() {
+        $('#category').change(function(){
+            const url = $("#category").attr("data-educat");
+            console.log(url);
+            const educatId = $(this).val();
+            console.log(educatId);
+
+            if(educatId != null){
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                    data: {
+                        'educatId': educatId       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                    
+
+                        let html_data = '<option value="0">=================</option>';
+                        data.forEach(function (edusubcat) {
+                            html_data += `<option value="${edusubcat.id}">${edusubcat.category_name}</option>`
+                        });
+                        console.log(html_data);
+                        $("#subcategory").html(html_data);
+
+                    }
+                });
+            } else {
+                $("#subcategory").html('<option value="0">=================</option>');
+            }
+        });
+
+        $('#subcategory').change(function(){
+            const url = $("#subcategory").attr("data-sub");
+            console.log(url);
+            const edusubid = $(this).val();
+            console.log(edusubid);
+
+            if(edusubid != null){
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                    data: {
+                        'edusubid': edusubid       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                    
+
+                        let html_data = '<option value="0">=================</option>';
+                        data.forEach(function (edusubcat) {
+                            html_data += `<option value="${edusubcat.id}">${edusubcat.subject_name}</option>`
+                        });
+                        console.log(html_data);
+                        $("#subject").html(html_data);
+
+                    }
+                });
+            } else {
+                $("#subject").html('<option value="0">=================</option>');
+            }
+        });
+    });
+</script>
+{% endblock %}
