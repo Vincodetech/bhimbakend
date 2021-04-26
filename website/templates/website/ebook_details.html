@@ -52,7 +52,11 @@
                             <span>Qty</span>
                             <input type="text" name="qty" id="qty" maxlength="12" value="2" class="input-text qty">
                         </div> -->
+                        {% if sigle_ebook.price == 0 %}
                         <h1 class="p-price">Free</h1>
+                        {% else %}
+                        <h3>{{sigle_ebook.price}}</h3>
+                        {% endif %}
                         <a href="{{sigle_ebook.file.url}}" role="button" class="button-default" target="_blank">Free Download</a>
                         <span>Share this product</span>
                         <div class="social-links">

@@ -23,8 +23,8 @@ urlpatterns = [
     path('logout/',views.logout,name='logout'),
     path('profile/',views.edit,name='user-profile'),
 
-    path('tc/',views.edit,name='tc'),
-    path('privecy/',views.edit,name='privecy'),
+    path('tc/',views.terms_conditions_view,name='tc'),
+    path('privecy/',views.privecy_policy_view,name='privecy'),
 
     path('edcat/',views.load_sub_category,name='edcat-ajax'),
     path('sub/',views.load_subjects,name='sub-ajax'),

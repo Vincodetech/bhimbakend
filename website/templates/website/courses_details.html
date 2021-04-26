@@ -44,7 +44,7 @@
                             <div class="single-teacher-text">
                                 <h3><a href="#">{{single_edu.teacher.name}}</a></h3>
                                 <h4>{{single_edu.teacher.skill}}</h4>
-                                <p>{{single_edu.teacher.discription|safe|slice:"50"}}</p>
+                                <p>{{single_edu.teacher.discription|safe|slice:"25"}}</p>
                                 <div class="social-links">
                                     <a href="{{header_content.facebook}}"><i class="zmdi zmdi-facebook"></i></a>
                                     <a href="{{header_content.twitter}}"><i class="zmdi zmdi-twitter"></i></a>
@@ -58,7 +58,7 @@
                         <h4 class="title">Search by Tags</h4>
                         <ul class="tags">
                             {% for tag in single_edu.tags.all %}
-                            <li><a href="#">{{tag.name}}</a></li>
+                            <li><a href="/course-list?tagids={{tag.id}}">{{tag.name}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

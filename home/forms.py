@@ -12,8 +12,8 @@ class LoginForm(forms.Form):
         fields = ('username')
 
 class UserRegistrationForm(forms.ModelForm):
-    password=forms.CharField(label='Password',widget=forms.PasswordInput)
-    password2=forms.CharField(label='Repeat Password',widget=forms.PasswordInput)
+    password=forms.CharField(label='Password',widget=forms.PasswordInput, help_text="Password at least 8 characters and use letter, numbers and spectial characters.(@,$,#)")
+    password2=forms.CharField(label='Repeat Password',widget=forms.PasswordInput, help_text="Password at least 8 characters and use letter, numbers and spectial characters.(@,$,#)")
     class Meta:
         model=User
         fields = ('first_name', 'last_name', 'email','username')

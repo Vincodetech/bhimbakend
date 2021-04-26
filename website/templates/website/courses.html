@@ -82,16 +82,16 @@
                         </a>
                     </div>
                     <div class="single-item-text">
-                        <h4><a href="{% url 'course-details' i.id %}">{{i.title}}</a></h4>
+                        <h5><a href="{% url 'course-details' i.id %}">{{i.title}}</a></h5>
                         <div class="single-item-text-info">
-                            <span>By: <span>{{i.teacher}}</span></span>
-                            <span>Subject: <span>{{i.subject}}</span></span>
+                            <span>By:</span> <span>{{i.teacher}}</span>
+                            <span>Subject:</span> <span>{{i.subject}}</span>
                         </div>
                         <div class="single-item-text-info">
-                            <span>Sub Category: <span>{{i.sub_category}}</span></span><br>
-                            <span>Category: <span>{{i.category}}</span></span>
+                            <span>Sub Category:</span> <span>{{i.sub_category}}</span><br>
+                            <span>Category:</span> <span>{{i.category}}</span>
                         </div>
-                        <p>{{i.description|safe|slice:"100"}}...</p>  
+                        <p>{{i.description|safe|slice:"40"}}...</p>  
                     </div>
                     <div class="button-bottom">
                         <a href="{% url 'course-details' i.id %}" class="button-default">Learn Now</a>

@@ -51,7 +51,11 @@
                         <h4><a href="{% url 'ebooks-detail' eb.id %}">{{eb.title}}</a></h4>
                         <h5>{{eb.category}}</h5>
                         <div class="product-price">
+                            {% if eb.price == 0 %}
                             <h3>Free</h3>
+                            {% else %}
+                            <h3>{{eb.price}}</h3>
+                            {% endif %}
                         </div>
                         <div class="product-buttons">
                             <a href="{% url 'ebooks-detail' eb.id %}" role="button" class="button-default cart-btn">VIEW</a>

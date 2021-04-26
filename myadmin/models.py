@@ -182,6 +182,7 @@ class Ebook(models.Model):
     image = models.ImageField(upload_to='ebooks/', blank=True, null=True)
     file = models.FileField(upload_to='ebooks/', blank=True, null=True)
     discription = RichTextField(blank=True, null=True)
+    price = models.DecimalField(blank=True, null=True, max_digits=7, decimal_places=2, default=0)
     category = models.ForeignKey(EbookCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)

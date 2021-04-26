@@ -78,6 +78,9 @@ def courses(request):
     footer_content = FooterCms.get_content_by_active()
     categories = EducationCategory.objects.filter(active=True)
 
+    tagids = request.GET.get("tagids")
+    print("=====>>tagids:", tagids)
+
     if request.method == "POST":
         educate = request.POST.get("category")
         subcategory = request.POST.get("subcategory")
@@ -98,8 +101,12 @@ def courses(request):
             all_edu = Education.objects.filter(active=True)
             print("=====>All", all_edu)
     else:
-        all_edu = Education.objects.filter(active=True)
-        print("=====>All", all_edu)
+        if tagids:
+            all_edu = Education.objects.filter(tags__in=[tagids])
+            print("=====>All By Tags", all_edu)
+        else:
+            all_edu = Education.objects.filter(active=True)
+            print("=====>All", all_edu)
     context = {
         "header_content": header_content,
         "footer_content": footer_content,
@@ -278,12 +285,14 @@ def register(request):
 
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid:
+        if user_form.is_valid():
             newuser = user_form.save(commit=False)
             newuser.set_password(user_form.cleaned_data['password'])
             newuser.save()
             Profile.objects.create(user=newuser)
             return redirect('login')
+        else:
+            user_form = UserRegistrationForm()
     else:
         user_form = UserRegistrationForm()
     return render(request, 'website/register.html', {
@@ -381,4 +390,24 @@ def gallery(request):
         'footer_content': footer_content,
         'gallery_cat': gallery_cat,
         'images': images,
+    })
+
+def terms_conditions_view(request):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    tc_content = TermsAndConditions.objects.get(active=True)
+    return render(request,'website/t_and_c.html', {
+        'tc_content': tc_content,
+        'header_content': header_content,
+        'footer_content': footer_content,
+    })
+
+def privecy_policy_view(request):
+    header_content = HeaderCms.get_content_by_active()
+    footer_content = FooterCms.get_content_by_active()
+    pp_content = PrivecyAndProlicy.objects.get(active=True)
+    return render(request,'website/privecy_policy.html', {
+        'pp_content': pp_content,
+        'header_content': header_content,
+        'footer_content': footer_content,
     })

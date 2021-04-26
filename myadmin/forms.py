@@ -159,4 +159,4 @@ class EbookCatForm(forms.ModelForm):
 class EbookForm(forms.ModelForm):
     class Meta:
         model=Ebook
-        fields=('title','discription','image','file','category','active')
+        fields=('title', 'price','discription','image','file','category','active')
