@@ -18,7 +18,7 @@ import datetime
 from django.http import JsonResponse
 
 def dashboard_admin(request):
-    total_users = CustomUser.objects.all().count()
+    total_users = User.objects.filter(is_staff=False).count()
     total_inquiries = Inquiry.objects.all().count()
     total_posts = Blog.blog_count()
     total_news = News.news_count()
@@ -442,7 +442,7 @@ def delete_policy(request, id):
     return redirect('adminpolicy')
 
 def users_view(request):
-    allusers = CustomUser.objects.all()
+    allusers = User.objects.filter(is_staff=False)
     print("============>>", allusers)
     page = request.GET.get('page', 1)
     paginator = Paginator(allusers, 100)
