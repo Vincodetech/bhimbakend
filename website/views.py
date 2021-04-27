@@ -25,7 +25,7 @@ def index(request):
     home_edu = Education.objects.filter(active=True).order_by('-id')[0:3]
     home_teacher = Teacher.objects.filter(active=True).order_by('-id')[0:4]
 
-    total_users = CustomUser.objects.all().count()
+    total_users = User.objects.filter(is_staff=False).count()
     total_courses = Education.edu_count()
     total_ebooks = Ebook.objects.all().count()
     total_teachers = Teacher.objects.all().count()
