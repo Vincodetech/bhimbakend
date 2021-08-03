@@ -24,7 +24,7 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Go To Website</span></a>
     </li>
-    {% if user.is_superuser %}
+    
     <!-- Nav Item - Admin Entry -->
     <li class="nav-item">
       <a class="nav-link" href="{% url 'adminentry' %}">
@@ -67,7 +67,7 @@
         </div>
       </div>
     </li> -->
-    {% endif %}
+    
 
     <!-- Nav Item - Generel Collapse Menu -->
     <li class="nav-item">
@@ -110,15 +110,16 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Education:</h6>
           <!-- <a class="collapse-item" href="#">FAQ</a> -->
-          <a class="collapse-item" href="{% url 'educat' %}">Education Category</a>
-          <a class="collapse-item" href="{% url 'edusubcat' %}">Education Sub Category</a>
-          <a class="collapse-item" href="{% url 'edusub' %}">Education Subjects</a>
+          <a class="collapse-item" href="{% url 'educat' %}">Category</a>
+          <a class="collapse-item" href="{% url 'edusubcat' %}">Sub Category</a>
+          <a class="collapse-item" href="{% url 'edusub' %}">Subjects</a>
+          <a class="collapse-item" href="{% url 'educh' %}">Chapters</a>
+          <a class="collapse-item" href="{% url 'edu' %}">Topics</a>
           <a class="collapse-item" href="{% url 'tag' %}">Tags</a>
-          <a class="collapse-item" href="{% url 'edu' %}">Education</a>
         </div>
       </div>
     </li>
-    {% if user.is_superuser %}
+    
     <!-- Nav Item - Area Collapse Menu -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefive" 
@@ -180,7 +181,7 @@
         <i class="fas fa-fw fa-phone"></i>
         <span>Inquiry</span></a>
     </li>
-    {% endif %}
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

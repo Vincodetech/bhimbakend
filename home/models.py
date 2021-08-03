@@ -253,7 +253,7 @@ class EducationSubCategory(models.Model):
     category_name = models.CharField(max_length=255, default="")
     image = models.ImageField(upload_to='educattion/', default="",  blank=True, null=True)
     active = models.BooleanField(default=True)
-    category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="")
+    category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 
@@ -280,7 +280,7 @@ class EduSubjects(models.Model):
     subject_name = models.CharField(max_length=255, default="")
     image = models.ImageField(upload_to='educattion/', default="", blank=True, null=True)
     active = models.BooleanField(default=True)
-    sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="")
+    sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
     created_at = models.DateField(default=datetime.datetime.now)
     updated_at = models.DateField(default=datetime.datetime.now)
 
@@ -303,6 +303,33 @@ class EduSubjects(models.Model):
     def get_subjects_by_sub_cat(id):
         return EduSubjects.objects.filter(sub_category=id)
 
+class EduChapter(models.Model):
+    chapter_name = models.CharField(max_length=255, default="")
+    image = models.ImageField(upload_to='educattion/', default="", blank=True, null=True)
+    active = models.BooleanField(default=True)
+    subject = models.ForeignKey(EduSubjects, on_delete=models.CASCADE, default="", null=True, blank=True)
+    created_at = models.DateField(default=datetime.datetime.now)
+    updated_at = models.DateField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.chapter_name
+
+    @staticmethod
+    def get_all_chapters():
+        return EduChapter.objects.all()
+
+    @staticmethod
+    def get_chapter_by_id(id):
+        return EduChapter.objects.get(id=id)
+
+    @staticmethod
+    def get_chapter_by_active():
+        return EduChapter.objects.filter(active=True)
+
+    @staticmethod
+    def get_chapter_by_sub_cat(id):
+        return EduChapter.objects.filter(sub_category=id)
+
 class Tag(models.Model):
 	name = models.CharField(max_length=200, null=True)
 
@@ -317,9 +344,10 @@ class Education(models.Model):
     youtube_link = EmbedVideoField(default="", blank=True, null=True)
     youtube_channel_link = models.CharField(max_length=255, default="", blank=True, null=True)
     active = models.BooleanField(default=True)
-    category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="")
-    sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="")
+    category = models.ForeignKey(EducationCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
+    sub_category = models.ForeignKey(EducationSubCategory, on_delete=models.CASCADE, default="", null=True, blank=True)
     subject = models.ForeignKey(EduSubjects, on_delete=models.CASCADE, default="", null=True, blank=True)
+    chapter = models.ForeignKey(EduChapter, on_delete=models.CASCADE, default="", null=True, blank=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, default="", null=True, blank=True)
     tags = models.ManyToManyField(Tag)
     created_at = models.DateField(default=datetime.datetime.now)

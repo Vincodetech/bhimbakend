@@ -89,6 +89,11 @@ urlpatterns = [
     path('updateedusub/<int:id>', home.edit_edu_subjects, name="updateedusub"),
     path('deleteedusub/<int:id>', home.delete_edu_subject, name="deleteedusub"),
 
+    path('educh/', home.edu_chapter_view, name="educh"),
+    path('addneduch/', home.add_edu_chapter, name="addneduch"),
+    path('updateeduch/<int:id>', home.edit_edu_chapter, name="updateeduch"),
+    path('deleteeduch/<int:id>', home.delete_edu_chapter, name="deleteeduch"),
+
     path('edu/', home.edu_view, name="edu"),
     path('addnedu/', home.add_edu, name="addnedu"),
     path('updateedu/<int:id>', home.edit_edu, name="updateedu"),
@@ -96,6 +101,7 @@ urlpatterns = [
 
     path('ajax/edusubcat', home.load_edusubcat, name="ajax_load_edusubcat"), # AJAX
     path('ajax/edusubjects/', home.load_edusubjects, name="ajax_load_edusubjects"), # AJAX
+    path('ajax/ajax_load_educh/', home.load_educhapters, name="ajax_load_educh"), # AJAX
 
     path('gallerycat/', home.gallery_category_view, name="gallerycat"),
     path('addgallerycat/', home.add_gallery_category, name="addgallerycat"),
@@ -130,4 +136,7 @@ urlpatterns = [
     path('addebook/', home.add_ebook, name="addebook"),
     path('updateebook/<int:id>', home.edit_ebook, name="updateebook"),
     path('deleteebook/<int:id>', home.delete_ebook, name="deleteebook"),
+
+    path('exportuser/', home.export_user, name="exportuser"),
+    path('exportinquiry/', home.export_inquiry, name="exportinquiry"),
 ]

@@ -1,13 +1,13 @@
 {% extends 'myadmin/layout.html' %}
-{% block title %} Admin - Education Subjects {% endblock %}
+{% block title %} Admin - Education Chapters {% endblock %}
 {% block content %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Education Subjects</h1>
-        <a href="{% url 'addnedusub' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>
-          Add Education Subjects
+        <h1 class="h3 mb-0 text-gray-800">Education Chapters</h1>
+        <a href="{% url 'addneduch' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>
+          Add Education Chapters
       </a>
     </div>
     <!-- End Page Heading -->
@@ -30,7 +30,7 @@
           <div class="row">
             <div class="col-sm-6">
                 <h6 class="m-0 font-weight-bold text-primary">
-                    Education Subjects Line
+                    Education Chapters Line
                 </h6>
             </div>
             <div class="col-sm-6">
@@ -44,7 +44,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Education Subject</th>
+                  <th>Education Chapter</th>
+                  <th>Subject</th>
                   <th>Sub Category</th>
                   <th>Category</th>
                   <th>Active</th>
@@ -56,19 +57,20 @@
                 {% for data in result %}
                 <tr>
                     <td>{{forloop.counter0|add:result.start_index}}</td>
-                    <td>{{data.subject_name}}</td>
-                    <td>{{data.sub_category.category_name}}</td>
-                    <td>{{data.sub_category.category.category_name}}</td>
+                    <td>{{data.chapter_name}}</td>
+                    <td>{{data.subject.subject_name}}</td>
+                    <td>{{data.subject.sub_category.category_name}}</td>
+                    <td>{{data.subject.sub_category.category.category_name}}</td>
                     <td>{{data.active}}</td>
                     <td>
-                        <a href="{% url 'updateedusub' data.id %}"><i class="fas fa-edit"></i></a>
-                        <a href="{% url 'deleteedusub' data.id %}"><i class="fas fa-trash"></i></a>
+                        <a href="{% url 'updateeduch' data.id %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'deleteeduch' data.id %}"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
                 {% else %}
                 <tr>
-                  <td colspan="6">No Recored found.</td>
+                  <td colspan="7">No Recored found.</td>
                 </tr>
                 {% endif %}
               </tbody>

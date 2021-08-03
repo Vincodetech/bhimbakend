@@ -15,7 +15,8 @@ from django.forms import modelformset_factory
 from ..models import *
 from ..forms import *
 import datetime
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+import xlwt
 
 def dashboard_admin(request):
     total_users = User.objects.filter(is_staff=False).count()
@@ -442,7 +443,7 @@ def delete_policy(request, id):
     return redirect('adminpolicy')
 
 def users_view(request):
-    allusers = User.objects.filter(is_staff=False)
+    allusers = User.objects.filter(is_active=True, is_superuser=False, is_staff=False)
     print("============>>", allusers)
     page = request.GET.get('page', 1)
     paginator = Paginator(allusers, 100)
@@ -480,7 +481,7 @@ def delete_inquiry(request, id):
     return redirect('admininquiry')
 
 def admin_view(request):
-    allusers = User.objects.filter(is_staff=True)
+    allusers = User.objects.filter(is_staff=True, is_superuser=False)
     page = request.GET.get('page', 1)
     paginator = Paginator(allusers, 100)
     try:
@@ -1095,6 +1096,62 @@ def delete_edu_subject(request, id):
     messages.success(request, 'Edu Subjects is deleted.')
     return redirect('edusub')
 
+# edu chapters crud
+def edu_chapter_view(request):
+    allcontents = EduChapter.get_all_chapters()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allcontents, 100)
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        result = paginator.page(1)
+    except EmptyPage:
+        result = paginator.page(paginator.num_pages)
+    data = {
+        'result': result,
+    }
+    return render(request, 'myadmin/educhapterview.html', data)
+
+def add_edu_chapter(request):
+    if request.method == 'POST':
+        forms = EduChapterForm(request.POST, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Edu Chapter created successfully.')
+            return redirect('addneduch')
+        else:
+            messages.error(request, 'Edu Chapter is not created successfully.')
+            return redirect('addneduch')
+    else:
+        forms = EduChapterForm()
+    return render(request, 'myadmin/add_educhapter_view.html', {
+        'forms': forms
+    })
+
+def edit_edu_chapter(request, id):
+    if request.method == 'POST':
+        single_edu_chapter = EduChapter.get_chapter_by_id(id)
+        forms = EduChapterForm(request.POST, instance=single_edu_chapter, files=request.FILES)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Edu Chapter updated successfully.')
+            return redirect('educh')
+        else:
+            messages.error(request, 'Edu Chapter is not updated successfully.')
+            return redirect('educh')
+    else:
+        single_edu_chapter = EduChapter.get_chapter_by_id(id)
+        forms = EduChapterForm(instance=single_edu_chapter)
+    return render(request, 'myadmin/add_educhapter_view.html', {
+        'forms': forms
+    })
+
+def delete_edu_chapter(request, id):
+    single_edu_chapter = EduChapter.get_chapter_by_id(id)
+    single_edu_chapter.delete()
+    messages.success(request, 'Edu Chapter is deleted.')
+    return redirect('educh')
+
 # edu crud
 def edu_view(request):
     allcontents = Education.get_edu_by_active()
@@ -1163,6 +1220,12 @@ def load_edusubjects(request):
     subjectslst = EduSubjects.objects.filter(sub_category=edusubid)
     print("--------------->>>", subjectslst)
     return JsonResponse(list(subjectslst.values('id', 'subject_name')), safe=False)
+
+def load_educhapters(request):
+    edusubjectid = request.GET.get('edusubjectid')
+    chapterlst = EduChapter.objects.filter(subject=edusubjectid)
+    print("--------------->>>", chapterlst)
+    return JsonResponse(list(chapterlst.values('id', 'chapter_name')), safe=False)
 
 # gallery cat crud
 def gallery_category_view(request):
@@ -1527,3 +1590,80 @@ def delete_ebook(request, id):
     single_ebook.delete()
     messages.success(request, 'Ebook is deleted.')
     return redirect('ebook')
+
+
+def export_user(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = f'attachment; filename="users-{datetime.datetime.now()}.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Users Data')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['First Name', 'Last Name', 'Email Address']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style = xlwt.XFStyle()
+
+    rows = User.objects.filter(is_active=True)
+
+    for row in rows:
+        row_num += 1
+
+        line = [
+            row.first_name,
+            row.last_name,
+            row.email
+        ]
+
+        for col_num in range(len(line)):
+            ws.write(row_num, col_num, line[col_num], font_style)
+
+    wb.save(response)
+
+    return response
+
+def export_inquiry(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = f'attachment; filename="inquiry-data-{datetime.datetime.now()}.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Inquiry Data')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Full Name', 'Phone', 'Subject', 'Message', 'Email Address']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style = xlwt.XFStyle()
+
+    rows = Inquiry.objects.all()
+
+    for row in rows:
+        row_num += 1
+
+        line = [
+            row.name,
+            row.phone,
+            row.subject,
+            row.message,
+            row.email,
+        ]
+
+        for col_num in range(len(line)):
+            ws.write(row_num, col_num, line[col_num], font_style)
+
+    wb.save(response)
+
+    return response
