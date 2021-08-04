@@ -139,4 +139,7 @@ urlpatterns = [
 
     path('exportuser/', home.export_user, name="exportuser"),
     path('exportinquiry/', home.export_inquiry, name="exportinquiry"),
+
+    path('report/', home.report_view, name="report"),
+    path('search/', home.generate_report, name="search"),
 ]

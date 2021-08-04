@@ -1667,3 +1667,137 @@ def export_inquiry(request):
     wb.save(response)
 
     return response
+
+def report_view(request):
+    data = {}
+
+    categories = EducationCategory.objects.filter(active=True)
+
+    data = {
+        'categories': categories,
+    }
+
+    return render(request, 'myadmin/report_view.html', data)
+
+def generate_report(request):
+    category = request.POST.get('category')
+    subcategory = request.POST.get('subcategory')
+    subject = request.POST.get('subject')
+    chapter = request.POST.get('chapter')
+    data = None
+
+    if category != '0':
+        if subcategory != "0":
+            if subject != "0":
+                if chapter != "0":
+                    echapter = EduChapter.objects.get(id=chapter)
+                    esubject = EduSubjects.objects.get(id=subject)
+                    esubcat = EducationSubCategory.objects.get(id=subcategory)
+                    ecat = EducationCategory.objects.get(id=category)
+                    data = Education.objects.filter(category=ecat, sub_category=esubcat, subject=esubject, chapter=echapter)
+                    print(f'==>>> ecat: {ecat}, esubcat: {esubcat}, esubject: {esubject}, echapter: {echapter}, data: {data}')
+                    # export_data(data)
+                else:
+                    esubject = EduSubjects.objects.get(id=subject)
+                    esubcat = EducationSubCategory.objects.get(id=subcategory)
+                    ecat = EducationCategory.objects.get(id=category)
+                    data = Education.objects.filter(category=ecat, sub_category=esubcat, subject=esubject)
+                    print(f'==>>> ecat: {ecat}, esubcat: {esubcat}, esubject: {esubject}, data: {data}')
+                    # export_data(data)
+            else:
+                esubcat = EducationSubCategory.objects.get(id=subcategory)
+                ecat = EducationCategory.objects.get(id=category)
+                data = Education.objects.filter(category=ecat, sub_category=esubcat)
+                print(f'==>>> ecat: {ecat}, esubcat: {esubcat}, data: {data}')
+                # export_data(data)
+        else:
+            ecat = EducationCategory.objects.get(id=category)
+            data = Education.objects.filter(category=ecat)
+            print(f'==>>> ecat: {ecat}, data: {data}')
+            # export_data(data)
+    else:
+        messages.warning(request, 'Please Select Category!')
+        return redirect('report')
+
+    print(f'==>>> category: {category}, subcategory: {subcategory}, subject: {subject}, chapter:{chapter}')
+    # return HttpResponse('ok')
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = f'attachment; filename="course-data-{datetime.datetime.now()}.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Course Data')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Title', 'Description', 'Category', 'Sub Category', 'Subject', 'Chapter', 'Teacher']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style = xlwt.XFStyle()
+
+    # rows = Inquiry.objects.all()
+
+    for row in data:
+        row_num += 1
+
+        line = [
+            row.title,
+            row.description,
+            row.category.category_name,
+            row.sub_category.category_name,
+            row.subject.subject_name,
+            row.chapter.chapter_name,
+            row.teacher.name,
+        ]
+
+        for col_num in range(len(line)):
+            ws.write(row_num, col_num, line[col_num], font_style)
+
+    wb.save(response)
+
+    return response
+
+# def export_data(rows):
+#     response = HttpResponse(content_type='application/ms-excel')
+#     response['Content-Disposition'] = f'attachment; filename="inquiry-data-{datetime.datetime.now()}.xls"'
+
+#     wb = xlwt.Workbook(encoding='utf-8')
+#     ws = wb.add_sheet('Course Data')
+
+#     row_num = 0
+
+#     font_style = xlwt.XFStyle()
+#     font_style.font.bold = True
+
+#     columns = ['Title', 'Description', 'Category', 'Sub Category', 'Subject', 'Chapter', 'Teacher']
+
+#     for col_num in range(len(columns)):
+#         ws.write(row_num, col_num, columns[col_num], font_style)
+
+#     font_style = xlwt.XFStyle()
+
+#     # rows = Inquiry.objects.all()
+
+#     for row in rows:
+#         row_num += 1
+
+#         line = [
+#             row.title,
+#             row.description,
+#             row.category.category_name,
+#             row.sub_category.category_name,
+#             row.subject.subject_name,
+#             row.chapter.chapter_name,
+#             row.teacher.name,
+#         ]
+
+#         for col_num in range(len(line)):
+#             ws.write(row_num, col_num, line[col_num], font_style)
+
+#     wb.save(response)
+
+#     return response

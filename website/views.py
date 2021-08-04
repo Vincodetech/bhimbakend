@@ -60,6 +60,12 @@ def load_subjects(request):
     print("--------------->>>", subjectslst)
     return JsonResponse(list(subjectslst.values('id', 'subject_name')), safe=False)
 
+def load_chapters(request):
+    edusubjectid = request.GET.get('edusubjectid')
+    subjectslst = EduChapter.objects.filter(subject=edusubjectid)
+    print("--------------->>>", subjectslst)
+    return JsonResponse(list(subjectslst.values('id', 'chapter_name')), safe=False)
+
 def aboutus(request):
     header_content = HeaderCms.get_content_by_active()
     footer_content = FooterCms.get_content_by_active()
@@ -85,14 +91,19 @@ def courses(request):
         educate = request.POST.get("category")
         subcategory = request.POST.get("subcategory")
         subject = request.POST.get("subject")
+        chapter = request.POST.get("chapter")
 
         if educate != "0":
             if subcategory != "0":
                 if subject != "0":
-                    all_edu = Education.objects.filter(subject=subject)
-                    print("=====>BySubject", all_edu)
+                    if chapter != "0":
+                        all_edu = Education.objects.filter(chapter=chapter, subject=subject, sub_category=subcategory, category=educate)
+                        print("=====>BySubject", all_edu)
+                    else:
+                        all_edu = Education.objects.filter(subject=subject, sub_category=subcategory, category=educate)
+                        print("=====>BySubject", all_edu)
                 else:
-                    all_edu = Education.objects.filter(sub_category=subcategory)
+                    all_edu = Education.objects.filter(sub_category=subcategory, category=educate)
                     print("=====>BySubCat", all_edu)
             else:
                 all_edu = Education.objects.filter(category=educate)

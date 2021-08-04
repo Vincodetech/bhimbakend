@@ -28,6 +28,7 @@ urlpatterns = [
 
     path('edcat/',views.load_sub_category,name='edcat-ajax'),
     path('sub/',views.load_subjects,name='sub-ajax'),
+    path('subject-ajax/',views.load_chapters,name='subject-ajax'),
 
     path('gallery/',views.gallery,name='gallery-view'),
 ]
