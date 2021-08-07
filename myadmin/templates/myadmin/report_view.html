@@ -1,0 +1,166 @@
+{% extends 'myadmin/layout.html' %}
+{% block title %} Admin - Report {% endblock %}
+{% block content %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Report</h1>
+        <a href="{% url 'dashboard_admin' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-backward fa-sm text-white-50"></i> Back
+        </a>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show" {% endif %}
+        role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{ message }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <select name="category" id="category" class="form-control form-control-sm"
+                    data-educat="{% url 'ajax_load_edusubcat' %}">
+                    <option value="0">Select Category</option>
+                    {% for c in categories %}
+                    <option value="{{c.id}}">{{c.category_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <select name="subcategory" id="subcategory" class="form-control form-control-sm"
+                    data-sub="{% url 'ajax_load_edusubjects' %}">
+                    <option value="0">Select Sub Category</option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <select name="subject" id="subject" class="form-control form-control-sm"
+                    data-subject="{% url 'ajax_load_educh' %}">
+                    <option value="0">Select Subject</option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <select name="chapter" id="chapter" class="form-control form-control-sm">
+                    <option value="0">Select Chapter</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button class="btn btn-light btn-outline-info btn-sm rounded">
+                    Generate
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block mycustomjs %}
+<script>
+    $(document).ready(function () {
+        $('#category').change(function () {
+            const url = $("#category").attr("data-educat");
+            console.log(url);
+            const educstId = $(this).val();
+            console.log(educstId);
+
+            if (educstId != null) {
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                    data: {
+                        'educstId': educstId       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+                        let html_data = '<option value="0">=================</option>';
+                        data.forEach(function (edusubcat) {
+                            html_data += `<option value="${edusubcat.id}">${edusubcat.category_name}</option>`
+                        });
+                        console.log(html_data);
+                        $("#subcategory").html(html_data);
+
+                    }
+                });
+            } else {
+                $("#subcategory").html('<option value="0">=================</option>');
+            }
+        });
+
+        $('#subcategory').change(function () {
+            const url = $("#subcategory").attr("data-sub");
+            console.log(url);
+            const edusubid = $(this).val();
+            console.log(edusubid);
+
+            if (edusubid != null) {
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                    data: {
+                        'edusubid': edusubid       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+                        let html_data = '<option value="0">=================</option>';
+                        data.forEach(function (edusubcat) {
+                            html_data += `<option value="${edusubcat.id}">${edusubcat.subject_name}</option>`
+                        });
+                        console.log(html_data);
+                        $("#subject").html(html_data);
+
+                    }
+                });
+            } else {
+                $("#subject").html('<option value="0">=================</option>');
+            }
+        });
+
+        $('#subject').change(function () {
+            const url = $("#subject").attr("data-subject");
+            console.log(url);
+            const edusubjectid = $(this).val();
+            console.log(edusubjectid);
+
+            if (edusubjectid != null) {
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                    data: {
+                        'edusubjectid': edusubjectid       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+                        let html_data = '<option value="0">=================</option>';
+                        data.forEach(function (edusubcat) {
+                            html_data += `<option value="${edusubcat.id}">${edusubcat.chapter_name}</option>`
+                        });
+                        console.log(html_data);
+                        $("#chapter").html(html_data);
+
+                    }
+                });
+            } else {
+                $("#chapter").html('<option value="0">=================</option>');
+            }
+        });
+    });
+</script>
+{% endblock %}

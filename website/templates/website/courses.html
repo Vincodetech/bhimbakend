@@ -26,7 +26,7 @@
 <div class="search-category">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12 col-md-offset-1">
                 <form action="{% url 'course-list' %}" method="post">
                     {% csrf_token %}
                     <div class="form-container">
@@ -45,12 +45,17 @@
                                 </select>
                             </div>
                             <div class="select medium">
-                                <select name="subject" id="subject">
+                                <select name="subject" id="subject" data-subject="{% url 'subject-ajax' %}">
+                                    <option value="0">=================</option>
+                                </select>
+                            </div>
+                            <div class="select medium">
+                                <select name="chapter" id="chapter">
                                     <option value="0">=================</option>
                                 </select>
                             </div>
                         </div>
-                        <button type="submit">Search Course</button>
+                        <button type="submit" style="margin-top: 20px; float:left;">Search Course</button>
                     </div>
                 </form>  
             </div>
@@ -166,6 +171,36 @@
                 });
             } else {
                 $("#subject").html('<option value="0">=================</option>');
+            }
+        });
+
+        $('#subject').change(function () {
+            const url = $("#subject").attr("data-subject");
+            console.log(url);
+            const edusubjectid = $(this).val();
+            console.log(edusubjectid);
+
+            if (edusubjectid != null) {
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                    data: {
+                        'edusubjectid': edusubjectid       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        //$("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+                        let html_data = '<option value="0">=================</option>';
+                        data.forEach(function (edusubcat) {
+                            html_data += `<option value="${edusubcat.id}">${edusubcat.chapter_name}</option>`
+                        });
+                        console.log(html_data);
+                        $("#chapter").html(html_data);
+
+                    }
+                });
+            } else {
+                $("#chapter").html('<option value="0">=================</option>');
             }
         });
     });

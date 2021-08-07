@@ -78,16 +78,22 @@ class EduSubjectsForm(forms.ModelForm):
         model=EduSubjects
         fields=('subject_name', 'sub_category', 'image', 'active')
 
+class EduChapterForm(forms.ModelForm):
+    class Meta:
+        model=EduChapter
+        fields=('chapter_name', 'subject', 'image', 'active')
+
 class EduForm(forms.ModelForm):
     class Meta:
         model=Education
         fields=('title','description', 'image','document_path','youtube_link','youtube_channel_link',
-        'category','sub_category', 'subject', 'teacher', 'tags', 'active')
+        'category','sub_category', 'subject', 'chapter', 'teacher', 'tags', 'active')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['sub_category'].queryset = EducationSubCategory.objects.none()
         self.fields['subject'].queryset = EduSubjects.objects.none()
+        self.fields['chapter'].queryset = EduChapter.objects.none()
 
         if 'category' in self.data:
             try:
@@ -102,10 +108,19 @@ class EduForm(forms.ModelForm):
                 self.fields['subject'].queryset = EduSubjects.objects.filter(sub_category=category_id).order_by('subject_name')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
-        elif self.instance.id:
+
+        if 'subject' in self.data:
+            try:
+                subject_id = int(self.data.get('subject'))
+                self.fields['chapter'].queryset = EduChapter.objects.filter(subject=subject_id).order_by('chapter_name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+
+        if self.instance.id:
             self.fields['category'].queryset = EducationCategory.objects.all()
             self.fields['sub_category'].queryset = EducationSubCategory.objects.filter(category=self.instance.category)
             self.fields['subject'].queryset = EduSubjects.objects.filter(sub_category=self.instance.sub_category)
+            self.fields['chapter'].queryset = EduChapter.objects.filter(subject=self.instance.subject)
 
 class DateInput(forms.DateInput):
     input_type = 'date'

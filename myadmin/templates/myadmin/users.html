@@ -31,6 +31,7 @@
                 </h6>
             </div>
             <div class="col-sm-6">
+                <a href="{% url 'exportuser' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">Export</a>
             </div>
           </div>
         </div>
@@ -54,7 +55,7 @@
                         <td>{{forloop.counter0|add:users.start_index}}</td>
                         <td>{{user.first_name}}</td>
                         <td>{{user.last_name}}</td>
-                        <td>{{user.phone}}</td>
+                        <td>{{user.profile.phone}}</td>
                         <td>{{user.email}}</td>
                         <td>{{user.is_active}}</td>
                     </tr>
